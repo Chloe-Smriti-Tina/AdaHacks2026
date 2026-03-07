@@ -1,7 +1,0 @@
-year,total_collisions,total_fatalities,total_serious_injuries,total_minor_injuries,bicycle_collisions,motorcycle_collisions,pedestrian_collisions,collisions_per_1000,property_damage_only_pdo,fatalities_intersection,fatalities_midblock,injuries_intersection,injuries_midblock
-2018,14820,28,312,4210,380,290,560,15.9,10560,16,12,2800,1722
-2019,15340,31,328,4410,410,310,590,16.1,10910,19,12,2950,1788
-2020,11240,22,260,3110,320,240,420,11.6,8080,13,9,2100,1270
-2021,13560,26,295,3780,355,275,510,13.8,9726,15,11,2540,1535
-2022,15980,33,345,4620,440,325,615,15.8,11323,20,13,3090,1875
-2023,16450,35,362,4810,465,340,640,15.8,11626,21,14,3210,1962
