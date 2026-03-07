@@ -516,24 +516,24 @@
 <body>
   <div class="topbar">
     <a class="brand" href="index.html">
-      <div class="brand-icon">🚦</div>
-      <span class="brand-name">SafeRoute Edmonton</span>
+      <!-- <div class="brand-icon">🚦</div> -->
+      <span class="brand-name">CityScope</span>
     </a>
     <div class="tab-nav">
-      <a class="tn active" href="index.html">📊 Overview</a>
-      <a class="tn" href="location.html">📍 Priority Locations</a>
+      <a class="tn active" href="index.html">Overview</a>
+      <a class="tn" href="location.html">Priority Locations</a>
     </div>
     <div class="tb-spacer"></div>
     <span class="yr-lbl">Year</span>
-    <button class="yr-btn" onclick="selYear(2018,this)">2018</button>
+    <!-- <button class="yr-btn" onclick="selYear(2018,this)">2018</button> -->
     <button class="yr-btn" onclick="selYear(2019,this)">2019</button>
     <button class="yr-btn" onclick="selYear(2020,this)">2020</button>
     <button class="yr-btn" onclick="selYear(2021,this)">2021</button>
-    <button class="yr-btn" onclick="selYear(2022,this)">2022</button>
-    <button class="yr-btn active" onclick="selYear(2023,this)">2023</button>
+    <!-- <button class="yr-btn" onclick="selYear(2022,this)">2022</button> -->
+    <!-- <button class="yr-btn active" onclick="selYear(2023,this)">2023</button> -->
     <div class="user-chip">
-      <div class="avatar">JA</div>
-      <span class="user-name">Jordan Ames</span>
+      <div class="avatar">COE</div>
+      <span class="user-name">City of Edmonton</span>
     </div>
   </div>
 
@@ -541,10 +541,10 @@
     <div class="ph">
       <div>
         <div class="ph-title">Dashboard</div>
-        <div class="ph-sub">Monitor and analyze road safety across Edmonton, 2018–2023.</div>
+        <div class="ph-sub">Monitor and analyze road safety across Edmonton, 2019-2021.</div>
       </div>
       <div class="ph-actions">
-        <button class="btn-p">＋ Export Report</button>
+        <!-- <button class="btn-p">＋ Export Report</button> -->
         <button class="btn-o">Import Data</button>
       </div>
     </div>
@@ -609,7 +609,7 @@
         <div style="height:200px"><canvas id="ch-trend"></canvas></div>
       </div>
       <div class="card">
-        <div class="stitle">Road User Mode (2023)</div>
+        <div class="stitle">Road User Mode</div>
         <div style="height:200px"><canvas id="ch-pie"></canvas></div>
       </div>
     </div>
@@ -627,7 +627,7 @@
 
     <div class="card" style="margin-bottom:12px">
       <div class="stitle">Intersection vs Midblock — <span style="font-weight:400;color:var(--muted)"
-          id="yr-lbl">2023</span></div>
+          id="yr-lbl">2021</span></div>
       <div class="ig">
         <div class="ig-item">
           <div class="ig-val" style="color:var(--red)" id="iv-fi">21</div>
@@ -651,15 +651,15 @@
 
   <script>
     const YS = [
-      { year: 2018, total_collisions: 14820, total_fatalities: 28, total_serious_injuries: 312, total_minor_injuries: 4210, bicycle_collisions: 380, motorcycle_collisions: 290, pedestrian_collisions: 560, collisions_per_1000: 15.9, property_damage_only_pdo: 10560, fatalities_intersection: 16, fatalities_midblock: 12, injuries_intersection: 2800, injuries_midblock: 1722 },
+      // { year: 2018, total_collisions: 14820, total_fatalities: 28, total_serious_injuries: 312, total_minor_injuries: 4210, bicycle_collisions: 380, motorcycle_collisions: 290, pedestrian_collisions: 560, collisions_per_1000: 15.9, property_damage_only_pdo: 10560, fatalities_intersection: 16, fatalities_midblock: 12, injuries_intersection: 2800, injuries_midblock: 1722 },
       { year: 2019, total_collisions: 15340, total_fatalities: 31, total_serious_injuries: 328, total_minor_injuries: 4410, bicycle_collisions: 410, motorcycle_collisions: 310, pedestrian_collisions: 590, collisions_per_1000: 16.1, property_damage_only_pdo: 10910, fatalities_intersection: 19, fatalities_midblock: 12, injuries_intersection: 2950, injuries_midblock: 1788 },
       { year: 2020, total_collisions: 11240, total_fatalities: 22, total_serious_injuries: 260, total_minor_injuries: 3110, bicycle_collisions: 320, motorcycle_collisions: 240, pedestrian_collisions: 420, collisions_per_1000: 11.6, property_damage_only_pdo: 8080, fatalities_intersection: 13, fatalities_midblock: 9, injuries_intersection: 2100, injuries_midblock: 1270 },
       { year: 2021, total_collisions: 13560, total_fatalities: 26, total_serious_injuries: 295, total_minor_injuries: 3780, bicycle_collisions: 355, motorcycle_collisions: 275, pedestrian_collisions: 510, collisions_per_1000: 13.8, property_damage_only_pdo: 9726, fatalities_intersection: 15, fatalities_midblock: 11, injuries_intersection: 2540, injuries_midblock: 1535 },
-      { year: 2022, total_collisions: 15980, total_fatalities: 33, total_serious_injuries: 345, total_minor_injuries: 4620, bicycle_collisions: 440, motorcycle_collisions: 325, pedestrian_collisions: 615, collisions_per_1000: 15.8, property_damage_only_pdo: 11323, fatalities_intersection: 20, fatalities_midblock: 13, injuries_intersection: 3090, injuries_midblock: 1875 },
-      { year: 2023, total_collisions: 16450, total_fatalities: 35, total_serious_injuries: 362, total_minor_injuries: 4810, bicycle_collisions: 465, motorcycle_collisions: 340, pedestrian_collisions: 640, collisions_per_1000: 15.8, property_damage_only_pdo: 11626, fatalities_intersection: 21, fatalities_midblock: 14, injuries_intersection: 3210, injuries_midblock: 1962 },
+      // { year: 2022, total_collisions: 15980, total_fatalities: 33, total_serious_injuries: 345, total_minor_injuries: 4620, bicycle_collisions: 440, motorcycle_collisions: 325, pedestrian_collisions: 615, collisions_per_1000: 15.8, property_damage_only_pdo: 11323, fatalities_intersection: 20, fatalities_midblock: 13, injuries_intersection: 3090, injuries_midblock: 1875 },
+      // { year: 2023, total_collisions: 16450, total_fatalities: 35, total_serious_injuries: 362, total_minor_injuries: 4810, bicycle_collisions: 465, motorcycle_collisions: 340, pedestrian_collisions: 640, collisions_per_1000: 15.8, property_damage_only_pdo: 11626, fatalities_intersection: 21, fatalities_midblock: 14, injuries_intersection: 3210, injuries_midblock: 1962 },
     ];
 
-    let curYear = 2023;
+    let curYear = 2021;
     const f = n => typeof n === 'number' ? n.toLocaleString() : n;
     function dlt(c, p) { if (p == null) return ''; const d = c - p; return `${d > 0 ? '▲ +' : '▼ '}${f(Math.abs(d))} vs ${curYear - 1}`; }
     function dCls(c, p) { if (p == null) return 'dn'; return c > p ? 'dd' : 'du'; }
