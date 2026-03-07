@@ -1,522 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Edmonton Road Safety · Overview</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <style>
     :root {
-      --p: #39b6fb;
-      --pl: #e8f6ff;
-      --pm: #a8dcfa;
-      --pd: #0b8fd4;
-      --s: #ffc0cb;
-      --sl: #fff4f6;
-      --sd: #e87d95;
-      --bg: #f0f4f8;
-      --surface: #fff;
-      --border: #e2eaf3;
-      --text: #18283d;
-      --muted: #7a92ab;
-      --muted2: #b0c4d8;
-      --red: #e84646;
-      --amber: #f5a623;
-      --green: #22c98a;
-      --teal: #0891b2;
-      --r: 16px;
-      --rs: 10px;
-      --sh: 0 2px 12px rgba(0, 0, 0, .055);
-      --shm: 0 6px 28px rgba(0, 0, 0, .09);
+      --p:#39b6fb;--pl:#e8f6ff;--pm:#a8dcfa;--pd:#0b8fd4;
+      --s:#ffc0cb;--sl:#fff4f6;--sd:#e87d95;
+      --bg:#f0f4f8;--surface:#fff;--border:#e2eaf3;
+      --text:#18283d;--muted:#7a92ab;--muted2:#b0c4d8;
+      --red:#e84646;--amber:#f5a623;--green:#22c98a;--teal:#0891b2;
+      --r:16px;--rs:10px;
+      --sh:0 2px 12px rgba(0,0,0,.055);--shm:0 6px 28px rgba(0,0,0,.09);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      height: 100%;
-      font-family: 'Sora', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 14px;
-    }
-
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--pm);
-      border-radius: 4px;
-    }
-
-    .topbar {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      height: 60px;
-      gap: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 0 var(--border);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-right: 24px;
-      text-decoration: none;
-    }
-
-    .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--p), var(--pd));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      box-shadow: 0 3px 10px rgba(57, 182, 251, .35);
-    }
-
-    .brand-name {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -.4px;
-      color: var(--text);
-    }
-
-    .tab-nav {
-      display: flex;
-      gap: 2px;
-    }
-
-    .tn {
-      padding: 6px 16px;
-      border-radius: 8px;
-      border: none;
-      background: none;
-      font-size: 13px;
-      font-weight: 500;
-      font-family: 'Sora', sans-serif;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all .15s;
-      text-decoration: none;
-    }
-
-    .tn:hover {
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .tn.active {
-      background: var(--pl);
-      color: var(--pd);
-      font-weight: 700;
-    }
-
-    .tb-spacer {
-      flex: 1;
-    }
-
-    .yr-lbl {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      margin-right: 4px;
-    }
-
-    .yr-btn {
-      padding: 4px 13px;
-      border-radius: 20px;
-      border: 1.5px solid var(--border);
-      background: var(--surface);
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 500;
-      font-family: 'Sora', sans-serif;
-      transition: all .14s;
-    }
-
-    .yr-btn:hover {
-      border-color: var(--p);
-      color: var(--p);
-    }
-
-    .yr-btn.active {
-      background: var(--p);
-      border-color: var(--p);
-      color: #fff;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(57, 182, 251, .35);
-    }
-
-    .user-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 12px 5px 5px;
-      border-radius: 30px;
-      border: 1px solid var(--border);
-      margin-left: 16px;
-    }
-
-    .avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--p), var(--sd));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .user-name {
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .content {
-      max-width: 1340px;
-      margin: 0 auto;
-      padding: 28px 32px;
-    }
-
-    .ph {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 24px;
-    }
-
-    .ph-title {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-      line-height: 1;
-    }
-
-    .ph-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .ph-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .btn-p {
-      background: var(--p);
-      color: #fff;
-      border: none;
-      border-radius: 9px;
-      padding: 8px 18px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: 'Sora', sans-serif;
-      box-shadow: 0 3px 10px rgba(57, 182, 251, .3);
-      transition: background .15s;
-    }
-
-    .btn-p:hover {
-      background: var(--pd);
-    }
-
-    .btn-o {
-      background: none;
-      border: 1.5px solid var(--border);
-      border-radius: 9px;
-      padding: 8px 18px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: 'Sora', sans-serif;
-      color: var(--text);
-      transition: all .15s;
-    }
-
-    .btn-o:hover {
-      border-color: var(--p);
-      color: var(--p);
-    }
-
-    .bento {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .g4 {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .g2l {
-      grid-template-columns: 1.6fr 1fr;
-    }
-
-    .g11 {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .card {
-      background: var(--surface);
-      border-radius: var(--r);
-      border: 1px solid var(--border);
-      padding: 20px;
-      box-shadow: var(--sh);
-      transition: box-shadow .15s, transform .15s;
-      animation: fadeUp .3s ease both;
-    }
-
-    .card:hover {
-      box-shadow: var(--shm);
-      transform: translateY(-1px);
-    }
-
-    .card-hero {
-      background: linear-gradient(140deg, #0c2e52, #0e4f88);
-      border: none;
-      color: #fff;
-    }
-
-    .card-hero .c-lbl,
-    .card-hero .c-val {
-      color: #fff;
-    }
-
-    .card-pink {
-      background: linear-gradient(135deg, #fce8ed, #ffd0db);
-      border-color: #f5b8c6;
-    }
-
-    .card-pink .c-lbl,
-    .card-pink .c-val {
-      color: #a8304a;
-    }
-
-    .c-lbl {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      color: var(--muted);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .c-val {
-      font-size: 34px;
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      line-height: 1;
-      display: block;
-    }
-
-    .c-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .c-arr {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1.5px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      cursor: pointer;
-      flex-shrink: 0;
-      color: var(--muted);
-    }
-
-    .card-hero .c-arr {
-      border-color: rgba(255, 255, 255, .25);
-      color: rgba(255, 255, 255, .7);
-    }
-
-    .c-delta {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      margin-top: 8px;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 9px;
-      border-radius: 20px;
-    }
-
-    .dd {
-      background: #ffeaea;
-      color: var(--red);
-    }
-
-    .du {
-      background: #e4faf2;
-      color: #1aab6d;
-    }
-
-    .dn {
-      background: var(--bg);
-      color: var(--muted);
-    }
-
-    .hero-chip {
-      background: rgba(57, 182, 251, .22);
-      color: #a8dcfa;
-      border-radius: 20px;
-      padding: 2px 10px;
-      font-size: 11px;
-      font-weight: 600;
-      margin-top: 9px;
-      display: inline-block;
-    }
-
-    .stitle {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text);
-    }
-
-    .stitle::before {
-      content: '';
-      width: 3px;
-      height: 13px;
-      border-radius: 2px;
-      background: linear-gradient(180deg, var(--p), var(--sd));
-      flex-shrink: 0;
-    }
-
-    .ig {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .ig-item {
-      text-align: center;
-      padding: 12px 6px;
-      background: var(--bg);
-      border-radius: var(--rs);
-    }
-
-    .ig-val {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
-
-    .ig-lbl {
-      font-size: 10px;
-      color: var(--muted);
-      margin-top: 3px;
-      line-height: 1.3;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .g4 .card:nth-child(1) {
-      animation-delay: .04s;
-    }
-
-    .g4 .card:nth-child(2) {
-      animation-delay: .09s;
-    }
-
-    .g4 .card:nth-child(3) {
-      animation-delay: .14s;
-    }
-
-    .g4 .card:nth-child(4) {
-      animation-delay: .19s;
-    }
-
-    @media (max-width: 1100px) {
-
-      .g4,
-      .g2l,
-      .g11 {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .topbar {
-        padding: 12px 16px;
-        height: auto;
-        flex-wrap: wrap;
-      }
-
-      .content {
-        padding: 20px 16px;
-      }
-
-      .g4,
-      .g2l,
-      .g11,
-      .ig {
-        grid-template-columns: 1fr;
-      }
-
-      .ph {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .user-chip {
-        display: none;
-      }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+    ::-webkit-scrollbar{width:5px;height:5px}
+    ::-webkit-scrollbar-thumb{background:var(--pm);border-radius:4px}
+
+    /* ── Topbar ── */
+    .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;height:60px;gap:16px;position:sticky;top:0;z-index:100;box-shadow:0 1px 0 var(--border)}
+    .brand{display:flex;align-items:center;gap:10px;margin-right:24px;text-decoration:none}
+    .brand-icon{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--p),var(--pd));display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 3px 10px rgba(57,182,251,.35)}
+    .brand-name{font-size:15px;font-weight:800;letter-spacing:-.4px;color:var(--text)}
+    .tab-nav{display:flex;gap:2px}
+    .tn{padding:6px 16px;border-radius:8px;border:none;background:none;font-size:13px;font-weight:500;font-family:'Sora',sans-serif;color:var(--muted);cursor:pointer;transition:all .15s;text-decoration:none}
+    .tn:hover{background:var(--bg);color:var(--text)}
+    .tn.active{background:var(--pl);color:var(--pd);font-weight:700}
+    .tb-spacer{flex:1}
+
+    /* ── Year buttons ── */
+    .yr-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-right:4px;white-space:nowrap}
+    #yr-btns{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+    .yr-btn{padding:4px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-size:12px;font-weight:500;font-family:'Sora',sans-serif;transition:all .14s}
+    .yr-btn:hover{border-color:var(--p);color:var(--p)}
+    .yr-btn.active{background:var(--p);border-color:var(--p);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(57,182,251,.35)}
+
+    .user-chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:30px;border:1px solid var(--border);margin-left:16px}
+    .avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--sd));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+    .user-name{font-size:12px;font-weight:600}
+
+    /* ── Content ── */
+    .content{max-width:1340px;margin:0 auto;padding:28px 32px}
+    .ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px}
+    .ph-title{font-size:24px;font-weight:800;letter-spacing:-.5px;line-height:1}
+    .ph-sub{font-size:13px;color:var(--muted);margin-top:4px}
+    .ph-actions{display:flex;gap:8px}
+
+    /* ── Buttons ── */
+    .btn-p{background:var(--p);color:#fff;border:none;border-radius:9px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;box-shadow:0 3px 10px rgba(57,182,251,.3);transition:background .15s}
+    .btn-p:hover{background:var(--pd)}
+    .btn-o{background:none;border:1.5px solid var(--border);border-radius:9px;padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Sora',sans-serif;color:var(--text);transition:all .15s}
+    .btn-o:hover{border-color:var(--p);color:var(--p)}
+    #btn-import[data-state="loading"]{opacity:.7;cursor:wait}
+    #btn-import[data-state="success"]{border-color:var(--green);color:var(--green)}
+    #btn-import[data-state="error"]{border-color:var(--red);color:var(--red);font-size:11px}
+
+    /* ── Bento grid ── */
+    .bento{display:grid;gap:12px;margin-bottom:12px}
+    .g4{grid-template-columns:repeat(4,1fr)}
+    .g2l{grid-template-columns:1.6fr 1fr}
+    .g11{grid-template-columns:1fr 1fr}
+
+    /* ── Cards ── */
+    .card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:20px;box-shadow:var(--sh);transition:box-shadow .15s,transform .15s;animation:fadeUp .3s ease both}
+    .card:hover{box-shadow:var(--shm);transform:translateY(-1px)}
+    .card-hero{background:linear-gradient(140deg,#0c2e52,#0e4f88);border:none;color:#fff}
+    .card-hero .c-lbl,.card-hero .c-val{color:#fff}
+    .card-pink{background:linear-gradient(135deg,#fce8ed,#ffd0db);border-color:#f5b8c6}
+    .card-pink .c-lbl,.card-pink .c-val{color:#a8304a}
+
+    .c-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;display:block}
+    .c-val{font-size:34px;font-weight:800;letter-spacing:-1.5px;line-height:1;display:block}
+    .c-top{display:flex;justify-content:space-between;align-items:flex-start}
+    .c-arr{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;flex-shrink:0;color:var(--muted)}
+    .card-hero .c-arr{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)}
+    .c-delta{display:inline-flex;align-items:center;gap:3px;margin-top:8px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px}
+    .dd{background:#ffeaea;color:var(--red)}
+    .du{background:#e4faf2;color:#1aab6d}
+    .dn{background:var(--bg);color:var(--muted)}
+    .hero-chip{background:rgba(57,182,251,.22);color:#a8dcfa;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;margin-top:9px;display:inline-block}
+
+    /* ── Section title ── */
+    .stitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--text)}
+    .stitle::before{content:'';width:3px;height:13px;border-radius:2px;background:linear-gradient(180deg,var(--p),var(--sd));flex-shrink:0}
+
+    /* ── Intersection grid ── */
+    .ig{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+    .ig-item{text-align:center;padding:12px 6px;background:var(--bg);border-radius:var(--rs)}
+    .ig-val{font-size:22px;font-weight:800;letter-spacing:-.5px}
+    .ig-lbl{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .g4 .card:nth-child(1){animation-delay:.04s}
+    .g4 .card:nth-child(2){animation-delay:.09s}
+    .g4 .card:nth-child(3){animation-delay:.14s}
+    .g4 .card:nth-child(4){animation-delay:.19s}
+
+    /* ── Empty state ── */
+    .empty-hint{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
+    .empty-hint strong{display:block;font-size:16px;margin-bottom:6px;color:var(--text)}
+
+    @media(max-width:1100px){.g4,.g2l,.g11{grid-template-columns:1fr 1fr}}
+    @media(max-width:760px){
+      .topbar{padding:12px 16px;height:auto;flex-wrap:wrap}
+      .content{padding:20px 16px}
+      .g4,.g2l,.g11,.ig{grid-template-columns:1fr}
+      .ph{flex-direction:column;gap:12px}
+      .user-chip{display:none}
     }
   </style>
 </head>
-
 <body>
+
+  <!-- ── Topbar ── -->
   <div class="topbar">
     <a class="brand" href="index.html">
-      <!-- <div class="brand-icon">🚦</div> -->
       <span class="brand-name">CityScope</span>
     </a>
     <div class="tab-nav">
@@ -525,208 +128,130 @@
     </div>
     <div class="tb-spacer"></div>
     <span class="yr-lbl">Year</span>
-    <!-- <button class="yr-btn" onclick="selYear(2018,this)">2018</button> -->
-    <button class="yr-btn" onclick="selYear(2019,this)">2019</button>
-    <button class="yr-btn" onclick="selYear(2020,this)">2020</button>
-    <button class="yr-btn" onclick="selYear(2021,this)">2021</button>
-    <!-- <button class="yr-btn" onclick="selYear(2022,this)">2022</button> -->
-    <!-- <button class="yr-btn active" onclick="selYear(2023,this)">2023</button> -->
+    <!-- Year buttons are injected here by dashboard.js -->
+    <div id="yr-btns"></div>
     <div class="user-chip">
       <div class="avatar">COE</div>
       <span class="user-name">City of Edmonton</span>
     </div>
   </div>
 
+  <!-- Hidden file input for CSV import -->
+  <input type="file" id="csv-file-input" accept=".csv" style="display:none" />
+
+  <!-- ── Main content ── -->
   <div class="content">
+
+    <!-- Page header -->
     <div class="ph">
       <div>
         <div class="ph-title">Dashboard</div>
-        <div class="ph-sub">Monitor and analyze road safety across Edmonton, 2019-2021.</div>
+        <div class="ph-sub">Monitor and analyze road safety across Edmonton, <span id="ph-sub-years">loading…</span>.</div>
       </div>
       <div class="ph-actions">
-        <!-- <button class="btn-p">＋ Export Report</button> -->
-        <button class="btn-o">Import Data</button>
+        <button class="btn-o" id="btn-import" data-state="idle">Import Data</button>
       </div>
     </div>
 
+    <!-- KPI row 1 -->
     <div class="bento g4">
       <div class="card card-hero">
-        <div class="c-top"><span class="c-lbl">Total Collisions</span>
-          <div class="c-arr">↗</div>
-        </div>
-        <span class="c-val" id="kv-total">16,450</span>
-        <div class="hero-chip" id="kd-total">▲ +470 vs 2022</div>
+        <div class="c-top"><span class="c-lbl">Total Collisions</span><div class="c-arr">↗</div></div>
+        <span class="c-val" id="kv-total">—</span>
+        <div class="hero-chip" id="kd-total">—</div>
       </div>
       <div class="card">
-        <div class="c-top"><span class="c-lbl">Fatalities</span>
-          <div class="c-arr">↗</div>
-        </div>
-        <span class="c-val" style="color:var(--red)" id="kv-fatal">35</span>
-        <div class="c-delta dd" id="kd-fatal">▲ +2 vs 2022</div>
+        <div class="c-top"><span class="c-lbl">Fatalities</span><div class="c-arr">↗</div></div>
+        <span class="c-val" style="color:var(--red)" id="kv-fatal">—</span>
+        <div class="c-delta dn" id="kd-fatal">—</div>
       </div>
       <div class="card">
-        <div class="c-top"><span class="c-lbl">Serious Injuries</span>
-          <div class="c-arr">↗</div>
-        </div>
-        <span class="c-val" style="color:var(--amber)" id="kv-serious">362</span>
-        <div class="c-delta dd" id="kd-serious">▲ +17 vs 2022</div>
+        <div class="c-top"><span class="c-lbl">Major Injuries</span><div class="c-arr">↗</div></div>
+        <span class="c-val" style="color:var(--amber)" id="kv-serious">—</span>
+        <div class="c-delta dn" id="kd-serious">—</div>
       </div>
       <div class="card card-pink">
-        <div class="c-top"><span class="c-lbl">Minor Injuries</span>
-          <div class="c-arr" style="border-color:#f5b8c6">↗</div>
-        </div>
-        <span class="c-val" id="kv-minor">4,810</span>
-        <div class="c-delta dd" id="kd-minor">▲ +190 vs 2022</div>
+        <div class="c-top"><span class="c-lbl">Minor Injuries</span><div class="c-arr" style="border-color:#f5b8c6">↗</div></div>
+        <span class="c-val" id="kv-minor">—</span>
+        <div class="c-delta dn" id="kd-minor">—</div>
       </div>
     </div>
 
+    <!-- KPI row 2 -->
     <div class="bento g4">
       <div class="card">
         <span class="c-lbl">Collisions / 1K Pop</span>
-        <span class="c-val" style="color:var(--pd);font-size:28px" id="kv-rate">15.8</span>
-        <div class="c-delta dn" id="kd-rate">→ 0.0 vs 2022</div>
+        <span class="c-val" style="color:var(--pd);font-size:28px" id="kv-rate">—</span>
+        <div class="c-delta dn" id="kd-rate">—</div>
       </div>
       <div class="card">
         <span class="c-lbl">Bicycle Collisions</span>
-        <span class="c-val" style="color:var(--teal);font-size:28px" id="kv-bike">465</span>
-        <div class="c-delta dd" id="kd-bike">▲ +25 vs 2022</div>
+        <span class="c-val" style="color:var(--teal);font-size:28px" id="kv-bike">—</span>
+        <div class="c-delta dn" id="kd-bike">—</div>
       </div>
       <div class="card">
         <span class="c-lbl">Pedestrian Collisions</span>
-        <span class="c-val" style="color:var(--amber);font-size:28px" id="kv-ped">640</span>
-        <div class="c-delta dd" id="kd-ped">▲ +25 vs 2022</div>
+        <span class="c-val" style="color:var(--amber);font-size:28px" id="kv-ped">—</span>
+        <div class="c-delta dn" id="kd-ped">—</div>
       </div>
       <div class="card">
         <span class="c-lbl">Property Damage Only</span>
-        <span class="c-val" style="color:var(--muted);font-size:28px" id="kv-pdo">11,626</span>
-        <div class="c-delta dd" id="kd-pdo">▲ +303 vs 2022</div>
+        <span class="c-val" style="color:var(--muted);font-size:28px" id="kv-pdo">—</span>
+        <div class="c-delta dn" id="kd-pdo">—</div>
       </div>
     </div>
 
+    <!-- Charts row 1 -->
     <div class="bento g2l">
       <div class="card">
-        <div class="stitle">Collisions &amp; Fatalities by Year</div>
+        <div class="stitle">Collisions &amp; Injuries by Year</div>
         <div style="height:200px"><canvas id="ch-trend"></canvas></div>
       </div>
       <div class="card">
-        <div class="stitle">Road User Mode</div>
+        <div class="stitle">Road User Mode (All Years)</div>
         <div style="height:200px"><canvas id="ch-pie"></canvas></div>
       </div>
     </div>
 
+    <!-- Charts row 2 -->
     <div class="bento g11">
       <div class="card">
         <div class="stitle">Vulnerable Road Users Over Time</div>
         <div style="height:185px"><canvas id="ch-vul"></canvas></div>
       </div>
       <div class="card">
-        <div class="stitle">Collisions by Traffic Control</div>
+        <div class="stitle">Collisions by Traffic Control — <span style="font-weight:400;color:var(--muted)" id="yr-lbl-ctrl"></span></div>
         <div style="height:185px"><canvas id="ch-ctrl"></canvas></div>
       </div>
     </div>
 
+    <!-- Intersection vs Midblock -->
     <div class="card" style="margin-bottom:12px">
-      <div class="stitle">Intersection vs Midblock — <span style="font-weight:400;color:var(--muted)"
-          id="yr-lbl">2021</span></div>
+      <div class="stitle">Intersection vs Midblock — <span style="font-weight:400;color:var(--muted)" id="yr-lbl">—</span></div>
       <div class="ig">
         <div class="ig-item">
-          <div class="ig-val" style="color:var(--red)" id="iv-fi">21</div>
+          <div class="ig-val" style="color:var(--red)" id="iv-fi">—</div>
           <div class="ig-lbl">Fatalities at Intersection</div>
         </div>
         <div class="ig-item">
-          <div class="ig-val" style="color:var(--red)" id="iv-fm">14</div>
+          <div class="ig-val" style="color:var(--red)" id="iv-fm">—</div>
           <div class="ig-lbl">Fatalities at Midblock</div>
         </div>
         <div class="ig-item">
-          <div class="ig-val" style="color:var(--amber)" id="iv-ii">3,210</div>
+          <div class="ig-val" style="color:var(--amber)" id="iv-ii">—</div>
           <div class="ig-lbl">Injuries at Intersection</div>
         </div>
         <div class="ig-item">
-          <div class="ig-val" style="color:var(--pd)" id="iv-im">1,962</div>
+          <div class="ig-val" style="color:var(--pd)" id="iv-im">—</div>
           <div class="ig-lbl">Injuries at Midblock</div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    const YS = [
-      // { year: 2018, total_collisions: 14820, total_fatalities: 28, total_serious_injuries: 312, total_minor_injuries: 4210, bicycle_collisions: 380, motorcycle_collisions: 290, pedestrian_collisions: 560, collisions_per_1000: 15.9, property_damage_only_pdo: 10560, fatalities_intersection: 16, fatalities_midblock: 12, injuries_intersection: 2800, injuries_midblock: 1722 },
-      { year: 2019, total_collisions: 15340, total_fatalities: 31, total_serious_injuries: 328, total_minor_injuries: 4410, bicycle_collisions: 410, motorcycle_collisions: 310, pedestrian_collisions: 590, collisions_per_1000: 16.1, property_damage_only_pdo: 10910, fatalities_intersection: 19, fatalities_midblock: 12, injuries_intersection: 2950, injuries_midblock: 1788 },
-      { year: 2020, total_collisions: 11240, total_fatalities: 22, total_serious_injuries: 260, total_minor_injuries: 3110, bicycle_collisions: 320, motorcycle_collisions: 240, pedestrian_collisions: 420, collisions_per_1000: 11.6, property_damage_only_pdo: 8080, fatalities_intersection: 13, fatalities_midblock: 9, injuries_intersection: 2100, injuries_midblock: 1270 },
-      { year: 2021, total_collisions: 13560, total_fatalities: 26, total_serious_injuries: 295, total_minor_injuries: 3780, bicycle_collisions: 355, motorcycle_collisions: 275, pedestrian_collisions: 510, collisions_per_1000: 13.8, property_damage_only_pdo: 9726, fatalities_intersection: 15, fatalities_midblock: 11, injuries_intersection: 2540, injuries_midblock: 1535 },
-      // { year: 2022, total_collisions: 15980, total_fatalities: 33, total_serious_injuries: 345, total_minor_injuries: 4620, bicycle_collisions: 440, motorcycle_collisions: 325, pedestrian_collisions: 615, collisions_per_1000: 15.8, property_damage_only_pdo: 11323, fatalities_intersection: 20, fatalities_midblock: 13, injuries_intersection: 3090, injuries_midblock: 1875 },
-      // { year: 2023, total_collisions: 16450, total_fatalities: 35, total_serious_injuries: 362, total_minor_injuries: 4810, bicycle_collisions: 465, motorcycle_collisions: 340, pedestrian_collisions: 640, collisions_per_1000: 15.8, property_damage_only_pdo: 11626, fatalities_intersection: 21, fatalities_midblock: 14, injuries_intersection: 3210, injuries_midblock: 1962 },
-    ];
+  </div><!-- /content -->
 
-    let curYear = 2021;
-    const f = n => typeof n === 'number' ? n.toLocaleString() : n;
-    function dlt(c, p) { if (p == null) return ''; const d = c - p; return `${d > 0 ? '▲ +' : '▼ '}${f(Math.abs(d))} vs ${curYear - 1}`; }
-    function dCls(c, p) { if (p == null) return 'dn'; return c > p ? 'dd' : 'du'; }
+  <script src="js/csv_loader.js"></script>
+  <script src="js/dashboard.js"></script>
 
-    function selYear(yr, el) {
-      curYear = yr;
-      document.querySelectorAll('.yr-btn').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-      updateKPIs();
-    }
-
-    function updateKPIs() {
-      const d = YS.find(y => y.year === curYear);
-      const p = YS.find(y => y.year === curYear - 1);
-      const s = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-      const sc = (id, c) => { const e = document.getElementById(id); if (e) e.className = 'c-delta ' + c; };
-      s('kv-total', f(d.total_collisions));
-      s('kv-fatal', f(d.total_fatalities));
-      s('kv-serious', f(d.total_serious_injuries));
-      s('kv-minor', f(d.total_minor_injuries));
-      s('kv-rate', d.collisions_per_1000);
-      s('kv-bike', f(d.bicycle_collisions));
-      s('kv-ped', f(d.pedestrian_collisions));
-      s('kv-pdo', f(d.property_damage_only_pdo));
-      s('kd-total', dlt(d.total_collisions, p?.total_collisions));
-      s('kd-fatal', dlt(d.total_fatalities, p?.total_fatalities));
-      s('kd-serious', dlt(d.total_serious_injuries, p?.total_serious_injuries));
-      s('kd-minor', dlt(d.total_minor_injuries, p?.total_minor_injuries));
-      s('kd-rate', p ? `${(d.collisions_per_1000 - p.collisions_per_1000).toFixed(1)} vs ${curYear - 1}` : '—');
-      s('kd-bike', dlt(d.bicycle_collisions, p?.bicycle_collisions));
-      s('kd-ped', dlt(d.pedestrian_collisions, p?.pedestrian_collisions));
-      s('kd-pdo', dlt(d.property_damage_only_pdo, p?.property_damage_only_pdo));
-      if (p) {
-        ['fatal', 'serious', 'minor', 'bike', 'ped', 'pdo'].forEach(k => {
-          const map = { fatal: 'total_fatalities', serious: 'total_serious_injuries', minor: 'total_minor_injuries', bike: 'bicycle_collisions', ped: 'pedestrian_collisions', pdo: 'property_damage_only_pdo' };
-          sc('kd-' + k, dCls(d[map[k]], p[map[k]]));
-        });
-      }
-      s('yr-lbl', curYear);
-      s('iv-fi', d.fatalities_intersection);
-      s('iv-fm', d.fatalities_midblock);
-      s('iv-ii', f(d.injuries_intersection));
-      s('iv-im', f(d.injuries_midblock));
-    }
-
-    const yrs = YS.map(y => y.year);
-    const P = '#39b6fb', S = '#e87d95', RED = '#e84646', AMB = '#f5a623', TEAL = '#0891b2';
-    const tk = { color: '#7a92ab', font: { family: 'Sora', size: 11 } };
-    const gr = { color: '#e2eaf3' };
-    const bs = { x: { ticks: tk, grid: gr, border: { color: '#e2eaf3' } }, y: { ticks: tk, grid: gr, border: { color: '#e2eaf3' } } };
-
-    new Chart(document.getElementById('ch-trend'), {
-      type: 'line', data: {
-        labels: yrs, datasets: [
-          { label: 'Collisions', data: YS.map(y => y.total_collisions), borderColor: P, backgroundColor: 'rgba(57,182,251,.07)', fill: true, tension: .4, pointBackgroundColor: P, pointRadius: 4, yAxisID: 'y' },
-          { label: 'Fatalities', data: YS.map(y => y.total_fatalities), borderColor: RED, backgroundColor: 'transparent', tension: .4, pointBackgroundColor: RED, pointRadius: 4, yAxisID: 'y1' },
-          { label: 'Serious Inj.', data: YS.map(y => y.total_serious_injuries), borderColor: AMB, backgroundColor: 'transparent', tension: .4, pointBackgroundColor: AMB, pointRadius: 4, yAxisID: 'y1' },
-        ]
-      }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#7a92ab', font: { family: 'Sora', size: 11 }, boxWidth: 9, padding: 10 } } }, scales: { x: bs.x, y: bs.y, y1: { position: 'right', ticks: tk, grid: { drawOnChartArea: false }, border: { color: '#e2eaf3' } } } }
-    });
-
-    new Chart(document.getElementById('ch-pie'), { type: 'doughnut', data: { labels: ['Vehicle Driver/Pass.', 'Pedestrian', 'Bicyclist', 'Motorcyclist', 'Other'], datasets: [{ data: [68, 14, 9, 6, 3], backgroundColor: [P, S, TEAL, AMB, '#94a3b8'], borderColor: '#fff', borderWidth: 2, hoverOffset: 5 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { position: 'right', labels: { color: '#7a92ab', font: { family: 'Sora', size: 10 }, boxWidth: 9, padding: 7 } } } } });
-    new Chart(document.getElementById('ch-vul'), { type: 'bar', data: { labels: yrs, datasets: [{ label: 'Bicycle', data: YS.map(y => y.bicycle_collisions), backgroundColor: TEAL, borderRadius: 4 }, { label: 'Motorcycle', data: YS.map(y => y.motorcycle_collisions), backgroundColor: P, borderRadius: 4 }, { label: 'Pedestrian', data: YS.map(y => y.pedestrian_collisions), backgroundColor: S, borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#7a92ab', font: { family: 'Sora', size: 11 }, boxWidth: 9, padding: 10 } } }, scales: bs } });
-    new Chart(document.getElementById('ch-ctrl'), { type: 'bar', data: { labels: ['Signal Light', 'No Control', 'Stop Sign', 'Yield Sign', 'Ped. Signal', 'RRFB', 'Flagman'], datasets: [{ label: 'Collisions', data: [4820, 3910, 2640, 1120, 890, 430, 210], backgroundColor: P, borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { ...tk, font: { family: 'Sora', size: 10 } }, grid: gr, border: { color: '#e2eaf3' } }, y: { ticks: { ...tk, font: { family: 'Sora', size: 10 } }, grid: { color: 'transparent' }, border: { color: 'transparent' } } } } });
-
-    updateKPIs();
-  </script>
 </body>
-
 </html>
