@@ -1,0 +1,447 @@
+{
+    "yearly": [
+        {
+            "year": 2018,
+            "total_collisions": 14820,
+            "total_fatalities": 28,
+            "total_serious_injuries": 312,
+            "total_minor_injuries": 4210,
+            "bicycle_collisions": 380,
+            "motorcycle_collisions": 290,
+            "pedestrian_collisions": 560,
+            "collisions_per_1000": 15.9,
+            "property_damage_only_pdo": 10560,
+            "fatalities_intersection": 16,
+            "fatalities_midblock": 12,
+            "injuries_intersection": 2800,
+            "injuries_midblock": 1722
+        },
+        {
+            "year": 2019,
+            "total_collisions": 15340,
+            "total_fatalities": 31,
+            "total_serious_injuries": 328,
+            "total_minor_injuries": 4410,
+            "bicycle_collisions": 410,
+            "motorcycle_collisions": 310,
+            "pedestrian_collisions": 590,
+            "collisions_per_1000": 16.1,
+            "property_damage_only_pdo": 10910,
+            "fatalities_intersection": 19,
+            "fatalities_midblock": 12,
+            "injuries_intersection": 2950,
+            "injuries_midblock": 1788
+        },
+        {
+            "year": 2020,
+            "total_collisions": 11240,
+            "total_fatalities": 22,
+            "total_serious_injuries": 260,
+            "total_minor_injuries": 3110,
+            "bicycle_collisions": 320,
+            "motorcycle_collisions": 240,
+            "pedestrian_collisions": 420,
+            "collisions_per_1000": 11.6,
+            "property_damage_only_pdo": 8080,
+            "fatalities_intersection": 13,
+            "fatalities_midblock": 9,
+            "injuries_intersection": 2100,
+            "injuries_midblock": 1270
+        },
+        {
+            "year": 2021,
+            "total_collisions": 13560,
+            "total_fatalities": 26,
+            "total_serious_injuries": 295,
+            "total_minor_injuries": 3780,
+            "bicycle_collisions": 355,
+            "motorcycle_collisions": 275,
+            "pedestrian_collisions": 510,
+            "collisions_per_1000": 13.8,
+            "property_damage_only_pdo": 9726,
+            "fatalities_intersection": 15,
+            "fatalities_midblock": 11,
+            "injuries_intersection": 2540,
+            "injuries_midblock": 1535
+        },
+        {
+            "year": 2022,
+            "total_collisions": 15980,
+            "total_fatalities": 33,
+            "total_serious_injuries": 345,
+            "total_minor_injuries": 4620,
+            "bicycle_collisions": 440,
+            "motorcycle_collisions": 325,
+            "pedestrian_collisions": 615,
+            "collisions_per_1000": 15.8,
+            "property_damage_only_pdo": 11323,
+            "fatalities_intersection": 20,
+            "fatalities_midblock": 13,
+            "injuries_intersection": 3090,
+            "injuries_midblock": 1875
+        },
+        {
+            "year": 2023,
+            "total_collisions": 16450,
+            "total_fatalities": 35,
+            "total_serious_injuries": 362,
+            "total_minor_injuries": 4810,
+            "bicycle_collisions": 465,
+            "motorcycle_collisions": 340,
+            "pedestrian_collisions": 640,
+            "collisions_per_1000": 15.8,
+            "property_damage_only_pdo": 11626,
+            "fatalities_intersection": 21,
+            "fatalities_midblock": 14,
+            "injuries_intersection": 3210,
+            "injuries_midblock": 1962
+        }
+    ],
+    "locations": [
+        {
+            "location_type": "Intersection",
+            "location_description": "Whitemud Dr NW & 170 St NW",
+            "collision_count": 312,
+            "fatalities": 4,
+            "serious": 28,
+            "minor": 142,
+            "pedestrian_involved": 22,
+            "bicycle_involved": 8,
+            "community_complaints": 38,
+            "years": [
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Yellowhead Tr & 170 St NW",
+            "collision_count": 298,
+            "fatalities": 3,
+            "serious": 22,
+            "minor": 130,
+            "pedestrian_involved": 18,
+            "bicycle_involved": 6,
+            "community_complaints": 31,
+            "years": [
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Whitemud Dr NW & 91 St NW",
+            "collision_count": 276,
+            "fatalities": 2,
+            "serious": 19,
+            "minor": 128,
+            "pedestrian_involved": 12,
+            "bicycle_involved": 5,
+            "community_complaints": 24,
+            "years": [
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Anthony Henday Dr & 137 Ave NW",
+            "collision_count": 264,
+            "fatalities": 5,
+            "serious": 31,
+            "minor": 110,
+            "pedestrian_involved": 9,
+            "bicycle_involved": 3,
+            "community_complaints": 44,
+            "years": [
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Terwillegar Dr NW & Rabbit Hill Rd",
+            "collision_count": 248,
+            "fatalities": 1,
+            "serious": 15,
+            "minor": 120,
+            "pedestrian_involved": 14,
+            "bicycle_involved": 12,
+            "community_complaints": 29,
+            "years": [
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Midblock",
+            "location_description": "Yellowhead Tr NW — 156 St to 170 St",
+            "collision_count": 235,
+            "fatalities": 6,
+            "serious": 35,
+            "minor": 98,
+            "pedestrian_involved": 28,
+            "bicycle_involved": 4,
+            "community_complaints": 52,
+            "years": [
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Groat Rd NW & 107 Ave NW",
+            "collision_count": 228,
+            "fatalities": 2,
+            "serious": 18,
+            "minor": 115,
+            "pedestrian_involved": 31,
+            "bicycle_involved": 18,
+            "community_complaints": 41,
+            "years": [
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Midblock",
+            "location_description": "Stony Plain Rd NW — 156 St to 163 St",
+            "collision_count": 218,
+            "fatalities": 3,
+            "serious": 26,
+            "minor": 105,
+            "pedestrian_involved": 19,
+            "bicycle_involved": 11,
+            "community_complaints": 33,
+            "years": [
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Jasper Ave & 109 St NW",
+            "collision_count": 210,
+            "fatalities": 1,
+            "serious": 12,
+            "minor": 118,
+            "pedestrian_involved": 42,
+            "bicycle_involved": 22,
+            "community_complaints": 47,
+            "years": [
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "98 Ave NW & 76 St NW",
+            "collision_count": 204,
+            "fatalities": 2,
+            "serious": 20,
+            "minor": 100,
+            "pedestrian_involved": 11,
+            "bicycle_involved": 7,
+            "community_complaints": 18,
+            "years": [
+                2018,
+                2019,
+                2020,
+                2021
+            ]
+        },
+        {
+            "location_type": "Midblock",
+            "location_description": "Manning Dr NW — 153 Ave to 167 Ave",
+            "collision_count": 198,
+            "fatalities": 4,
+            "serious": 29,
+            "minor": 88,
+            "pedestrian_involved": 8,
+            "bicycle_involved": 2,
+            "community_complaints": 27,
+            "years": [
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Ellerslie Rd SW & 111 St SW",
+            "collision_count": 192,
+            "fatalities": 0,
+            "serious": 11,
+            "minor": 108,
+            "pedestrian_involved": 6,
+            "bicycle_involved": 9,
+            "community_complaints": 14,
+            "years": [
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Anthony Henday Dr & 23 Ave SW",
+            "collision_count": 186,
+            "fatalities": 3,
+            "serious": 24,
+            "minor": 90,
+            "pedestrian_involved": 7,
+            "bicycle_involved": 3,
+            "community_complaints": 22,
+            "years": [
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Midblock",
+            "location_description": "Fort Rd NW — 118 Ave to 127 Ave",
+            "collision_count": 178,
+            "fatalities": 5,
+            "serious": 32,
+            "minor": 75,
+            "pedestrian_involved": 24,
+            "bicycle_involved": 6,
+            "community_complaints": 48,
+            "years": [
+                2018,
+                2019,
+                2020,
+                2021
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Gateway Blvd NW & 51 Ave NW",
+            "collision_count": 172,
+            "fatalities": 2,
+            "serious": 17,
+            "minor": 95,
+            "pedestrian_involved": 13,
+            "bicycle_involved": 10,
+            "community_complaints": 20,
+            "years": [
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "118 Ave NW & 82 St NW",
+            "collision_count": 165,
+            "fatalities": 1,
+            "serious": 22,
+            "minor": 88,
+            "pedestrian_involved": 17,
+            "bicycle_involved": 14,
+            "community_complaints": 36,
+            "years": [
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Midblock",
+            "location_description": "107 Ave NW — Groat Rd to 124 St",
+            "collision_count": 158,
+            "fatalities": 3,
+            "serious": 18,
+            "minor": 80,
+            "pedestrian_involved": 21,
+            "bicycle_involved": 15,
+            "community_complaints": 30,
+            "years": [
+                2019,
+                2020,
+                2021,
+                2022
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "137 Ave NW & 97 St NW",
+            "collision_count": 152,
+            "fatalities": 1,
+            "serious": 14,
+            "minor": 92,
+            "pedestrian_involved": 9,
+            "bicycle_involved": 5,
+            "community_complaints": 16,
+            "years": [
+                2021,
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Intersection",
+            "location_description": "Parsons Rd SW & Ellerslie Rd SW",
+            "collision_count": 148,
+            "fatalities": 0,
+            "serious": 9,
+            "minor": 95,
+            "pedestrian_involved": 5,
+            "bicycle_involved": 8,
+            "community_complaints": 11,
+            "years": [
+                2022,
+                2023
+            ]
+        },
+        {
+            "location_type": "Midblock",
+            "location_description": "Whyte Ave — 99 St to 109 St",
+            "collision_count": 142,
+            "fatalities": 2,
+            "serious": 20,
+            "minor": 72,
+            "pedestrian_involved": 38,
+            "bicycle_involved": 28,
+            "community_complaints": 55,
+            "years": [
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023
+            ]
+        }
+    ]
+}
