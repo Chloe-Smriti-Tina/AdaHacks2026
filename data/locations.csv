@@ -1,0 +1,10 @@
+location_type,location_description,collision_count,fatalities,serious,minor,pedestrian_involved,bicycle_involved,community_complaints
+Intersection,"Whitemud Dr NW & 170 St NW",312,4,28,142,22,8,38
+Intersection,"Yellowhead Tr & 170 St NW",298,3,22,130,18,6,31
+Intersection,"Whitemud Dr NW & 91 St NW",276,2,19,128,12,5,24
+Intersection,"Anthony Henday Dr & 137 Ave NW",264,5,31,110,9,3,44
+Intersection,"Terwillegar Dr NW & Rabbit Hill Rd",248,1,15,120,14,12,29
+Midblock,"Yellowhead Tr NW — 156 St to 170 St",235,6,35,98,28,4,52
+Intersection,"Groat Rd NW & 107 Ave NW",228,2,18,115,31,18,41
+Midblock,"Stony Plain Rd NW — 156 St to 163 St",218,3,26,105,19,11,33
+Intersection,"Jasper Ave & 109 St NW",210,1,12,118,42,22,47
