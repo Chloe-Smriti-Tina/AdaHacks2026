@@ -1,0 +1,440 @@
+Collision Year,Collision Date & Time,Location Type,Location Description,Traffic Control,Pedestrians Involved,Vehicles Involved,Cyclists Involved,Minor Injuries,Major Injuries,Fatalities,Property Damage Only
+2020,2020-01-02 15:44,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,1,2,0,1,0,0,N
+2020,2020-01-03 11:25,Intersection,Jasper Ave & 109 St NW,No Control,0,2,0,1,0,0,N
+2020,2020-01-09 21:30,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2020,2020-01-18 13:14,Midblock,Whitemud Dr NW between 91 St & 119 St,School Zone,2,2,0,3,0,0,N
+2020,2020-01-22 20:29,Intersection,Calgary Trail & 51 Ave NW,Yield Sign,0,3,0,2,0,0,N
+2020,2020-02-01 14:36,Midblock,Whitemud Dr NW between 91 St & 119 St,No Control,0,2,1,2,0,0,N
+2020,2020-02-01 18:15,Intersection,34 Ave & 91 St NW,Traffic Signal,0,3,0,1,0,0,N
+2020,2020-02-05 08:24,Intersection,34 Ave & 91 St NW,Stop Sign,0,2,0,1,0,0,N
+2020,2020-02-08 09:34,Intersection,Anthony Henday Dr & 66 St NW,Stop Sign,0,2,1,1,0,0,N
+2020,2020-02-16 01:34,Intersection,Whitemud Dr & 170 St NW,Stop Sign,0,3,0,2,0,0,N
+2020,2020-02-22 14:27,Intersection,Gateway Blvd & 23 Ave NW,No Control,0,3,0,0,0,0,Y
+2020,2020-02-24 15:04,Midblock,Anthony Henday Dr NW near 23 Ave,Pedestrian Crosswalk Signal,1,4,0,1,0,0,N
+2020,2020-02-24 20:32,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,2,0,1,0,0,N
+2020,2020-03-02 10:20,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,1,2,0,2,0,0,N
+2020,2020-03-14 02:47,Midblock,118 Ave NW between 82 St & 97 St,Pedestrian Crosswalk Signal,0,3,0,2,0,0,N
+2020,2020-03-17 21:55,Intersection,Gateway Blvd & 23 Ave NW,No Control,0,2,0,0,0,0,Y
+2020,2020-04-03 12:37,Intersection,107 Ave & 156 St NW,Stop Sign,0,3,0,0,0,0,Y
+2020,2020-04-07 18:17,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,1,2,0,0,1,0,N
+2020,2020-04-07 19:29,Intersection,Gateway Blvd & 23 Ave NW,Stop Sign,0,3,0,0,1,0,N
+2020,2020-04-18 18:44,Intersection,Jasper Ave & 109 St NW,Traffic Signal,2,2,0,1,0,0,N
+2020,2020-04-22 07:49,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,2,3,1,0,0,0,Y
+2020,2020-04-22 11:51,Intersection,Whitemud Dr & 91 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2020,2020-04-27 01:09,Intersection,Groat Rd & Valleyview Dr NW,No Control,0,4,0,0,0,0,Y
+2020,2020-05-03 19:55,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2020,2020-05-03 23:07,Intersection,Anthony Henday Dr & 66 St NW,Yield Sign,0,2,0,0,0,0,Y
+2020,2020-05-06 23:27,Intersection,Groat Rd & Valleyview Dr NW,Traffic Signal,0,2,0,0,0,0,Y
+2020,2020-05-07 22:37,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,2,0,2,0,0,N
+2020,2020-05-18 00:12,Intersection,34 Ave & 91 St NW,Traffic Signal,0,3,0,1,0,0,N
+2020,2020-05-23 20:04,Intersection,Whyte Ave & 99 St NW,Traffic Signal,1,2,0,3,0,0,N
+2020,2020-05-28 16:27,Intersection,107 Ave & 156 St NW,Traffic Signal,0,3,1,0,0,0,Y
+2020,2020-06-10 08:53,Intersection,Jasper Ave & 109 St NW,Yield Sign,2,3,0,1,0,0,N
+2020,2020-06-12 17:17,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,0,2,0,3,0,0,N
+2020,2020-06-15 14:43,Intersection,Groat Rd & Valleyview Dr NW,No Control,0,1,0,1,0,0,N
+2020,2020-06-19 15:27,Intersection,Jasper Ave & 109 St NW,Traffic Signal,1,3,1,2,0,0,N
+2020,2020-06-21 20:29,Midblock,118 Ave NW between 82 St & 97 St,Pedestrian Crosswalk Signal,1,4,0,2,0,0,N
+2020,2020-07-08 08:44,Intersection,Whitemud Dr & 91 St NW,Yield Sign,0,3,0,2,0,0,N
+2020,2020-07-09 21:50,Intersection,Anthony Henday Dr & 66 St NW,No Control,2,4,0,1,0,0,N
+2020,2020-07-11 10:13,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,0,1,0,1,0,0,N
+2020,2020-07-13 20:37,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,1,0,2,0,0,N
+2020,2020-07-13 21:12,Intersection,34 Ave & 91 St NW,No Control,0,3,0,1,0,0,N
+2020,2020-07-18 18:34,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,School Zone,0,2,0,0,0,0,Y
+2020,2020-07-23 15:42,Midblock,Yellowhead Trail NW between 97 St & 82 St,School Zone,0,2,0,2,0,0,N
+2020,2020-07-24 08:29,Midblock,Yellowhead Trail NW between 97 St & 82 St,School Zone,0,3,0,1,0,0,N
+2020,2020-08-04 14:19,Intersection,Jasper Ave & 109 St NW,Yield Sign,0,2,0,2,0,0,N
+2020,2020-08-15 14:46,Intersection,Whitemud Dr & 170 St NW,Stop Sign,1,1,1,0,0,0,Y
+2020,2020-09-01 16:31,Intersection,Whyte Ave & 99 St NW,Traffic Signal,1,3,0,0,1,0,N
+2020,2020-09-03 19:04,Intersection,Kingsway Ave & 109 St NW,Stop Sign,0,4,0,1,0,0,N
+2020,2020-09-04 04:34,Midblock,Whitemud Dr NW between 91 St & 119 St,Pedestrian Crosswalk Signal,0,2,0,1,0,0,N
+2020,2020-09-05 21:28,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,2,0,1,0,0,N
+2020,2020-09-08 11:31,Intersection,Stony Plain Rd & 149 St NW,No Control,1,2,0,2,1,0,N
+2020,2020-09-08 17:58,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,3,0,2,0,0,N
+2020,2020-09-13 17:53,Intersection,Whitemud Dr & 91 St NW,Traffic Signal,1,2,0,3,0,0,N
+2020,2020-09-20 02:12,Midblock,118 Ave NW between 82 St & 97 St,Pedestrian Crosswalk Signal,0,2,1,2,0,0,N
+2020,2020-09-20 11:48,Midblock,118 Ave NW between 82 St & 97 St,No Control,0,2,1,1,0,0,N
+2020,2020-09-25 10:41,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,1,0,1,0,0,N
+2020,2020-09-26 15:46,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,0,4,1,1,0,0,N
+2020,2020-10-09 02:14,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,3,0,1,0,0,N
+2020,2020-10-14 12:50,Intersection,107 Ave & 156 St NW,Yield Sign,0,3,0,0,0,0,Y
+2020,2020-10-14 20:25,Intersection,Stony Plain Rd & 149 St NW,Yield Sign,0,3,1,0,0,0,Y
+2020,2020-10-20 22:45,Intersection,Gateway Blvd & 23 Ave NW,Stop Sign,2,2,0,0,0,0,Y
+2020,2020-10-22 13:01,Intersection,Whitemud Dr & 170 St NW,Stop Sign,0,2,0,0,0,0,Y
+2020,2020-10-26 03:34,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,0,2,0,0,N
+2020,2020-11-03 08:11,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,3,0,0,0,0,Y
+2020,2020-11-04 21:08,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2020,2020-11-09 08:28,Intersection,Anthony Henday Dr & 66 St NW,Yield Sign,0,1,1,2,0,0,N
+2020,2020-11-09 18:33,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,0,3,0,0,0,0,Y
+2020,2020-11-11 19:49,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,1,2,0,2,0,0,N
+2020,2020-11-14 16:24,Intersection,Groat Rd & Valleyview Dr NW,Yield Sign,0,2,1,1,0,0,N
+2020,2020-11-19 09:44,Intersection,Anthony Henday Dr & 66 St NW,Stop Sign,0,3,1,2,0,0,N
+2020,2020-11-19 16:20,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,0,2,0,0,0,0,Y
+2020,2020-11-21 06:40,Intersection,34 Ave & 91 St NW,Stop Sign,0,2,2,1,0,0,N
+2020,2020-11-21 19:32,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2020,2020-11-24 20:39,Intersection,Anthony Henday Dr & 66 St NW,Yield Sign,1,2,0,2,0,0,N
+2020,2020-12-11 09:31,Intersection,Whyte Ave & 99 St NW,No Control,0,2,0,1,0,0,N
+2020,2020-12-15 15:59,Intersection,118 Ave & 82 St NW,Traffic Signal,1,2,1,1,1,0,N
+2021,2021-01-12 15:19,Intersection,Whitemud Dr & 91 St NW,Traffic Signal,0,2,0,3,0,0,N
+2021,2021-01-13 15:15,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,2,0,1,0,0,N
+2021,2021-02-03 14:47,Midblock,Anthony Henday Dr NW near 23 Ave,No Control,0,4,0,1,0,0,N
+2021,2021-02-11 07:43,Intersection,Jasper Ave & 109 St NW,No Control,1,4,0,0,0,0,Y
+2021,2021-02-12 19:23,Intersection,Jasper Ave & 109 St NW,Yield Sign,0,2,0,2,0,0,N
+2021,2021-02-24 06:28,Midblock,Whitemud Dr NW between 91 St & 119 St,School Zone,0,4,0,2,0,0,N
+2021,2021-02-26 17:54,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,0,2,0,0,0,0,Y
+2021,2021-02-27 15:26,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,1,2,0,0,0,0,Y
+2021,2021-02-27 20:38,Intersection,Kingsway Ave & 109 St NW,Yield Sign,0,3,0,0,0,0,Y
+2021,2021-03-03 15:07,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,0,4,0,0,0,0,Y
+2021,2021-03-03 17:29,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,1,3,0,0,0,0,Y
+2021,2021-03-04 17:01,Intersection,Whitemud Dr & 170 St NW,Stop Sign,0,1,0,0,0,0,Y
+2021,2021-03-05 03:58,Midblock,Anthony Henday Dr NW near 23 Ave,School Zone,0,1,0,0,0,0,Y
+2021,2021-03-09 14:32,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,1,2,0,0,0,0,Y
+2021,2021-03-22 17:47,Midblock,Whitemud Dr NW between 91 St & 119 St,School Zone,0,1,0,3,0,0,N
+2021,2021-03-23 14:28,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,0,2,0,0,N
+2021,2021-04-12 17:36,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,1,2,0,0,0,0,Y
+2021,2021-04-13 16:36,Intersection,34 Ave & 91 St NW,Traffic Signal,0,3,0,0,0,0,Y
+2021,2021-04-18 08:29,Intersection,34 Ave & 91 St NW,No Control,1,2,0,0,0,0,Y
+2021,2021-04-28 17:43,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,1,1,0,1,0,0,N
+2021,2021-05-07 08:09,Midblock,Whitemud Dr NW between 91 St & 119 St,Pedestrian Crosswalk Signal,2,2,0,1,0,0,N
+2021,2021-05-08 18:27,Midblock,Whitemud Dr NW between 91 St & 119 St,School Zone,0,2,0,0,0,0,Y
+2021,2021-05-14 19:30,Intersection,118 Ave & 82 St NW,Stop Sign,0,4,0,2,0,0,N
+2021,2021-05-22 18:49,Intersection,Gateway Blvd & 23 Ave NW,Stop Sign,0,4,0,0,0,0,Y
+2021,2021-05-23 14:39,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2021,2021-05-25 18:26,Intersection,23 Ave & 91 St NW,Yield Sign,0,1,0,2,0,0,N
+2021,2021-05-27 08:58,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,1,2,0,3,0,0,N
+2021,2021-06-03 14:06,Intersection,107 Ave & 156 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2021,2021-06-05 04:34,Intersection,Kingsway Ave & 109 St NW,Stop Sign,1,3,2,1,0,0,N
+2021,2021-06-13 11:17,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,2,0,1,0,0,N
+2021,2021-06-20 08:08,Intersection,Kingsway Ave & 109 St NW,Yield Sign,0,2,2,1,0,0,N
+2021,2021-06-28 17:34,Intersection,Whitemud Dr & 170 St NW,No Control,0,3,1,0,0,0,Y
+2021,2021-07-03 08:40,Midblock,Whitemud Dr NW between 91 St & 119 St,No Control,0,2,0,0,0,0,Y
+2021,2021-07-03 14:52,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,2,0,1,0,0,N
+2021,2021-07-05 10:26,Intersection,23 Ave & 91 St NW,Stop Sign,0,1,1,1,0,0,N
+2021,2021-07-09 09:32,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,3,0,1,0,0,N
+2021,2021-07-12 15:47,Intersection,Whitemud Dr & 91 St NW,Stop Sign,1,3,0,0,0,0,Y
+2021,2021-07-19 13:40,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,2,0,1,0,0,N
+2021,2021-07-24 14:24,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2021,2021-08-02 16:23,Intersection,Whitemud Dr & 91 St NW,Traffic Signal,1,2,0,1,1,0,N
+2021,2021-08-07 09:08,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,2,0,1,0,0,N
+2021,2021-08-12 23:19,Intersection,Anthony Henday Dr & 66 St NW,No Control,0,3,0,0,0,0,Y
+2021,2021-08-13 13:06,Intersection,Whitemud Dr & 170 St NW,No Control,0,4,0,1,0,0,N
+2021,2021-08-17 08:03,Intersection,23 Ave & 91 St NW,Traffic Signal,2,1,0,0,1,0,N
+2021,2021-08-26 23:08,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,4,0,1,0,0,N
+2021,2021-09-10 14:01,Intersection,Groat Rd & Valleyview Dr NW,Traffic Signal,0,2,0,1,0,0,N
+2021,2021-09-16 10:48,Intersection,Jasper Ave & 109 St NW,Traffic Signal,1,1,0,0,1,0,N
+2021,2021-09-17 16:23,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,2,0,2,0,0,N
+2021,2021-09-23 09:35,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,0,3,0,1,0,0,N
+2021,2021-09-24 16:27,Intersection,Jasper Ave & 109 St NW,Stop Sign,0,1,0,2,0,0,N
+2021,2021-10-02 00:19,Midblock,Anthony Henday Dr NW near 23 Ave,No Control,0,2,0,1,0,0,N
+2021,2021-10-03 08:20,Intersection,Groat Rd & Valleyview Dr NW,Traffic Signal,0,2,1,2,0,0,N
+2021,2021-10-05 09:40,Intersection,Jasper Ave & 109 St NW,No Control,0,3,1,1,0,0,N
+2021,2021-10-05 16:09,Intersection,Gateway Blvd & 23 Ave NW,No Control,1,3,0,1,0,0,N
+2021,2021-10-05 20:03,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,0,2,0,0,N
+2021,2021-10-07 19:14,Intersection,Stony Plain Rd & 149 St NW,Yield Sign,0,3,0,0,0,0,Y
+2021,2021-10-08 17:40,Midblock,Stony Plain Rd NW between 149 St & 163 St,School Zone,0,1,0,3,0,0,N
+2021,2021-10-12 18:05,Midblock,82 Ave NW between Gateway Blvd & 109 St,School Zone,0,2,0,3,0,0,N
+2021,2021-10-14 07:44,Intersection,Kingsway Ave & 109 St NW,No Control,1,2,1,1,1,0,N
+2021,2021-10-14 09:42,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,2,2,0,1,0,0,N
+2021,2021-10-17 13:37,Intersection,23 Ave & 91 St NW,No Control,1,2,0,1,0,0,N
+2021,2021-10-20 07:03,Intersection,23 Ave & 91 St NW,Yield Sign,0,1,0,1,0,0,N
+2021,2021-11-05 15:02,Intersection,107 Ave & 156 St NW,Traffic Signal,1,3,0,1,0,0,N
+2021,2021-11-05 21:19,Midblock,118 Ave NW between 82 St & 97 St,Pedestrian Crosswalk Signal,0,4,0,0,0,0,Y
+2021,2021-11-09 16:52,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,0,3,0,0,N
+2021,2021-11-12 12:36,Intersection,Stony Plain Rd & 149 St NW,No Control,0,2,0,0,0,0,Y
+2021,2021-11-12 15:41,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,2,0,1,0,0,N
+2021,2021-11-16 20:28,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2021,2021-11-19 17:39,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,1,0,0,0,0,Y
+2021,2021-11-21 16:01,Intersection,Whitemud Dr & 170 St NW,Stop Sign,2,3,0,2,0,0,N
+2021,2021-11-21 16:38,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,0,3,0,0,1,0,N
+2021,2021-11-24 10:28,Intersection,23 Ave & 91 St NW,No Control,1,2,0,3,1,0,N
+2021,2021-11-25 14:58,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,0,2,0,0,0,0,Y
+2021,2021-12-02 21:47,Intersection,Whyte Ave & 99 St NW,Traffic Signal,1,2,0,0,0,0,Y
+2021,2021-12-05 13:41,Midblock,Whitemud Dr NW between 91 St & 119 St,School Zone,1,2,0,0,0,0,Y
+2021,2021-12-08 16:14,Midblock,118 Ave NW between 82 St & 97 St,No Control,0,2,1,0,0,0,Y
+2021,2021-12-21 08:23,Intersection,Yellowhead Trail & 97 St NW,Stop Sign,1,2,0,0,0,0,Y
+2022,2022-01-03 13:24,Intersection,Whitemud Dr & 91 St NW,No Control,0,2,0,1,0,0,N
+2022,2022-01-15 16:45,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,0,2,0,2,0,0,N
+2022,2022-01-18 13:26,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,2,0,0,N
+2022,2022-01-18 22:10,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,1,0,0,0,Y
+2022,2022-01-20 14:41,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,0,2,0,1,0,0,N
+2022,2022-01-25 02:19,Intersection,34 Ave & 91 St NW,Yield Sign,0,2,0,1,0,0,N
+2022,2022-02-10 08:15,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,0,1,0,0,N
+2022,2022-02-13 17:11,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,2,1,0,1,0,0,N
+2022,2022-02-16 03:26,Intersection,Stony Plain Rd & 149 St NW,No Control,2,2,0,3,0,0,N
+2022,2022-02-18 18:12,Intersection,Anthony Henday Dr & 66 St NW,No Control,0,1,0,2,0,0,N
+2022,2022-02-19 17:24,Midblock,118 Ave NW between 82 St & 97 St,No Control,2,3,0,0,1,0,N
+2022,2022-02-21 16:34,Midblock,Yellowhead Trail NW between 97 St & 82 St,Pedestrian Crosswalk Signal,0,3,1,0,0,0,Y
+2022,2022-03-01 18:50,Intersection,Kingsway Ave & 109 St NW,Stop Sign,0,3,1,2,0,0,N
+2022,2022-03-04 04:24,Midblock,118 Ave NW between 82 St & 97 St,Pedestrian Crosswalk Signal,2,4,0,3,1,0,N
+2022,2022-03-11 21:20,Intersection,107 Ave & 156 St NW,No Control,1,2,0,1,0,0,N
+2022,2022-03-14 15:55,Intersection,Yellowhead Trail & 97 St NW,Yield Sign,0,2,0,1,0,0,N
+2022,2022-03-15 21:21,Intersection,Kingsway Ave & 109 St NW,No Control,0,3,0,1,0,0,N
+2022,2022-03-16 23:29,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,4,0,3,0,0,N
+2022,2022-03-27 17:02,Intersection,34 Ave & 91 St NW,Traffic Signal,0,2,0,1,0,0,N
+2022,2022-04-08 04:57,Intersection,Kingsway Ave & 109 St NW,Stop Sign,0,2,0,0,0,0,Y
+2022,2022-04-16 15:43,Intersection,23 Ave & 91 St NW,Traffic Signal,2,2,0,0,1,0,N
+2022,2022-04-20 15:32,Intersection,Whitemud Dr & 91 St NW,Stop Sign,0,3,0,0,0,0,Y
+2022,2022-04-24 18:02,Midblock,118 Ave NW between 82 St & 97 St,No Control,1,3,0,0,0,0,Y
+2022,2022-05-08 19:46,Intersection,107 Ave & 156 St NW,Yield Sign,1,3,0,2,2,0,N
+2022,2022-05-12 15:31,Intersection,23 Ave & 91 St NW,No Control,0,3,1,0,0,0,Y
+2022,2022-05-18 11:19,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,School Zone,0,2,1,2,0,0,N
+2022,2022-05-18 16:02,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,0,2,0,0,N
+2022,2022-05-21 09:36,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,2,0,3,0,0,N
+2022,2022-05-24 12:25,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2022,2022-06-02 04:31,Intersection,Gateway Blvd & 23 Ave NW,No Control,0,2,0,0,0,0,Y
+2022,2022-06-03 21:07,Intersection,118 Ave & 82 St NW,Yield Sign,0,2,0,2,0,0,N
+2022,2022-06-10 16:36,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,1,0,0,0,0,Y
+2022,2022-06-24 23:22,Midblock,Anthony Henday Dr NW near 23 Ave,No Control,0,2,0,0,0,0,Y
+2022,2022-07-03 13:25,Intersection,Calgary Trail & 51 Ave NW,No Control,0,3,0,1,0,0,N
+2022,2022-07-05 19:14,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,1,0,0,N
+2022,2022-07-10 10:35,Midblock,Anthony Henday Dr NW near 23 Ave,School Zone,0,1,0,1,0,0,N
+2022,2022-07-13 06:42,Midblock,Anthony Henday Dr NW near 23 Ave,No Control,0,4,0,0,0,0,Y
+2022,2022-07-25 12:40,Intersection,Groat Rd & Valleyview Dr NW,Traffic Signal,0,2,0,0,0,0,Y
+2022,2022-08-06 21:55,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,2,1,0,0,0,Y
+2022,2022-08-08 17:45,Intersection,Whyte Ave & 99 St NW,Stop Sign,0,3,0,1,0,0,N
+2022,2022-08-21 10:30,Intersection,Gateway Blvd & 23 Ave NW,Yield Sign,0,2,0,0,0,0,Y
+2022,2022-08-22 15:00,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,3,0,0,0,0,Y
+2022,2022-08-22 19:46,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,2,0,0,2,0,N
+2022,2022-09-09 19:39,Intersection,Yellowhead Trail & 97 St NW,Stop Sign,2,2,0,0,1,0,N
+2022,2022-09-10 19:16,Intersection,118 Ave & 82 St NW,Traffic Signal,0,2,0,1,0,0,N
+2022,2022-09-11 17:26,Intersection,Anthony Henday Dr & 66 St NW,Stop Sign,1,2,0,0,1,0,N
+2022,2022-09-23 18:44,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,1,1,0,0,N
+2022,2022-09-25 16:30,Midblock,Yellowhead Trail NW between 97 St & 82 St,Pedestrian Crosswalk Signal,0,2,2,1,0,0,N
+2022,2022-10-05 08:39,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,0,3,0,3,0,0,N
+2022,2022-10-10 14:01,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,2,2,0,1,0,0,N
+2022,2022-10-12 13:35,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,Pedestrian Crosswalk Signal,1,2,0,1,0,0,N
+2022,2022-10-28 09:09,Intersection,118 Ave & 82 St NW,Yield Sign,0,2,0,0,0,0,Y
+2022,2022-10-28 22:57,Intersection,Whitemud Dr & 91 St NW,Stop Sign,0,3,1,1,0,0,N
+2022,2022-11-07 17:31,Intersection,118 Ave & 82 St NW,Traffic Signal,1,2,0,1,0,0,N
+2022,2022-11-13 11:04,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2022,2022-11-18 09:13,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,2,1,1,3,0,0,N
+2022,2022-11-18 15:56,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,2,0,1,0,0,N
+2022,2022-12-18 15:58,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,3,1,1,0,0,N
+2022,2022-12-22 14:58,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2022,2022-12-24 06:47,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,3,0,2,0,0,N
+2023,2023-01-08 04:23,Intersection,Stony Plain Rd & 149 St NW,Stop Sign,1,3,0,2,1,0,N
+2023,2023-01-08 15:40,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,3,0,1,0,0,N
+2023,2023-01-15 04:59,Intersection,Gateway Blvd & 23 Ave NW,No Control,0,1,0,0,0,0,Y
+2023,2023-02-01 07:35,Intersection,107 Ave & 156 St NW,Traffic Signal,1,1,0,2,1,0,N
+2023,2023-02-01 17:44,Intersection,Groat Rd & Valleyview Dr NW,Traffic Signal,0,3,0,0,0,0,Y
+2023,2023-02-03 08:43,Intersection,34 Ave & 91 St NW,No Control,0,2,1,0,0,0,Y
+2023,2023-02-09 13:26,Intersection,Whyte Ave & 99 St NW,Yield Sign,0,4,0,0,0,0,Y
+2023,2023-02-19 07:55,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,0,1,0,0,N
+2023,2023-02-25 16:51,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-03-08 10:05,Intersection,107 Ave & 156 St NW,Yield Sign,0,2,1,0,0,0,Y
+2023,2023-03-08 11:54,Intersection,23 Ave & 91 St NW,Traffic Signal,0,3,0,0,0,0,Y
+2023,2023-03-09 11:56,Intersection,107 Ave & 156 St NW,Yield Sign,0,2,0,2,0,0,N
+2023,2023-03-11 22:18,Intersection,Jasper Ave & 109 St NW,Yield Sign,2,3,0,3,1,0,N
+2023,2023-03-16 06:24,Intersection,23 Ave & 91 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-03-21 23:09,Intersection,107 Ave & 156 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-03-25 14:47,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,2,0,1,0,0,N
+2023,2023-04-16 06:37,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,3,0,3,0,0,N
+2023,2023-04-16 16:04,Intersection,Whitemud Dr & 91 St NW,Traffic Signal,1,2,1,1,0,0,N
+2023,2023-04-19 15:43,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,1,0,0,N
+2023,2023-05-02 19:30,Intersection,23 Ave & 91 St NW,Yield Sign,2,4,0,1,0,0,N
+2023,2023-05-07 15:32,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,3,0,0,0,0,Y
+2023,2023-05-21 17:49,Intersection,34 Ave & 91 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-05-24 16:29,Intersection,Groat Rd & Valleyview Dr NW,Stop Sign,0,2,0,0,0,0,Y
+2023,2023-05-24 20:49,Midblock,82 Ave NW between Gateway Blvd & 109 St,School Zone,0,1,0,1,0,0,N
+2023,2023-05-28 17:44,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,Pedestrian Crosswalk Signal,1,3,0,1,0,0,N
+2023,2023-06-02 15:36,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,1,3,0,0,1,1,N
+2023,2023-06-04 07:19,Intersection,23 Ave & 91 St NW,Traffic Signal,0,1,0,1,0,0,N
+2023,2023-06-06 22:20,Intersection,34 Ave & 91 St NW,No Control,0,2,0,0,0,0,Y
+2023,2023-06-08 13:46,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-06-13 15:43,Intersection,Gateway Blvd & 23 Ave NW,Stop Sign,0,2,0,1,0,0,N
+2023,2023-06-15 22:05,Intersection,118 Ave & 82 St NW,Stop Sign,0,2,0,0,0,0,Y
+2023,2023-06-15 22:20,Intersection,Gateway Blvd & 23 Ave NW,No Control,0,4,0,1,0,0,N
+2023,2023-06-20 13:25,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,1,2,0,1,0,0,N
+2023,2023-06-22 18:02,Intersection,23 Ave & 91 St NW,Traffic Signal,0,4,0,1,0,0,N
+2023,2023-06-22 20:10,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,3,0,0,0,0,Y
+2023,2023-06-23 20:34,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-07-03 07:46,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,2,0,1,0,0,N
+2023,2023-07-07 23:58,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,4,0,1,0,0,N
+2023,2023-07-12 07:36,Intersection,118 Ave & 82 St NW,Stop Sign,0,2,1,1,0,0,N
+2023,2023-07-13 02:39,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,1,0,0,0,0,Y
+2023,2023-07-20 17:55,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-07-26 13:28,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,2,1,1,0,0,N
+2023,2023-08-04 19:08,Intersection,Whitemud Dr & 91 St NW,Stop Sign,0,3,0,1,0,0,N
+2023,2023-08-09 12:52,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,1,2,0,1,0,0,N
+2023,2023-08-14 17:28,Intersection,Yellowhead Trail & 97 St NW,Yield Sign,0,3,0,0,0,0,Y
+2023,2023-08-20 05:22,Midblock,170 St NW between Whitemud Dr & Jasper Ave,Pedestrian Crosswalk Signal,0,2,0,1,0,0,N
+2023,2023-08-26 06:16,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,1,2,0,0,0,0,Y
+2023,2023-08-26 11:44,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-09-02 22:04,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,0,2,0,0,0,0,Y
+2023,2023-09-07 22:09,Intersection,Anthony Henday Dr & 66 St NW,Yield Sign,0,3,0,0,0,0,Y
+2023,2023-09-08 13:03,Midblock,Anthony Henday Dr NW near 23 Ave,No Control,0,4,1,1,0,0,N
+2023,2023-09-13 09:27,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,2,0,0,0,0,Y
+2023,2023-09-27 18:48,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,School Zone,0,3,0,0,0,0,Y
+2023,2023-10-04 08:10,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,0,1,0,0,N
+2023,2023-10-13 14:31,Intersection,34 Ave & 91 St NW,No Control,1,2,0,0,0,0,Y
+2023,2023-10-13 19:21,Intersection,Anthony Henday Dr & 66 St NW,No Control,2,2,0,3,0,0,N
+2023,2023-10-19 07:08,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,0,2,0,0,0,0,Y
+2023,2023-10-19 10:52,Intersection,Yellowhead Trail & 97 St NW,Stop Sign,1,2,0,2,1,0,N
+2023,2023-10-21 10:26,Intersection,Yellowhead Trail & 97 St NW,No Control,1,3,0,1,0,0,N
+2023,2023-10-21 17:25,Midblock,82 Ave NW between Gateway Blvd & 109 St,School Zone,0,1,0,1,0,0,N
+2023,2023-11-06 18:49,Intersection,107 Ave & 156 St NW,Traffic Signal,0,2,1,3,0,0,N
+2023,2023-12-08 15:35,Intersection,118 Ave & 82 St NW,Traffic Signal,2,2,0,0,0,0,Y
+2023,2023-12-12 14:50,Intersection,Whyte Ave & 99 St NW,Yield Sign,0,2,0,0,0,0,Y
+2023,2023-12-15 11:19,Intersection,34 Ave & 91 St NW,Traffic Signal,0,2,0,2,0,0,N
+2023,2023-12-19 09:23,Intersection,23 Ave & 91 St NW,No Control,0,2,0,0,0,0,Y
+2023,2023-12-20 16:10,Intersection,23 Ave & 91 St NW,Stop Sign,1,3,0,1,0,0,N
+2023,2023-12-28 10:15,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,2,0,1,0,0,N
+2024,2024-01-01 19:42,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,1,4,0,1,0,0,N
+2024,2024-01-02 15:46,Intersection,Whitemud Dr & 91 St NW,Traffic Signal,1,2,0,0,1,0,N
+2024,2024-01-11 14:59,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,3,0,2,0,0,N
+2024,2024-01-13 04:54,Intersection,Calgary Trail & 51 Ave NW,Stop Sign,0,3,0,1,1,0,N
+2024,2024-01-13 13:50,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,0,3,0,2,0,0,N
+2024,2024-01-13 20:21,Intersection,Whitemud Dr & 91 St NW,No Control,0,2,0,0,0,0,Y
+2024,2024-01-16 21:41,Intersection,23 Ave & 91 St NW,Traffic Signal,0,2,1,1,0,0,N
+2024,2024-01-18 21:53,Intersection,Whyte Ave & 99 St NW,Yield Sign,1,4,0,0,1,0,N
+2024,2024-01-27 13:33,Intersection,118 Ave & 82 St NW,No Control,1,2,1,1,0,0,N
+2024,2024-02-18 10:44,Intersection,34 Ave & 91 St NW,No Control,0,2,0,1,0,0,N
+2024,2024-02-27 16:31,Intersection,Yellowhead Trail & 97 St NW,Yield Sign,0,3,1,1,0,0,N
+2024,2024-03-03 11:32,Intersection,23 Ave & 91 St NW,Yield Sign,1,1,0,2,1,0,N
+2024,2024-03-05 13:44,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,1,3,1,1,0,0,N
+2024,2024-03-11 17:58,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,0,2,1,2,0,0,N
+2024,2024-03-22 06:11,Midblock,Whitemud Dr NW between 91 St & 119 St,School Zone,0,2,0,0,0,0,Y
+2024,2024-03-22 20:41,Intersection,Whitemud Dr & 170 St NW,Stop Sign,0,2,0,0,0,0,Y
+2024,2024-03-23 18:54,Intersection,Anthony Henday Dr & 66 St NW,Yield Sign,0,2,0,1,0,0,N
+2024,2024-03-24 00:44,Midblock,118 Ave NW between 82 St & 97 St,No Control,0,2,1,3,0,0,N
+2024,2024-03-24 06:57,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,2,3,0,1,0,0,N
+2024,2024-04-04 04:36,Intersection,Groat Rd & Valleyview Dr NW,Stop Sign,0,1,0,2,0,0,N
+2024,2024-04-08 18:08,Intersection,Whitemud Dr & 91 St NW,Yield Sign,0,2,0,2,0,0,N
+2024,2024-04-09 18:10,Midblock,Stony Plain Rd NW between 149 St & 163 St,Pedestrian Crosswalk Signal,1,3,0,2,0,0,N
+2024,2024-04-25 18:36,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,2,0,1,0,0,N
+2024,2024-04-26 09:02,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,3,0,1,0,0,N
+2024,2024-05-02 15:35,Intersection,Anthony Henday Dr & 66 St NW,Stop Sign,0,2,0,0,0,0,Y
+2024,2024-05-03 17:24,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,1,0,0,N
+2024,2024-05-09 14:06,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,3,0,0,0,0,Y
+2024,2024-05-09 19:54,Intersection,Yellowhead Trail & 97 St NW,Stop Sign,0,4,0,2,0,0,N
+2024,2024-05-14 20:54,Intersection,Jasper Ave & 109 St NW,Stop Sign,0,3,0,0,0,0,Y
+2024,2024-05-15 19:30,Intersection,Kingsway Ave & 109 St NW,Yield Sign,0,2,0,0,0,0,Y
+2024,2024-05-19 05:48,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,3,0,2,0,0,N
+2024,2024-05-20 09:07,Midblock,118 Ave NW between 82 St & 97 St,Pedestrian Crosswalk Signal,0,3,0,0,0,0,Y
+2024,2024-06-01 17:43,Intersection,34 Ave & 91 St NW,Yield Sign,0,2,1,2,0,0,N
+2024,2024-06-03 13:42,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,2,0,3,0,0,N
+2024,2024-06-04 23:47,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2024,2024-06-06 07:25,Midblock,Stony Plain Rd NW between 149 St & 163 St,School Zone,1,2,0,2,0,0,N
+2024,2024-06-08 20:42,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,3,0,3,0,0,N
+2024,2024-06-10 08:24,Intersection,Jasper Ave & 109 St NW,Stop Sign,0,1,1,1,0,0,N
+2024,2024-06-14 10:41,Intersection,107 Ave & 156 St NW,Traffic Signal,0,2,0,1,0,0,N
+2024,2024-06-18 18:38,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2024,2024-07-04 13:09,Intersection,107 Ave & 156 St NW,Traffic Signal,1,2,0,0,0,0,Y
+2024,2024-07-20 17:12,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,3,1,2,0,0,N
+2024,2024-08-02 21:45,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2024,2024-08-04 16:43,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,0,2,0,1,0,0,N
+2024,2024-08-05 11:45,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,4,0,0,0,0,Y
+2024,2024-08-07 07:13,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,2,0,1,0,0,N
+2024,2024-08-18 11:31,Intersection,Whitemud Dr & 91 St NW,Stop Sign,0,1,0,0,0,0,Y
+2024,2024-08-19 16:42,Midblock,Stony Plain Rd NW between 149 St & 163 St,School Zone,1,2,0,0,0,0,Y
+2024,2024-08-21 11:45,Midblock,82 Ave NW between Gateway Blvd & 109 St,Pedestrian Crosswalk Signal,1,3,0,1,0,0,N
+2024,2024-08-27 09:40,Midblock,82 Ave NW between Gateway Blvd & 109 St,No Control,0,2,0,3,0,0,N
+2024,2024-09-07 12:26,Intersection,Whitemud Dr & 91 St NW,Yield Sign,0,2,1,0,0,0,Y
+2024,2024-09-10 19:53,Intersection,118 Ave & 82 St NW,Stop Sign,0,2,0,1,0,0,N
+2024,2024-09-11 14:43,Midblock,82 Ave NW between Gateway Blvd & 109 St,School Zone,0,2,1,2,0,0,N
+2024,2024-09-22 22:53,Intersection,Kingsway Ave & 109 St NW,Yield Sign,0,2,0,0,0,0,Y
+2024,2024-10-01 20:56,Midblock,Anthony Henday Dr NW near 23 Ave,School Zone,2,2,0,0,0,0,Y
+2024,2024-10-02 01:59,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,1,3,0,1,0,0,N
+2024,2024-10-04 21:09,Intersection,Yellowhead Trail & 97 St NW,Stop Sign,0,2,0,3,0,0,N
+2024,2024-10-11 15:24,Intersection,107 Ave & 156 St NW,No Control,1,2,1,3,0,0,N
+2024,2024-10-13 17:43,Intersection,Whitemud Dr & 91 St NW,No Control,0,2,1,1,0,0,N
+2024,2024-10-14 08:06,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,0,3,0,0,0,0,Y
+2024,2024-10-15 08:55,Intersection,118 Ave & 82 St NW,Traffic Signal,0,3,0,2,0,0,N
+2024,2024-10-18 12:50,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,Pedestrian Crosswalk Signal,0,3,0,1,0,0,N
+2024,2024-10-21 11:32,Intersection,Kingsway Ave & 109 St NW,No Control,0,2,0,2,0,0,N
+2024,2024-10-23 08:53,Midblock,Whitemud Dr NW between 91 St & 119 St,No Control,0,2,0,0,0,0,Y
+2024,2024-10-23 11:22,Midblock,Anthony Henday Dr NW near 23 Ave,Pedestrian Crosswalk Signal,0,3,0,0,0,0,Y
+2024,2024-10-23 23:52,Intersection,34 Ave & 91 St NW,No Control,0,2,0,2,0,0,N
+2024,2024-11-01 07:22,Intersection,Whyte Ave & 99 St NW,No Control,0,2,1,1,0,0,N
+2024,2024-11-08 08:04,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,2,0,0,0,0,Y
+2024,2024-11-09 18:39,Intersection,Whitemud Dr & 91 St NW,No Control,0,3,0,0,0,0,Y
+2024,2024-11-11 20:16,Intersection,Whyte Ave & 99 St NW,No Control,0,2,0,2,0,0,N
+2024,2024-11-13 15:26,Intersection,Gateway Blvd & 23 Ave NW,Stop Sign,0,2,0,1,0,0,N
+2024,2024-11-21 18:21,Intersection,Jasper Ave & 109 St NW,Stop Sign,0,1,0,0,0,0,Y
+2024,2024-11-26 11:33,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,1,2,0,1,0,0,N
+2024,2024-11-27 17:07,Midblock,170 St NW between Whitemud Dr & Jasper Ave,School Zone,1,4,0,1,0,0,N
+2024,2024-12-02 15:57,Intersection,107 Ave & 156 St NW,No Control,2,2,1,1,2,0,N
+2024,2024-12-02 18:14,Intersection,23 Ave & 91 St NW,Traffic Signal,0,3,0,0,0,0,Y
+2024,2024-12-14 22:56,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,2,0,2,0,0,N
+2024,2024-12-23 12:37,Intersection,34 Ave & 91 St NW,Traffic Signal,1,2,0,0,2,0,N
+2024,2024-12-23 16:27,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,0,3,0,2,0,0,N
+2024,2024-12-26 06:24,Intersection,118 Ave & 82 St NW,Traffic Signal,1,2,1,0,1,0,N
+2025,2025-01-16 17:35,Intersection,34 Ave & 91 St NW,Traffic Signal,0,2,0,1,0,0,N
+2025,2025-01-18 20:09,Intersection,Whitemud Dr & 91 St NW,Yield Sign,0,2,1,0,0,0,Y
+2025,2025-01-25 17:27,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,1,1,0,0,N
+2025,2025-01-27 16:25,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,0,2,2,1,0,0,N
+2025,2025-02-03 08:14,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,0,2,0,2,0,0,N
+2025,2025-02-08 08:05,Intersection,Whitemud Dr & 170 St NW,No Control,0,2,0,1,0,0,N
+2025,2025-02-09 14:19,Intersection,Whyte Ave & 99 St NW,Traffic Signal,1,2,0,1,0,0,N
+2025,2025-02-13 10:46,Intersection,Whyte Ave & 99 St NW,Yield Sign,1,2,0,1,0,0,N
+2025,2025-02-13 16:29,Intersection,Stony Plain Rd & 149 St NW,Stop Sign,0,4,0,1,0,0,N
+2025,2025-02-17 17:13,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,1,2,0,1,0,0,N
+2025,2025-02-27 11:52,Intersection,118 Ave & 82 St NW,Stop Sign,0,3,0,0,0,0,Y
+2025,2025-03-01 03:22,Midblock,82 Ave NW between Gateway Blvd & 109 St,School Zone,0,3,1,1,0,0,N
+2025,2025-03-04 11:08,Midblock,Yellowhead Trail NW between 97 St & 82 St,Pedestrian Crosswalk Signal,0,1,0,1,0,0,N
+2025,2025-03-09 21:33,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,2,2,0,1,0,0,N
+2025,2025-03-10 07:29,Intersection,Jasper Ave & 109 St NW,No Control,0,2,0,0,0,0,Y
+2025,2025-03-12 16:52,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,1,3,0,1,0,0,N
+2025,2025-03-16 20:38,Intersection,23 Ave & 91 St NW,Yield Sign,0,2,0,0,0,0,Y
+2025,2025-03-21 15:00,Intersection,Kingsway Ave & 109 St NW,Yield Sign,0,1,0,1,0,0,N
+2025,2025-03-21 19:01,Intersection,Stony Plain Rd & 149 St NW,Yield Sign,0,2,0,2,0,0,N
+2025,2025-03-22 03:15,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,2,3,0,0,0,0,Y
+2025,2025-03-26 10:07,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,2,2,0,1,0,0,N
+2025,2025-03-28 03:06,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,3,0,1,0,0,N
+2025,2025-04-06 13:06,Intersection,Whyte Ave & 99 St NW,Traffic Signal,0,1,0,2,0,0,N
+2025,2025-04-14 15:35,Intersection,Whitemud Dr & 170 St NW,Yield Sign,0,2,0,0,0,0,Y
+2025,2025-04-15 21:36,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2025,2025-04-26 07:19,Intersection,Jasper Ave & 109 St NW,Stop Sign,0,1,0,2,0,0,N
+2025,2025-04-27 13:09,Midblock,Anthony Henday Dr NW near 23 Ave,No Control,1,2,0,0,0,0,Y
+2025,2025-05-02 12:38,Midblock,Yellowhead Trail NW between 97 St & 82 St,Pedestrian Crosswalk Signal,1,4,0,1,0,0,N
+2025,2025-05-07 09:53,Intersection,107 Ave & 156 St NW,Traffic Signal,0,2,1,1,0,0,N
+2025,2025-05-08 12:38,Intersection,Anthony Henday Dr & 66 St NW,Traffic Signal,0,2,0,1,0,0,N
+2025,2025-05-20 08:41,Midblock,118 Ave NW between 82 St & 97 St,No Control,0,3,0,0,0,0,Y
+2025,2025-05-27 12:43,Midblock,170 St NW between Whitemud Dr & Jasper Ave,School Zone,0,3,0,0,0,0,Y
+2025,2025-05-27 13:00,Intersection,23 Ave & 91 St NW,No Control,0,3,0,1,0,0,N
+2025,2025-06-02 09:31,Intersection,Jasper Ave & 109 St NW,Traffic Signal,0,3,0,2,0,0,N
+2025,2025-06-12 08:41,Intersection,Jasper Ave & 109 St NW,Yield Sign,0,2,0,0,0,0,Y
+2025,2025-06-12 19:17,Intersection,107 Ave & 156 St NW,Stop Sign,2,3,0,1,1,0,N
+2025,2025-06-13 09:49,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,0,0,0,0,Y
+2025,2025-06-16 18:56,Intersection,118 Ave & 82 St NW,Stop Sign,0,2,0,0,0,0,Y
+2025,2025-06-17 15:44,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,0,3,0,0,0,0,Y
+2025,2025-06-18 18:56,Intersection,Whitemud Dr & 170 St NW,No Control,0,2,0,1,0,0,N
+2025,2025-06-19 19:58,Midblock,Whitemud Dr NW between 91 St & 119 St,School Zone,0,2,0,2,0,0,N
+2025,2025-06-24 16:28,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,1,0,0,N
+2025,2025-07-07 08:47,Intersection,23 Ave & 91 St NW,Traffic Signal,0,2,2,2,0,0,N
+2025,2025-07-12 07:27,Intersection,Jasper Ave & 109 St NW,Traffic Signal,1,2,0,0,0,0,Y
+2025,2025-07-21 10:48,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,1,2,0,0,0,0,Y
+2025,2025-07-21 13:37,Intersection,Gateway Blvd & 23 Ave NW,Traffic Signal,0,2,1,1,0,0,N
+2025,2025-08-02 03:41,Intersection,34 Ave & 91 St NW,Yield Sign,0,2,0,1,0,0,N
+2025,2025-08-08 11:35,Midblock,82 Ave NW between Gateway Blvd & 109 St,School Zone,1,1,0,1,0,0,N
+2025,2025-08-11 12:57,Intersection,Stony Plain Rd & 149 St NW,No Control,0,4,0,0,0,0,Y
+2025,2025-08-12 14:50,Intersection,Yellowhead Trail & 97 St NW,Stop Sign,0,3,0,1,0,0,N
+2025,2025-08-18 00:59,Intersection,23 Ave & 91 St NW,Traffic Signal,0,3,0,1,0,0,N
+2025,2025-08-19 20:30,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,0,4,0,0,0,0,Y
+2025,2025-08-23 12:05,Intersection,Stony Plain Rd & 149 St NW,Traffic Signal,0,2,0,0,0,0,Y
+2025,2025-08-25 15:39,Intersection,Anthony Henday Dr & 66 St NW,No Control,0,1,0,0,0,0,Y
+2025,2025-09-01 18:04,Midblock,Stony Plain Rd NW between 149 St & 163 St,No Control,2,2,1,0,0,0,Y
+2025,2025-09-04 11:43,Intersection,Yellowhead Trail & 97 St NW,Traffic Signal,1,2,0,1,0,0,N
+2025,2025-09-08 08:25,Midblock,Stony Plain Rd NW between 149 St & 163 St,Pedestrian Crosswalk Signal,0,3,1,2,0,0,N
+2025,2025-09-09 13:48,Intersection,Whitemud Dr & 91 St NW,Yield Sign,1,2,0,1,0,0,N
+2025,2025-09-09 20:52,Midblock,Stony Plain Rd NW between 149 St & 163 St,School Zone,2,2,0,2,2,0,N
+2025,2025-09-12 09:56,Intersection,Anthony Henday Dr & 66 St NW,Stop Sign,0,3,0,0,0,0,Y
+2025,2025-09-14 10:00,Midblock,Yellowhead Trail NW between 97 St & 82 St,No Control,0,2,0,0,0,0,Y
+2025,2025-10-01 18:34,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,1,2,2,2,1,0,N
+2025,2025-10-03 09:24,Intersection,Whitemud Dr & 91 St NW,Stop Sign,0,4,0,2,0,0,N
+2025,2025-10-22 08:32,Intersection,Stony Plain Rd & 149 St NW,Stop Sign,0,2,1,0,0,0,Y
+2025,2025-10-23 17:03,Intersection,Kingsway Ave & 109 St NW,Traffic Signal,1,3,0,1,0,0,N
+2025,2025-10-28 05:48,Midblock,170 St NW between Whitemud Dr & Jasper Ave,No Control,0,3,0,0,0,0,Y
+2025,2025-10-28 10:35,Intersection,Jasper Ave & 109 St NW,Traffic Signal,2,2,0,1,0,0,N
+2025,2025-10-28 15:04,Intersection,Groat Rd & Valleyview Dr NW,Traffic Signal,1,2,0,2,0,0,N
+2025,2025-11-04 14:21,Intersection,Whitemud Dr & 170 St NW,Yield Sign,0,3,0,1,0,0,N
+2025,2025-11-07 12:05,Midblock,Anthony Henday Dr NW near 23 Ave,No Control,0,2,0,1,0,0,N
+2025,2025-11-13 14:01,Intersection,Yellowhead Trail & 97 St NW,Yield Sign,0,3,0,1,1,0,N
+2025,2025-11-14 19:13,Intersection,34 Ave & 91 St NW,No Control,1,2,1,1,0,0,N
+2025,2025-11-20 09:36,Intersection,118 Ave & 82 St NW,Stop Sign,2,2,0,1,1,0,N
+2025,2025-11-25 08:07,Intersection,Groat Rd & Valleyview Dr NW,Traffic Signal,0,1,0,1,0,0,N
+2025,2025-12-05 19:42,Intersection,Calgary Trail & 51 Ave NW,Traffic Signal,1,4,0,1,1,0,N
+2025,2025-12-06 20:39,Midblock,Calgary Trail NW between 51 Ave & 34 Ave,No Control,1,3,0,0,0,0,Y
+2025,2025-12-11 18:19,Intersection,Gateway Blvd & 23 Ave NW,Yield Sign,0,1,0,0,0,0,Y
+2025,2025-12-12 09:57,Intersection,118 Ave & 82 St NW,Stop Sign,0,2,0,0,0,0,Y
+2025,2025-12-18 08:38,Intersection,34 Ave & 91 St NW,No Control,1,2,0,1,1,0,N
+2025,2025-12-19 08:36,Intersection,Whitemud Dr & 170 St NW,Traffic Signal,0,2,0,1,0,0,N
