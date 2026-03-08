@@ -1,0 +1,1382 @@
+[
+  {
+    "location_id": "fortrdnwbetween118ave137ave",
+    "name": "Fort Rd NW Between 118 Ave & 137 Ave",
+    "type": "Midblock",
+    "band": "CRITICAL",
+    "bandClass": "p-red",
+    "color": "#e84646",
+    "score": 95,
+    "predicted_collisions": 2.13,
+    "severe_probability": "24%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.582,
+    "lng": -113.446,
+    "intensity": 0.95,
+    "radiusPx": 112,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 33,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 50,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "118ave82stnw",
+    "name": "118 Ave & 82 St NW",
+    "type": "Intersection",
+    "band": "CRITICAL",
+    "bandClass": "p-red",
+    "color": "#e84646",
+    "score": 93,
+    "predicted_collisions": 2.06,
+    "severe_probability": "16%",
+    "confidence": "0.95",
+    "coverage": "69 mo",
+    "lat": 53.5713,
+    "lng": -113.4488,
+    "intensity": 0.93,
+    "radiusPx": 111,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 33,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 16,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "yellowheadtrailnwbetween97st82st",
+    "name": "Yellowhead Trail NW Between 97 St & 82 St",
+    "type": "Midblock",
+    "band": "CRITICAL",
+    "bandClass": "p-red",
+    "color": "#e84646",
+    "score": 88,
+    "predicted_collisions": 1.85,
+    "severe_probability": "29%",
+    "confidence": "0.95",
+    "coverage": "68 mo",
+    "lat": 53.5798,
+    "lng": -113.4705,
+    "intensity": 0.88,
+    "radiusPx": 108,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 33,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 100,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 33,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "23ave91stnw",
+    "name": "23 Ave & 91 St NW",
+    "type": "Intersection",
+    "band": "CRITICAL",
+    "bandClass": "p-red",
+    "color": "#e84646",
+    "score": 85,
+    "predicted_collisions": 1.73,
+    "severe_probability": "13%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.4538,
+    "lng": -113.4689,
+    "intensity": 0.85,
+    "radiusPx": 106,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 16,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 16,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "stonyplainrd149stnw",
+    "name": "Stony Plain Rd & 149 St NW",
+    "type": "Intersection",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 84,
+    "predicted_collisions": 1.66,
+    "severe_probability": "30%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.5409,
+    "lng": -113.5792,
+    "intensity": 0.84,
+    "radiusPx": 105,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 100,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 33,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 33,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "137ave97stnw",
+    "name": "137 Ave & 97 St NW",
+    "type": "Intersection",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 83,
+    "predicted_collisions": 1.64,
+    "severe_probability": "14%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.5997,
+    "lng": -113.4898,
+    "intensity": 0.83,
+    "radiusPx": 105,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 16,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 50,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 0,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "stonyplainrdnwbetween149st163st",
+    "name": "Stony Plain Rd NW Between 149 St & 163 St",
+    "type": "Midblock",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 83,
+    "predicted_collisions": 1.64,
+    "severe_probability": "19%",
+    "confidence": "0.95",
+    "coverage": "69 mo",
+    "lat": 53.5413,
+    "lng": -113.5925,
+    "intensity": 0.83,
+    "radiusPx": 105,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 16,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 0,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 33,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "groatrdnwbetweenrivervalleyrd107ave",
+    "name": "Groat Rd NW Between River Valley Rd & 107 Ave",
+    "type": "Midblock",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 81,
+    "predicted_collisions": 1.55,
+    "severe_probability": "22%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.552,
+    "lng": -113.533,
+    "intensity": 0.81,
+    "radiusPx": 104,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 50,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 66,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "whyteave99stnw",
+    "name": "Whyte Ave & 99 St NW",
+    "type": "Intersection",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 81,
+    "predicted_collisions": 1.54,
+    "severe_probability": "17%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.5224,
+    "lng": -113.4935,
+    "intensity": 0.81,
+    "radiusPx": 104,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 16,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 33,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 66,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "118avenwbetween82st97st",
+    "name": "118 Ave NW Between 82 St & 97 St",
+    "type": "Midblock",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 79,
+    "predicted_collisions": 1.46,
+    "severe_probability": "15%",
+    "confidence": "0.95",
+    "coverage": "68 mo",
+    "lat": 53.5714,
+    "lng": -113.4687,
+    "intensity": 0.79,
+    "radiusPx": 102,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 0,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 16,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 0,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "whitemuddr91stnw",
+    "name": "Whitemud Dr & 91 St NW",
+    "type": "Intersection",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 79,
+    "predicted_collisions": 1.46,
+    "severe_probability": "25%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.4888,
+    "lng": -113.468,
+    "intensity": 0.79,
+    "radiusPx": 102,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 83,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 16,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "anthonyhendaydrnwnear23ave",
+    "name": "Anthony Henday Dr NW Near 23 Ave",
+    "type": "Midblock",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 78,
+    "predicted_collisions": 1.42,
+    "severe_probability": "40%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.4585,
+    "lng": -113.612,
+    "intensity": 0.78,
+    "radiusPx": 102,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 50,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 66,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "manningdr137avenw",
+    "name": "Manning Dr & 137 Ave NW",
+    "type": "Intersection",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 78,
+    "predicted_collisions": 1.44,
+    "severe_probability": "8%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.6006,
+    "lng": -113.4292,
+    "intensity": 0.78,
+    "radiusPx": 102,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 0,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 0,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 0,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "kingswayave109stnw",
+    "name": "Kingsway Ave & 109 St NW",
+    "type": "Intersection",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 77,
+    "predicted_collisions": 1.39,
+    "severe_probability": "13%",
+    "confidence": "0.94",
+    "coverage": "71 mo",
+    "lat": 53.5634,
+    "lng": -113.5078,
+    "intensity": 0.77,
+    "radiusPx": 101,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 66,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 16,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 16,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "82avenwbetweengatewayblvd109st",
+    "name": "82 Ave NW Between Gateway Blvd & 109 St",
+    "type": "Midblock",
+    "band": "HIGH",
+    "bandClass": "p-amb",
+    "color": "#f5a623",
+    "score": 76,
+    "predicted_collisions": 1.37,
+    "severe_probability": "10%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.5187,
+    "lng": -113.5002,
+    "intensity": 0.76,
+    "radiusPx": 101,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 0,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 16,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "fortrd118avenw",
+    "name": "Fort Rd & 118 Ave NW",
+    "type": "Intersection",
+    "band": "MEDIUM",
+    "bandClass": "p-blue",
+    "color": "#39b6fb",
+    "score": 73,
+    "predicted_collisions": 1.24,
+    "severe_probability": "27%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.5707,
+    "lng": -113.4504,
+    "intensity": 0.73,
+    "radiusPx": 99,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 66,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 0,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "groatrdvalleyviewdrnw",
+    "name": "Groat Rd & Valleyview Dr NW",
+    "type": "Intersection",
+    "band": "MEDIUM",
+    "bandClass": "p-blue",
+    "color": "#39b6fb",
+    "score": 72,
+    "predicted_collisions": 1.18,
+    "severe_probability": "22%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.5416,
+    "lng": -113.5463,
+    "intensity": 0.72,
+    "radiusPx": 98,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 50,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 66,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "jasperave109stnw",
+    "name": "Jasper Ave & 109 St NW",
+    "type": "Intersection",
+    "band": "MEDIUM",
+    "bandClass": "p-blue",
+    "color": "#39b6fb",
+    "score": 71,
+    "predicted_collisions": 1.15,
+    "severe_probability": "28%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.539,
+    "lng": -113.508,
+    "intensity": 0.71,
+    "radiusPx": 98,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 33,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 0,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 33,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "whitemuddrnwbetween91st119st",
+    "name": "Whitemud Dr NW Between 91 St & 119 St",
+    "type": "Midblock",
+    "band": "MEDIUM",
+    "bandClass": "p-blue",
+    "color": "#39b6fb",
+    "score": 71,
+    "predicted_collisions": 1.13,
+    "severe_probability": "10%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.4895,
+    "lng": -113.505,
+    "intensity": 0.71,
+    "radiusPx": 98,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 0,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 0,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 33,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "calgarytrailnwbetween51ave34ave",
+    "name": "Calgary Trail NW Between 51 Ave & 34 Ave",
+    "type": "Midblock",
+    "band": "MEDIUM",
+    "bandClass": "p-blue",
+    "color": "#39b6fb",
+    "score": 70,
+    "predicted_collisions": 1.1,
+    "severe_probability": "34%",
+    "confidence": "0.95",
+    "coverage": "68 mo",
+    "lat": 53.4802,
+    "lng": -113.4922,
+    "intensity": 0.7,
+    "radiusPx": 97,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 91,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 50,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 66,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "107ave156stnw",
+    "name": "107 Ave & 156 St NW",
+    "type": "Intersection",
+    "band": "MEDIUM",
+    "bandClass": "p-blue",
+    "color": "#39b6fb",
+    "score": 70,
+    "predicted_collisions": 1.09,
+    "severe_probability": "28%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.5437,
+    "lng": -113.5896,
+    "intensity": 0.7,
+    "radiusPx": 97,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 50,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 33,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 50,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "jasperave124stnw",
+    "name": "Jasper Ave & 124 St NW",
+    "type": "Intersection",
+    "band": "MEDIUM",
+    "bandClass": "p-blue",
+    "color": "#39b6fb",
+    "score": 68,
+    "predicted_collisions": 1.01,
+    "severe_probability": "25%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.5407,
+    "lng": -113.5368,
+    "intensity": 0.68,
+    "radiusPx": 96,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 66,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 66,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "gatewayblvd23avenw",
+    "name": "Gateway Blvd & 23 Ave NW",
+    "type": "Intersection",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 64,
+    "predicted_collisions": 0.86,
+    "severe_probability": "30%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.4548,
+    "lng": -113.4943,
+    "intensity": 0.64,
+    "radiusPx": 93,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 66,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 33,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 33,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "34ave91stnw",
+    "name": "34 Ave & 91 St NW",
+    "type": "Intersection",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 64,
+    "predicted_collisions": 0.87,
+    "severe_probability": "18%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.468,
+    "lng": -113.4688,
+    "intensity": 0.64,
+    "radiusPx": 93,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 33,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 50,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "yellowheadtrail97stnw",
+    "name": "Yellowhead Trail & 97 St NW",
+    "type": "Intersection",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 64,
+    "predicted_collisions": 0.86,
+    "severe_probability": "17%",
+    "confidence": "0.95",
+    "coverage": "69 mo",
+    "lat": 53.579,
+    "lng": -113.485,
+    "intensity": 0.64,
+    "radiusPx": 93,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 83,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 0,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 33,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 16,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "terwillegardr23avesw",
+    "name": "Terwillegar Dr & 23 Ave SW",
+    "type": "Intersection",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 62,
+    "predicted_collisions": 0.77,
+    "severe_probability": "21%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.4558,
+    "lng": -113.584,
+    "intensity": 0.62,
+    "radiusPx": 92,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 33,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 66,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 50,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "anthonyhendaydr66stnw",
+    "name": "Anthony Henday Dr & 66 St NW",
+    "type": "Intersection",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 60,
+    "predicted_collisions": 0.68,
+    "severe_probability": "10%",
+    "confidence": "0.95",
+    "coverage": "70 mo",
+    "lat": 53.603,
+    "lng": -113.442,
+    "intensity": 0.6,
+    "radiusPx": 91,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 0,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 0,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 33,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "whitemuddr170stnw",
+    "name": "Whitemud Dr & 170 St NW",
+    "type": "Intersection",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 59,
+    "predicted_collisions": 0.67,
+    "severe_probability": "66%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.5003,
+    "lng": -113.6243,
+    "intensity": 0.59,
+    "radiusPx": 90,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 33,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 16,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 50,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "170stnwbetweenwhitemuddrjasperave",
+    "name": "170 St NW Between Whitemud Dr & Jasper Ave",
+    "type": "Midblock",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 57,
+    "predicted_collisions": 0.59,
+    "severe_probability": "74%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.5205,
+    "lng": -113.6205,
+    "intensity": 0.57,
+    "radiusPx": 89,
+    "corridor": true,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 100,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 100,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 50,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  },
+  {
+    "location_id": "calgarytrail51avenw",
+    "name": "Calgary Trail & 51 Ave NW",
+    "type": "Intersection",
+    "band": "LOW",
+    "bandClass": "p-mut",
+    "color": "#7a92ab",
+    "score": 55,
+    "predicted_collisions": 0.49,
+    "severe_probability": "14%",
+    "confidence": "0.95",
+    "coverage": "71 mo",
+    "lat": 53.4887,
+    "lng": -113.4928,
+    "intensity": 0.55,
+    "radiusPx": 88,
+    "corridor": false,
+    "summaryTitle": "Forecast-generated risk hotspot",
+    "summaryBody": "This location is ranked using a LightGBM forecast over historical collisions, severity trends, and vulnerable road user exposure.",
+    "explain": [
+      {
+        "label": "12-mo collision history",
+        "value": 100,
+        "color": "#39b6fb",
+        "score": "0.34"
+      },
+      {
+        "label": "Serious injury trend",
+        "value": 0,
+        "color": "#f5a623",
+        "score": "0.26"
+      },
+      {
+        "label": "Pedestrian exposure",
+        "value": 0,
+        "color": "#0891b2",
+        "score": "0.22"
+      },
+      {
+        "label": "Cyclist exposure",
+        "value": 0,
+        "color": "#e87d95",
+        "score": "0.18"
+      }
+    ]
+  }
+]
