@@ -147,6 +147,7 @@
         <button class="flbtn on" id="so-score"          onclick="setSort('score',this)">Score</button>
         <button class="flbtn"    id="so-collision_count" onclick="setSort('collision_count',this)">Collisions</button>
         <button class="flbtn"    id="so-fatalities"      onclick="setSort('fatalities',this)">Fatalities</button>
+        <button class="flbtn"   id="so-injuries" onclick="setSort('injuries',this)">Injuries</button>
       </div>
       <div class="legend-row">
         <div class="legend-dot" style="background:var(--red)"></div><span class="legend-txt">CRITICAL</span>
@@ -280,6 +281,13 @@ function getBadge(score,max){
   return          {label:'LOW',     pill:'p-grn', color:'#22c98a'};
 }
 
+function getInjuryBadge(totalInjuries, maxInjuries){
+  var r = maxInjuries > 0 ? totalInjuries / maxInjuries : 0;
+  if(r > 0.66) return{label:'HIGH INJ',   pill:'p-red', color:'#e84646'};
+  if(r > 0.33) return{label:'MOD INJ',    pill:'p-amb', color:'#f5a623'};
+  return              {label:'LOW INJ',   pill:'p-grn', color:'#22c98a'};
+}
+
 function trendDir(loc){
   var yrs=loc.years;
   if(yrs.length<2) return{label:'Insufficient data',color:'#7a92ab'};
@@ -360,7 +368,7 @@ function setFilter(val,el){
 
 function setSort(val,el){
   curSort=val;
-  ['so-score','so-collision_count','so-fatalities'].forEach(function(id){
+  ['so-score','so-collision_count','so-fatalities', 'so-injuries'].forEach(function(id){
     var e=document.getElementById(id); if(e) e.classList.remove('on');
   });
   el.classList.add('on'); renderList();
@@ -371,12 +379,15 @@ function renderList(){
   if(!RAW_LOCS.length) return;
   var scored=computeScores(RAW_LOCS);
   var max=Math.max.apply(null,scored.map(function(l){return l.score;}).concat([1]));
+  scored.forEach(function(l){ l.injuries = (l.major_injuries||0) + (l.minor_injuries||0); });
+  var maxInjuries = Math.max.apply(null, scored.map(function(l){return l.injuries;}).concat([1]));
   var list=curFilter==='All'?scored.slice():scored.filter(function(l){return l.location_type===curFilter;});
   list.sort(function(a,b){return b[curSort]-a[curSort];});
 
   var html='';
   list.forEach(function(loc,i){
     var b   = getBadge(loc.score,max);
+    var ib  = getInjuryBadge(loc.injuries, maxInjuries);
     var pct = (loc.score/max*100).toFixed(0);
     var td  = trendDir(loc);
     var sel = curLocDesc===loc.location_description;
