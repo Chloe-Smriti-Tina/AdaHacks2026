@@ -137,8 +137,20 @@ function renderCharts() {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-      legend: { labels: { color: '#7a92ab', font: { family: 'Sora', size: 11 }, boxWidth: 9, padding: 10 } },
+      legend: {
+        labels: {
+          color: '#7a92ab',
+          font: { family: 'Sora', size: 11 },
+          boxWidth: 12,
+          boxHeight: 12,
+          padding: 10,
+        }
+      },
       tooltip: {
+        displayColors: false,
+        boxWidth: 0, boxHeight: 0,   // ← add these
+        backgroundColor: '#fff', titleColor: '#7a92ab', bodyColor: '#7a92ab',
+        borderColor: '#e2eaf3', borderWidth: 1, padding: 10,
         callbacks: {
           afterBody: function(tooltipItems) {
             const idx = tooltipItems[0].dataIndex;
@@ -147,8 +159,8 @@ function renderCharts() {
             const peakHr  = y._hourly.indexOf(Math.max(...y._hourly));
             const peakMo  = y._monthly.indexOf(Math.max(...y._monthly));
             return [
-              '⏰ Peak Hour: ' + HOUR_LABELS[peakHr],
-              '📅 Peak Month: ' + MONTH_LABELS[peakMo],
+              'Peak Hour: ' + HOUR_LABELS[peakHr],
+              'Peak Month: ' + MONTH_LABELS[peakMo],
             ];
           }
         }
@@ -174,7 +186,9 @@ function renderCharts() {
     },
     options: {
       responsive: true, maintainAspectRatio: false, cutout: '62%',
-      plugins: { legend: { position: 'right', labels: { color: '#7a92ab', font: { family: 'Sora', size: 10 }, boxWidth: 9, padding: 7 } } },
+      
+      plugins: { legend: { position: 'right', labels: { color: '#7a92ab', font: { family: 'Sora', size: 10 }, boxWidth: 9, padding: 7 } },
+    tooltip: { displayColors: false, backgroundColor: '#fff', titleColor: '#7a92ab', bodyColor: '#7a92ab', borderColor: '#e2eaf3', borderWidth: 1, padding: 10 } },
     },
   });
 
@@ -192,7 +206,8 @@ function renderCharts() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#7a92ab', font: { family: 'Sora', size: 11 }, boxWidth: 9, padding: 10 } } },
+      plugins: { legend: { labels: { color: '#7a92ab', font: { family: 'Sora', size: 11 }, boxWidth: 9, padding: 10 } },
+          tooltip: { displayColors: false, backgroundColor: '#fff', titleColor: '#7a92ab', bodyColor: '#7a92ab', borderColor: '#e2eaf3', borderWidth: 1, padding: 10 } },
       scales: bs,
     },
   });
@@ -216,7 +231,8 @@ function renderCtrlChart() {
     },
     options: {
       responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: false } ,
+          tooltip: { displayColors: false, backgroundColor: '#fff', titleColor: '#7a92ab', bodyColor: '#7a92ab', borderColor: '#e2eaf3', borderWidth: 1, padding: 10 } },
       scales: {
         x: { ticks: { ...tk, font: { family: 'Sora', size: 10 } }, grid: gr,                      border: { color: '#e2eaf3' } },
         y: { ticks: { ...tk, font: { family: 'Sora', size: 10 } }, grid: { color: 'transparent' }, border: { color: 'transparent' } },
@@ -243,7 +259,7 @@ function setupImport() {
     const file = e.target.files[0];
     if (!file) return;
 
-    setImportState('loading', '⏳ Processing…');
+    setImportState('loading', 'Processing…');
 
     try {
       const text = await file.text();
