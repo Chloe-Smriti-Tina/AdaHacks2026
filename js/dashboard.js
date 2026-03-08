@@ -163,9 +163,9 @@ function renderCharts() {
     data: {
       labels: yrs,
       datasets: [
-        { label: 'Bicycle',     data: YS.map(y => y.bicycle_collisions),     backgroundColor: TEAL, borderRadius: 4 },
+        { label: 'Bicyclist',     data: YS.map(y => y.bicycle_collisions),     backgroundColor: TEAL, borderRadius: 4 },
         { label: 'Pedestrian',  data: YS.map(y => y.pedestrian_collisions),  backgroundColor: S,    borderRadius: 4 },
-        { label: 'Motorcycle',  data: YS.map(y => y.motorcycle_collisions),  backgroundColor: AMB,  borderRadius: 4 },
+        { label: 'Motorcyclist',  data: YS.map(y => y.motorcycle_collisions),  backgroundColor: AMB,  borderRadius: 4 },
       ],
     },
     options: {
