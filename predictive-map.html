@@ -1018,7 +1018,7 @@
         const p = latlngToPx(h.lat, h.lng);
         if (p.x < -300 || p.x > W + 300 || p.y < -300 || p.y > H + 300) return;
         const r = h.radiusPx;
-        const fa = h.intensity * alpha;
+        const fa = h.intensity * alpha * 0.6;
 
         // Main radial blob
         const g1 = oCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
