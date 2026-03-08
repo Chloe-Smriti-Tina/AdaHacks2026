@@ -578,7 +578,8 @@
     .side-stack {
       display: flex;
       flex-direction: column;
-      gap: 12px
+      gap: 12px;
+      height: 100%
     }
 
     .score-big {
@@ -662,6 +663,47 @@
       font-size: 11px;
       line-height: 1.45;
       color: var(--muted)
+    }
+
+    /* Scrollable rank list — mirrors location.html's .loc-scroll */
+    .rank-scroll {
+      overflow-y: auto;
+      max-height: 530px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 3px
+    }
+
+    .rank-scroll::-webkit-scrollbar {
+      width: 5px
+    }
+
+    .rank-scroll::-webkit-scrollbar-thumb {
+      background: var(--pm);
+      border-radius: 4px
+    }
+
+    /* Legend row matching location.html */
+    .legend-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 4px 0;
+      margin-bottom: 10px
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .legend-txt {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 600
     }
 
     .rank-list {
@@ -756,6 +798,197 @@
       line-height: 1.5
     }
 
+    #ai-analysis-card {
+      flex: 1
+    }
+
+    0% {
+      background-position: 200% 0
+    }
+
+    100% {
+      background-position: -200% 0
+    }
+    }
+
+    .ai-section {
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #fbfdff, #fff7fa)
+    }
+
+    .ai-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .ai-section-body {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted)
+    }
+
+    .ai-section-body strong {
+      color: var(--text)
+    }
+
+    .ai-tag {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 20px;
+      font-size: 9px;
+      font-weight: 700;
+      margin-right: 4px;
+      margin-bottom: 2px
+    }
+
+    /* AI Detail Modal */
+    .ai-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 28, 54, .35);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn .18s ease
+    }
+
+    .ai-modal {
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 32px 80px rgba(10, 28, 54, .22);
+      width: 520px;
+      max-width: calc(100vw - 40px);
+      max-height: 82vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: slideUp .22s ease
+    }
+
+    .ai-modal-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0
+    }
+
+    .ai-modal-header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 4px
+    }
+
+    .ai-modal-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.4px;
+      line-height: 1.2
+    }
+
+    .ai-modal-sub {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    .ai-modal-close {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .14s;
+      flex-shrink: 0
+    }
+
+    .ai-modal-close:hover {
+      border-color: var(--red);
+      color: var(--red)
+    }
+
+    .ai-modal-body {
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px
+    }
+
+    .ai-modal-body::-webkit-scrollbar {
+      width: 4px
+    }
+
+    .ai-modal-body::-webkit-scrollbar-thumb {
+      background: var(--pm);
+      border-radius: 4px
+    }
+
+    .ai-block {
+      display: flex;
+      flex-direction: column;
+      gap: 5px
+    }
+
+    .ai-block-label {
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .ai-block-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    .ai-block-text {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: #3a506b
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(16px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -791,7 +1024,6 @@
 
 <body>
 
-  <!-- Topbar: CityScope style matching index.html and location.html -->
   <div class="topbar">
     <a class="brand" href="index.html">CityScope</a>
     <div class="tab-nav">
@@ -857,7 +1089,17 @@
     <div class="bento g12">
       <div class="card">
         <div class="stitle">Top Predicted Hot Spots</div>
-        <div class="rank-list" id="rankList"></div>
+        <!-- Legend row matching location.html -->
+        <div class="legend-row">
+          <div class="legend-dot" style="background:var(--red)"></div><span class="legend-txt">CRITICAL</span>
+          <div class="legend-dot" style="background:var(--amber)"></div><span class="legend-txt">HIGH</span>
+          <div class="legend-dot" style="background:var(--p)"></div><span class="legend-txt">MEDIUM</span>
+          <div class="legend-dot" style="background:#22c98a"></div><span class="legend-txt">LOW</span>
+        </div>
+        <!-- Scrollable container matching location.html's .loc-scroll -->
+        <div class="rank-scroll">
+          <div class="rank-list" id="rankList"></div>
+        </div>
       </div>
       <div class="side-stack">
         <div class="card">
@@ -884,16 +1126,43 @@
                 id="predCoverage">6 yrs</span></div>
           </div>
         </div>
-        <div class="card">
-          <div class="stitle">Why the model flagged it</div>
-          <div class="explain-row" id="explainFactors"></div>
-        </div>
-        <div class="card">
-          <div class="stitle">Planner Summary</div>
-          <div class="insight">
-            <h4 id="insightTitle">Signalized corridor with persistent severe risk</h4>
-            <p id="insightBody">Recent collisions, elevated serious injury counts, and strong neighboring-cell spillover
-              indicate this corridor should remain a near-term intervention priority.</p>
+        <div class="card" id="ai-analysis-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div class="stitle" style="margin-bottom:0">AI Risk Analysis</div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="pill p-blue" style="font-size:9px">Groq AI</span>
+              <button id="ai-retry-btn" onclick="runAIAnalysis()"
+                style="display:none;padding:3px 10px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-size:10px;font-weight:600;font-family:'Sora',sans-serif">↺
+                Retry</button>
+            </div>
+          </div>
+          <div id="ai-loading" style="display:none;padding:8px 0">
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div
+                style="height:9px;border-radius:6px;background:linear-gradient(90deg,var(--border) 25%,var(--pl) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite">
+              </div>
+              <div
+                style="height:9px;border-radius:6px;width:88%;background:linear-gradient(90deg,var(--border) 25%,var(--pl) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite .1s">
+              </div>
+              <div
+                style="height:9px;border-radius:6px;width:72%;background:linear-gradient(90deg,var(--border) 25%,var(--pl) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite .2s">
+              </div>
+              <div
+                style="height:9px;border-radius:6px;background:linear-gradient(90deg,var(--border) 25%,var(--pl) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite .3s">
+              </div>
+              <div
+                style="height:9px;border-radius:6px;width:60%;background:linear-gradient(90deg,var(--border) 25%,var(--pl) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite .4s">
+              </div>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--muted);text-align:center">Analysing risk factors…
+            </div>
+          </div>
+          <div id="ai-content" style="display:none;flex-direction:column;gap:10px"></div>
+          <div id="ai-empty" style="padding:8px 0;font-size:12px;color:var(--muted);text-align:center;line-height:1.6">
+            Select a location and click <strong>Run Forecast</strong><br>to generate an AI analysis.
+          </div>
+          <div id="ai-error"
+            style="display:none;padding:10px 12px;border-radius:10px;background:#ffeaea;color:var(--red);font-size:12px">
           </div>
         </div>
       </div>
@@ -920,7 +1189,7 @@
       if (rankOrder.length > 0) {
         const firstId = rankOrder[0];
         renderRankList(firstId);
-        selectSpot(firstId);
+        selectSpot(firstId, false); // false = don't auto-run AI on load
         animateHeat();
       }
     }
@@ -1107,7 +1376,10 @@
       if (best) selectSpot(best);
     });
 
-    function selectSpot(id) {
+    let currentSpotId = null;
+
+    function selectSpot(id, runAI = true) {
+      currentSpotId = id;
       const h = hotspots[id];
       document.getElementById('spotBand').textContent = h.band;
       document.getElementById('spotBand').className = 'pill ' + h.bandClass;
@@ -1119,20 +1391,108 @@
       document.getElementById('predSevere').textContent = h.severe_probability;
       document.getElementById('predConf').textContent = h.confidence;
       document.getElementById('predCoverage').textContent = h.coverage;
-      document.getElementById('insightTitle').textContent = h.summaryTitle;
-      document.getElementById('insightBody').textContent = h.summaryBody;
-      renderExplain(h.explain);
       renderRankList(id);
       map.flyTo([h.lat, h.lng], 13, { duration: 1.2 });
+      if (runAI) runAIAnalysis();
     }
 
-    function renderExplain(factors) {
-      document.getElementById('explainFactors').innerHTML = factors.map(f => `
-    <div class="factor">
-      <div class="factor-lbl">${f.label}</div>
-      <div class="bar-bg"><div class="bar" style="width:${f.value}%;background:${f.color}"></div></div>
-      <div class="factor-val">${f.score}</div>
-    </div>`).join('');
+    async function runAIAnalysis() {
+      if (!currentSpotId) return;
+      const h = hotspots[currentSpotId];
+
+      document.getElementById('ai-loading').style.display = 'block';
+      document.getElementById('ai-content').style.display = 'none';
+      document.getElementById('ai-empty').style.display = 'none';
+      document.getElementById('ai-error').style.display = 'none';
+      document.getElementById('ai-retry-btn').style.display = 'none';
+
+      // Build a rich prompt from all available hotspot data
+      const factors = (h.explain || []).map(f => `  - ${f.label}: score ${f.score} (relative weight ${f.value}%)`).join('\n');
+      const prompt = `You are an Edmonton road safety analyst interpreting a LightGBM collision risk model output.
+
+Location: ${h.name}
+Type: ${h.type}
+Risk Band: ${h.band}
+Predicted Risk Score: ${h.score}/100
+Predicted Collisions (30-day): ${h.predicted_collisions}
+Severe Collision Probability: ${h.severe_probability}
+Model Confidence: ${h.confidence}
+Data Coverage: ${h.coverage}
+
+Top model feature contributions:
+${factors}
+
+Based on this data, provide a structured analysis in JSON format with exactly these keys:
+{
+  "why_flagged": "2-3 sentence explanation of the primary reasons the LightGBM model assigned this risk score, referencing the specific feature contributions",
+  "risk_drivers": "2-3 sentences on the dominant risk drivers — what patterns in the data are pushing the score up",
+  "vulnerable_users": "1-2 sentences on pedestrian/cyclist/vulnerable road user exposure signals if relevant, or note if this is primarily a vehicle collision corridor",
+  "trend_outlook": "1-2 sentences on whether the risk appears stable, worsening, or has a seasonal/temporal pattern based on the coverage and score",
+  "planner_action": "2-3 concrete, specific intervention recommendations a city planner could act on for this specific location type and risk profile"
+}
+
+Return ONLY valid JSON, no markdown, no preamble.`;
+
+      try {
+        const response = await fetch('http://localhost:3131/gemini', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: 'application/json' }
+          })
+        });
+
+        const data = await response.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        const clean = text.replace(/```json|```/g, '').trim();
+        const parsed = JSON.parse(clean);
+        aiParsedData = parsed;
+
+        document.getElementById('ai-content').innerHTML = `
+          <div class="ai-summary" onclick="toggleAIExpand(this)" style="cursor:pointer;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(135deg,#fbfdff,#fff7fa)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+              <span style="font-size:11px;font-weight:700;color:var(--red)">🔍 Why Flagged</span>
+              <span style="font-size:10px;color:var(--pd);font-weight:700;white-space:nowrap;background:var(--pl);padding:2px 9px;border-radius:20px">Full Analysis ↗</span>
+            </div>
+            <div class="ai-section-body">${parsed['why_flagged'] || '—'}</div>
+          </div>`;
+
+        document.getElementById('ai-loading').style.display = 'none';
+        document.getElementById('ai-content').style.display = 'flex';
+        document.getElementById('ai-retry-btn').style.display = 'inline-block';
+
+      } catch (err) {
+        document.getElementById('ai-loading').style.display = 'none';
+        document.getElementById('ai-error').style.display = 'block';
+        document.getElementById('ai-error').textContent = 'Analysis failed: ' + err.message;
+        document.getElementById('ai-retry-btn').style.display = 'inline-block';
+      }
+    }
+
+    let aiParsedData = null;
+
+    function toggleAIExpand(summaryEl) {
+      if (!aiParsedData) return;
+      const h = hotspots[currentSpotId];
+      document.getElementById('ai-modal-loc').textContent = h ? h.name : 'AI Risk Analysis';
+      document.getElementById('ai-modal-body').innerHTML = [
+        { title: 'Why the Model Flagged It', key: 'why_flagged', color: 'var(--red)' },
+        { title: 'Primary Risk Drivers', key: 'risk_drivers', color: 'var(--amber)' },
+        { title: 'Vulnerable Road Users', key: 'vulnerable_users', color: 'var(--teal)' },
+        { title: 'Trend Outlook', key: 'trend_outlook', color: 'var(--pd)' },
+        { title: 'Planner Recommendations', key: 'planner_action', color: '#22c98a' },
+      ].map(s => `
+        <div class="ai-block">
+          <div class="ai-block-label" style="color:${s.color}">${s.title}</div>
+          <div class="ai-block-text">${aiParsedData[s.key] || '—'}</div>
+        </div>`).join('');
+      document.getElementById('ai-modal-overlay').style.display = 'flex';
+    }
+
+    function closeAIModal(e) {
+      if (e && e.target !== document.getElementById('ai-modal-overlay')) return;
+      document.getElementById('ai-modal-overlay').style.display = 'none';
     }
 
     function renderRankList(activeId) {
@@ -1165,6 +1525,20 @@
       renderHeat(heatAlpha);
     });
   </script>
+  <!-- AI Detail Modal -->
+  <div id="ai-modal-overlay" class="ai-modal-overlay" style="display:none" onclick="closeAIModal(event)">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <div class="ai-modal-header-top">
+          <div class="ai-modal-title" id="ai-modal-loc">AI Risk Analysis</div>
+          <button class="ai-modal-close" onclick="closeAIModal()">✕</button>
+        </div>
+        <div class="ai-modal-sub">AI Risk Analysis · Llama 3.3 70B via Groq</div>
+      </div>
+      <div class="ai-modal-body" id="ai-modal-body"></div>
+    </div>
+  </div>
+
 </body>
 
 </html>
