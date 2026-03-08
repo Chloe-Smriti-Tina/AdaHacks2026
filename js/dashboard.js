@@ -72,18 +72,19 @@ function updateKPIs() {
   s('kd-ped',     dlt(d.pedestrian_collisions,    p?.pedestrian_collisions));
   s('kd-pdo',     dlt(d.property_damage_only_pdo, p?.property_damage_only_pdo));
 
-  if (p) {
-    const rates = {
-      fatal:   ['total_fatalities',         'kd-fatal'],
-      serious: ['total_major_injuries',     'kd-serious'],
-      minor:   ['total_minor_injuries',     'kd-minor'],
-      moto:    ['motorcycle_collisions',    'kd-moto'],
-      bike:    ['bicycle_collisions',       'kd-bike'],
-      ped:     ['pedestrian_collisions',    'kd-ped'],
-      pdo:     ['property_damage_only_pdo', 'kd-pdo'],
-    };
-    Object.entries(rates).forEach(([, [field, id]]) => sc(id, dCls(d[field], p[field])));
-  }
+  const rates = {
+    fatal:   ['total_fatalities',         'kd-fatal'],
+    serious: ['total_major_injuries',     'kd-serious'],
+    minor:   ['total_minor_injuries',     'kd-minor'],
+    moto:    ['motorcycle_collisions',    'kd-moto'],
+    bike:    ['bicycle_collisions',       'kd-bike'],
+    ped:     ['pedestrian_collisions',    'kd-ped'],
+    pdo:     ['property_damage_only_pdo', 'kd-pdo'],
+  };
+  // Always set chip class — grey when no prior year, coloured when comparison exists
+  Object.entries(rates).forEach(([, [field, id]]) =>
+    sc(id, p ? dCls(d[field], p[field]) : 'dn')
+  );
 
   // Year labels
   s('yr-lbl',      curYear);
@@ -146,7 +147,7 @@ function renderCharts() {
   charts.pie = new Chart(document.getElementById('ch-pie'), {
     type: 'doughnut',
     data: {
-      labels: ['Vehicle Only', 'Pedestrian', 'Bicyclist', 'Motorcyclist'],
+      labels: ['Vehicle', 'Pedestrian', 'Bicyclist', 'Motorcyclist'],
       datasets: [{ data: [vehN, pedN, cycN, motoN], backgroundColor: [P, S, TEAL, AMB], borderColor: '#fff', borderWidth: 2, hoverOffset: 5 }],
     },
     options: {
