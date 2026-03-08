@@ -42,5 +42,6 @@ def gemini():
     })
 
 if __name__ == "__main__":
-    print("Proxy running at http://localhost:3131")
-    app.run(port=3131)
+    port = int(os.environ.get("PORT", 3131))
+    print(f"Proxy running on port {port}")
+    app.run(host="0.0.0.0", port=port)
