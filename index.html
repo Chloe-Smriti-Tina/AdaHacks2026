@@ -73,6 +73,9 @@
     .card-hero .c-lbl,.card-hero .c-val{color:#fff}
     .card-pink{background:linear-gradient(135deg,#fce8ed,#ffd0db);border-color:#f5b8c6}
     .card-pink .c-lbl,.card-pink .c-val{color:#a8304a}
+    .card-pink .c-delta.dd{background:#ffeaea;color:var(--red)}
+    .card-pink .c-delta.du{background:#e4faf2;color:#1aab6d}
+    .card-pink .c-delta.dn{background:rgba(0,0,0,.06);color:#a8304a}
 
     .c-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;display:block}
     .c-val{font-size:34px;font-weight:800;letter-spacing:-1.5px;line-height:1;display:block}
@@ -152,23 +155,23 @@
     <!-- KPI row 1 -->
     <div class="bento g4">
       <div class="card card-hero">
-        <div class="c-top"><span class="c-lbl">Total Collisions</span><div class="c-arr">↗</div></div>
+        <div class="c-top"><span class="c-lbl">Total Collisions</span></div>
         <span class="c-val" id="kv-total">—</span>
         <div class="hero-chip" id="kd-total">—</div>
       </div>
       <div class="card">
-        <div class="c-top"><span class="c-lbl">Fatalities</span><div class="c-arr">↗</div></div>
+        <div class="c-top"><span class="c-lbl">Fatalities</span></div>
         <span class="c-val" style="color:var(--red)" id="kv-fatal">—</span>
         <div class="c-delta dn" id="kd-fatal">—</div>
       </div>
       <div class="card">
-        <div class="c-top"><span class="c-lbl">Major Injuries</span><div class="c-arr">↗</div></div>
+        <div class="c-top"><span class="c-lbl">Major Injuries</span></div>
         <span class="c-val" style="color:var(--amber)" id="kv-serious">—</span>
         <div class="c-delta dn" id="kd-serious">—</div>
       </div>
-      <div class="card card-pink">
-        <div class="c-top"><span class="c-lbl">Minor Injuries</span><div class="c-arr" style="border-color:#f5b8c6">↗</div></div>
-        <span class="c-val" id="kv-minor">—</span>
+      <div class="card">
+        <div class="c-top"><span class="c-lbl">Minor Injuries</span></div>
+        <span class="c-val" style="color:var(--sd);font-size:34px" id="kv-minor">—</span>
         <div class="c-delta dn" id="kd-minor">—</div>
       </div>
     </div>
