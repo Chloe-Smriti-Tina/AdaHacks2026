@@ -128,7 +128,6 @@
     </div>
     <div class="tb-spacer"></div>
     <span class="yr-lbl">Year</span>
-    <!-- Year buttons are injected here by dashboard.js -->
     <div id="yr-btns"></div>
     <div class="user-chip">
       <div class="avatar">COE</div>
@@ -136,13 +135,10 @@
     </div>
   </div>
 
-  <!-- Hidden file input for CSV import -->
   <input type="file" id="csv-file-input" accept=".csv" style="display:none" />
 
-  <!-- ── Main content ── -->
   <div class="content">
 
-    <!-- Page header -->
     <div class="ph">
       <div>
         <div class="ph-title">Dashboard</div>
@@ -180,9 +176,9 @@
     <!-- KPI row 2 -->
     <div class="bento g4">
       <div class="card">
-        <span class="c-lbl">Collisions / 1K Pop</span>
-        <span class="c-val" style="color:var(--pd);font-size:28px" id="kv-rate">—</span>
-        <div class="c-delta dn" id="kd-rate">—</div>
+        <span class="c-lbl">Motorcycle Collisions</span>
+        <span class="c-val" style="color:var(--amber);font-size:28px" id="kv-moto">—</span>
+        <div class="c-delta dn" id="kd-moto">—</div>
       </div>
       <div class="card">
         <span class="c-lbl">Bicycle Collisions</span>
@@ -248,7 +244,7 @@
       </div>
     </div>
 
-  </div><!-- /content -->
+  </div>
 
   <script src="js/csv_loader.js"></script>
   <script src="js/dashboard.js"></script>

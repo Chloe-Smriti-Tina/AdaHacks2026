@@ -57,19 +57,17 @@ function updateKPIs() {
   s('kv-fatal',   f(d.total_fatalities));
   s('kv-serious', f(d.total_major_injuries));
   s('kv-minor',   f(d.total_minor_injuries));
+  s('kv-moto',    f(d.motorcycle_collisions));
   s('kv-bike',    f(d.bicycle_collisions));
   s('kv-ped',     f(d.pedestrian_collisions));
   s('kv-pdo',     f(d.property_damage_only_pdo));
-
-  // Collision rate: derive a simple rate from total (rough per-1k population proxy)
-  const rate = (d.total_collisions / 1040000 * 1000).toFixed(1);
-  s('kv-rate', rate);
 
   // Deltas
   s('kd-total',   dlt(d.total_collisions,        p?.total_collisions));
   s('kd-fatal',   dlt(d.total_fatalities,         p?.total_fatalities));
   s('kd-serious', dlt(d.total_major_injuries,     p?.total_major_injuries));
   s('kd-minor',   dlt(d.total_minor_injuries,     p?.total_minor_injuries));
+  s('kd-moto',    dlt(d.motorcycle_collisions,    p?.motorcycle_collisions));
   s('kd-bike',    dlt(d.bicycle_collisions,       p?.bicycle_collisions));
   s('kd-ped',     dlt(d.pedestrian_collisions,    p?.pedestrian_collisions));
   s('kd-pdo',     dlt(d.property_damage_only_pdo, p?.property_damage_only_pdo));
@@ -79,6 +77,7 @@ function updateKPIs() {
       fatal:   ['total_fatalities',         'kd-fatal'],
       serious: ['total_major_injuries',     'kd-serious'],
       minor:   ['total_minor_injuries',     'kd-minor'],
+      moto:    ['motorcycle_collisions',    'kd-moto'],
       bike:    ['bicycle_collisions',       'kd-bike'],
       ped:     ['pedestrian_collisions',    'kd-ped'],
       pdo:     ['property_damage_only_pdo', 'kd-pdo'],
@@ -86,18 +85,17 @@ function updateKPIs() {
     Object.entries(rates).forEach(([, [field, id]]) => sc(id, dCls(d[field], p[field])));
   }
 
-  const prevRate = p ? (p.total_collisions / 1040000 * 1000).toFixed(1) : null;
-  s('kd-rate', prevRate ? `${(rate - prevRate).toFixed(1) >= 0 ? '▲ +' : '▼ '}${Math.abs((rate - prevRate).toFixed(1))} vs ${curYear - 1}` : '—');
-
-  // Year label + intersection/midblock grid
+  // Year labels
   s('yr-lbl',      curYear);
   s('yr-lbl-ctrl', curYear);
+
+  // Intersection / midblock grid
   s('iv-fi',  f(d.fatalities_intersection));
   s('iv-fm',  f(d.fatalities_midblock));
   s('iv-ii',  f(d.injuries_intersection));
   s('iv-im',  f(d.injuries_midblock));
 
-  // Update page subtitle
+  // Page subtitle year range
   const years = YS.map(y => y.year);
   s('ph-sub-years', `${Math.min(...years)}–${Math.max(...years)}`);
 }
@@ -125,9 +123,9 @@ function renderCharts() {
     data: {
       labels: yrs,
       datasets: [
-        { label: 'Collisions',    data: YS.map(y => y.total_collisions),    borderColor: P,   backgroundColor: 'rgba(57,182,251,.07)', fill: true, tension: .4, pointBackgroundColor: P,   pointRadius: 4, yAxisID: 'y'  },
-        { label: 'Fatalities',    data: YS.map(y => y.total_fatalities),    borderColor: RED, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: RED, pointRadius: 4, yAxisID: 'y1' },
-        { label: 'Major Inj.',    data: YS.map(y => y.total_major_injuries),borderColor: AMB, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: AMB, pointRadius: 4, yAxisID: 'y1' },
+        { label: 'Collisions',  data: YS.map(y => y.total_collisions),     borderColor: P,   backgroundColor: 'rgba(57,182,251,.07)', fill: true, tension: .4, pointBackgroundColor: P,   pointRadius: 4, yAxisID: 'y'  },
+        { label: 'Fatalities',  data: YS.map(y => y.total_fatalities),     borderColor: RED, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: RED, pointRadius: 4, yAxisID: 'y1' },
+        { label: 'Major Inj.',  data: YS.map(y => y.total_major_injuries), borderColor: AMB, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: AMB, pointRadius: 4, yAxisID: 'y1' },
       ],
     },
     options: {
@@ -137,19 +135,19 @@ function renderCharts() {
     },
   });
 
-  /* Mode pie — derived from raw aggregates */
-  const latest = YS[YS.length - 1];
-  const pedN  = YS.reduce((a, y) => a + y.pedestrian_collisions, 0);
-  const cycN  = YS.reduce((a, y) => a + y.bicycle_collisions,    0);
-  const totN  = YS.reduce((a, y) => a + y.total_collisions,      0);
-  const vehN  = Math.max(0, totN - pedN - cycN);
+  /* Mode pie */
+  const pedN  = YS.reduce((a, y) => a + y.pedestrian_collisions,  0);
+  const cycN  = YS.reduce((a, y) => a + y.bicycle_collisions,     0);
+  const motoN = YS.reduce((a, y) => a + y.motorcycle_collisions,  0);
+  const totN  = YS.reduce((a, y) => a + y.total_collisions,       0);
+  const vehN  = Math.max(0, totN - pedN - cycN - motoN);
 
   destroyChart('pie');
   charts.pie = new Chart(document.getElementById('ch-pie'), {
     type: 'doughnut',
     data: {
-      labels: ['Vehicle Only', 'Pedestrian', 'Bicyclist'],
-      datasets: [{ data: [vehN, pedN, cycN], backgroundColor: [P, S, TEAL], borderColor: '#fff', borderWidth: 2, hoverOffset: 5 }],
+      labels: ['Vehicle Only', 'Pedestrian', 'Bicyclist', 'Motorcyclist'],
+      datasets: [{ data: [vehN, pedN, cycN, motoN], backgroundColor: [P, S, TEAL, AMB], borderColor: '#fff', borderWidth: 2, hoverOffset: 5 }],
     },
     options: {
       responsive: true, maintainAspectRatio: false, cutout: '62%',
@@ -157,15 +155,16 @@ function renderCharts() {
     },
   });
 
-  /* Vulnerable users bar */
+  /* Vulnerable users bar — bicycle, pedestrian, motorcycle */
   destroyChart('vul');
   charts.vul = new Chart(document.getElementById('ch-vul'), {
     type: 'bar',
     data: {
       labels: yrs,
       datasets: [
-        { label: 'Bicycle',    data: YS.map(y => y.bicycle_collisions),    backgroundColor: TEAL, borderRadius: 4 },
-        { label: 'Pedestrian', data: YS.map(y => y.pedestrian_collisions), backgroundColor: S,    borderRadius: 4 },
+        { label: 'Bicycle',     data: YS.map(y => y.bicycle_collisions),     backgroundColor: TEAL, borderRadius: 4 },
+        { label: 'Pedestrian',  data: YS.map(y => y.pedestrian_collisions),  backgroundColor: S,    borderRadius: 4 },
+        { label: 'Motorcycle',  data: YS.map(y => y.motorcycle_collisions),  backgroundColor: AMB,  borderRadius: 4 },
       ],
     },
     options: {
@@ -175,7 +174,7 @@ function renderCharts() {
     },
   });
 
-  /* Traffic control bar — year-specific, built separately */
+  /* Traffic control bar — year-specific */
   renderCtrlChart();
 }
 
@@ -226,28 +225,24 @@ function setupImport() {
     try {
       const text = await file.text();
 
-      // Validate it looks like a collision CSV
       const firstLine = text.split('\n')[0].toLowerCase();
       if (!firstLine.includes('collision') && !firstLine.includes('year') && !firstLine.includes('location')) {
         throw new Error('File does not appear to be a collision dataset. Check column headers.');
       }
 
-      // Parse + aggregate
       const rows = parseRawCSV(text);
       if (rows.length === 0) throw new Error('No data rows found in CSV.');
 
-      const ys   = aggregateByYear(rows);
+      const ys = aggregateByYear(rows);
       if (ys.length === 0) throw new Error('Could not find a valid "Collision Year" column.');
 
       const ctrlLabels = topControls(ys, 7);
 
-      // Commit to global state
       YS          = ys;
       CTRL_LABELS = ctrlLabels;
       RAW_ROWS    = rows;
       curYear     = YS[YS.length - 1].year;
 
-      // Re-build UI
       buildYearButtons();
       selectYear(curYear);
       renderCharts();
@@ -261,7 +256,6 @@ function setupImport() {
       setTimeout(() => setImportState('idle', 'Import Data'), 5000);
     }
 
-    // Reset so same file can be re-imported
     input.value = '';
   });
 }
@@ -298,8 +292,8 @@ async function initDashboard() {
 
 function showEmptyState() {
   const s = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-  ['kv-total','kv-fatal','kv-serious','kv-minor','kv-rate','kv-bike','kv-ped','kv-pdo'].forEach(id => s(id, '—'));
-  ['kd-total','kd-fatal','kd-serious','kd-minor','kd-rate','kd-bike','kd-ped','kd-pdo'].forEach(id => s(id, 'no data'));
+  ['kv-total','kv-fatal','kv-serious','kv-minor','kv-moto','kv-bike','kv-ped','kv-pdo'].forEach(id => s(id, '—'));
+  ['kd-total','kd-fatal','kd-serious','kd-minor','kd-moto','kd-bike','kd-ped','kd-pdo'].forEach(id => s(id, 'no data'));
   ['iv-fi','iv-fm','iv-ii','iv-im'].forEach(id => s(id, '—'));
   s('ph-sub-years', 'No data loaded');
 
