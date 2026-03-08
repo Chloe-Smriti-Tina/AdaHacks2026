@@ -1,1074 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Edmonton Road Safety · Priority Locations</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
-        rel="stylesheet" />
-    <style>
-        :root {
-            --p: #39b6fb;
-            --pl: #e8f6ff;
-            --pm: #a8dcfa;
-            --pd: #0b8fd4;
-            --s: #ffc0cb;
-            --sl: #fff4f6;
-            --sd: #e87d95;
-            --bg: #f0f4f8;
-            --surface: #fff;
-            --border: #e2eaf3;
-            --text: #18283d;
-            --muted: #7a92ab;
-            --muted2: #b0c4d8;
-            --red: #e84646;
-            --amber: #f5a623;
-            --green: #22c98a;
-            --teal: #0891b2;
-            --r: 16px;
-            --rs: 10px;
-            --sh: 0 2px 12px rgba(0, 0, 0, .055);
-            --shm: 0 6px 28px rgba(0, 0, 0, .09);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body {
-            height: 100%;
-            font-family: 'Sora', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            font-size: 14px;
-        }
-
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--pm);
-            border-radius: 4px;
-        }
-
-        .topbar {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 0 32px;
-            display: flex;
-            align-items: center;
-            height: 60px;
-            gap: 16px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 1px 0 var(--border);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-right: 24px;
-            text-decoration: none;
-        }
-
-        .brand-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 9px;
-            background: linear-gradient(135deg, var(--p), var(--pd));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            box-shadow: 0 3px 10px rgba(57, 182, 251, .35);
-        }
-
-        .brand-name {
-            font-size: 15px;
-            font-weight: 800;
-            letter-spacing: -.4px;
-            color: var(--text);
-        }
-
-        .tab-nav {
-            display: flex;
-            gap: 2px;
-        }
-
-        .tn {
-            padding: 6px 16px;
-            border-radius: 8px;
-            border: none;
-            background: none;
-            font-size: 13px;
-            font-weight: 500;
-            font-family: 'Sora', sans-serif;
-            color: var(--muted);
-            cursor: pointer;
-            transition: all .15s;
-            text-decoration: none;
-        }
-
-        .tn:hover {
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .tn.active {
-            background: var(--pl);
-            color: var(--pd);
-            font-weight: 700;
-        }
-
-        .tb-spacer {
-            flex: 1;
-        }
-
-        .user-chip {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 5px 12px 5px 5px;
-            border-radius: 30px;
-            border: 1px solid var(--border);
-            margin-left: 16px;
-        }
-
-        .avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--p), var(--sd));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .user-name {
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .content {
-            max-width: 1340px;
-            margin: 0 auto;
-            padding: 28px 32px;
-        }
-
-        .ph {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 24px;
-        }
-
-        .ph-title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -.5px;
-            line-height: 1;
-        }
-
-        .ph-sub {
-            font-size: 13px;
-            color: var(--muted);
-            margin-top: 4px;
-        }
-
-        .pill {
-            padding: 2px 9px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
-        }
-
-        .p-red {
-            background: #ffeaea;
-            color: var(--red);
-        }
-
-        .p-amb {
-            background: #fff4dd;
-            color: #9a6000;
-        }
-
-        .p-blue {
-            background: var(--pl);
-            color: var(--pd);
-        }
-
-        .p-grn {
-            background: #e4faf2;
-            color: #0d8050;
-        }
-
-        .p-mut {
-            background: var(--bg);
-            color: var(--muted);
-        }
-
-        .scoring-panel {
-            background: linear-gradient(135deg, #f7fbff, #fef5f7);
-            border: 1.5px solid var(--border);
-            border-radius: var(--r);
-            padding: 24px 28px;
-            box-shadow: var(--sh);
-            margin-bottom: 12px;
-        }
-
-        .sp-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .sp-title {
-            font-size: 15px;
-            font-weight: 800;
-            letter-spacing: -.3px;
-        }
-
-        .sp-sub {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 3px;
-        }
-
-        .sp-total-badge {
-            background: linear-gradient(135deg, var(--p), var(--pd));
-            color: #fff;
-            border-radius: 10px;
-            padding: 8px 18px;
-            text-align: center;
-            box-shadow: 0 3px 12px rgba(57, 182, 251, .3);
-            flex-shrink: 0;
-        }
-
-        .sp-total-num {
-            font-size: 13px;
-            font-weight: 800;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .sp-total-lbl {
-            font-size: 10px;
-            opacity: .8;
-            margin-top: 1px;
-        }
-
-        .weights-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px 24px;
-        }
-
-        .wi-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-        }
-
-        .wi-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .wi-emoji {
-            font-size: 14px;
-        }
-
-        .wi-value {
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--pd);
-            font-family: 'DM Mono', monospace;
-            background: var(--pl);
-            border: 1.5px solid var(--pm);
-            border-radius: 7px;
-            padding: 2px 8px;
-            min-width: 44px;
-            text-align: center;
-        }
-
-        .wi-desc {
-            font-size: 10px;
-            color: var(--muted);
-            margin-bottom: 8px;
-        }
-
-        .wi-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 5px;
-            border-radius: 3px;
-            outline: none;
-            cursor: pointer;
-            background: var(--border);
-        }
-
-        .wi-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--p);
-            border: 2.5px solid #fff;
-            box-shadow: 0 2px 6px rgba(57, 182, 251, .4);
-            cursor: pointer;
-            transition: transform .12s;
-        }
-
-        .wi-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.18);
-        }
-
-        .wi-slider::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--p);
-            border: 2.5px solid #fff;
-            box-shadow: 0 2px 6px rgba(57, 182, 251, .4);
-            cursor: pointer;
-        }
-
-        .sp-divider {
-            height: 1px;
-            background: var(--border);
-            margin: 18px 0;
-        }
-
-        .preset-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .preset-lbl,
-        .filter-row>span:first-child {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: .07em;
-            margin-right: 4px;
-        }
-
-        .preset-btn,
-        .fl-btn {
-            padding: 4px 13px;
-            border-radius: 20px;
-            border: 1.5px solid var(--border);
-            background: var(--surface);
-            color: var(--muted);
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 500;
-            font-family: 'Sora', sans-serif;
-            transition: all .14s;
-        }
-
-        .preset-btn:hover,
-        .fl-btn:hover {
-            border-color: var(--p);
-            color: var(--p);
-        }
-
-        .preset-btn.active,
-        .fl-btn.active {
-            background: var(--p);
-            border-color: var(--p);
-            color: #fff;
-            font-weight: 700;
-        }
-
-        .loc-layout {
-            display: flex;
-            gap: 12px;
-        }
-
-        .loc-list-col {
-            flex: 0 0 55%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .loc-detail-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .filter-row {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .loc-scroll {
-            overflow-y: auto;
-            max-height: calc(100vh - 240px);
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            padding-right: 3px;
-        }
-
-        .li {
-            background: var(--surface);
-            border: 1.5px solid var(--border);
-            border-radius: 14px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: all .15s;
-            box-shadow: var(--sh);
-        }
-
-        .li:hover {
-            border-color: var(--p);
-            transform: translateX(3px);
-            box-shadow: var(--shm);
-        }
-
-        .li.sel {
-            border-color: var(--p);
-            background: var(--pl);
-        }
-
-        .li-badges {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .li-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .li-name {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            line-height: 1.3;
-        }
-
-        .li-stats {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .ls {
-            font-size: 11px;
-            color: var(--muted);
-        }
-
-        .ls strong {
-            font-weight: 700;
-        }
-
-        .sc-col {
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .sc-num {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -.5px;
-            line-height: 1;
-        }
-
-        .sc-lbl {
-            font-size: 9px;
-            color: var(--muted);
-            margin-top: 1px;
-        }
-
-        .sc-bar-bg {
-            width: 52px;
-            height: 4px;
-            background: var(--border);
-            border-radius: 2px;
-            margin-top: 5px;
-            margin-left: auto;
-        }
-
-        .sc-bar {
-            height: 100%;
-            border-radius: 2px;
-            transition: width .4s ease;
-        }
-
-        .rank-change {
-            font-size: 10px;
-            font-weight: 600;
-            margin-left: 4px;
-        }
-
-        .empty-det {
-            flex: 1;
-            background: var(--surface);
-            border: 1.5px solid var(--border);
-            border-radius: var(--r);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: var(--muted);
-            font-size: 13px;
-            min-height: 400px;
-            box-shadow: var(--sh);
-        }
-
-        .det-hero {
-            background: linear-gradient(135deg, var(--pl), var(--sl));
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 20px;
-            box-shadow: var(--sh);
-        }
-
-        .det-name {
-            font-size: 16px;
-            font-weight: 700;
-            margin: 8px 0 4px;
-            line-height: 1.3;
-        }
-
-        .det-score {
-            font-size: 38px;
-            font-weight: 800;
-            letter-spacing: -2px;
-            line-height: 1;
-        }
-
-        .det-kpis {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .det-mini {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--rs);
-            padding: 12px 14px;
-        }
-
-        .c-lbl {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: var(--muted);
-            margin-bottom: 6px;
-            display: block;
-        }
-
-        .c-val {
-            font-size: 24px;
-            font-weight: 800;
-            line-height: 1;
-            display: block;
-        }
-
-        .yr-pills {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-        }
-
-        .yr-pill {
-            padding: 3px 10px;
-            border-radius: 20px;
-            background: var(--pl);
-            color: var(--pd);
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .contrib-row {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-top: 10px;
-        }
-
-        .contrib-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contrib-label {
-            font-size: 11px;
-            color: var(--muted);
-            width: 130px;
-            flex-shrink: 0;
-        }
-
-        .contrib-bar-bg {
-            flex: 1;
-            height: 8px;
-            background: var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .contrib-bar {
-            height: 100%;
-            border-radius: 4px;
-            transition: width .5s ease;
-        }
-
-        .contrib-val {
-            font-size: 11px;
-            font-weight: 700;
-            width: 36px;
-            text-align: right;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .card {
-            background: var(--surface);
-            border-radius: var(--r);
-            border: 1px solid var(--border);
-            padding: 20px;
-            box-shadow: var(--sh);
-        }
-
-        .stitle {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text);
-        }
-
-        .stitle::before {
-            content: '';
-            width: 3px;
-            height: 13px;
-            border-radius: 2px;
-            background: linear-gradient(180deg, var(--p), var(--sd));
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 1100px) {
-            .weights-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .loc-layout {
-                flex-direction: column;
-            }
-
-            .loc-list-col {
-                flex-basis: auto;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .topbar {
-                padding: 12px 16px;
-                height: auto;
-                flex-wrap: wrap;
-            }
-
-            .content {
-                padding: 20px 16px;
-            }
-
-            .weights-grid,
-            .det-kpis {
-                grid-template-columns: 1fr;
-            }
-
-            .user-chip {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Edmonton Road Safety - Priority Locations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <style>
+    :root{--p:#39b6fb;--pl:#e8f6ff;--pm:#a8dcfa;--pd:#0b8fd4;--s:#ffc0cb;--sl:#fff4f6;--sd:#e87d95;--bg:#f0f4f8;--surface:#fff;--border:#e2eaf3;--text:#18283d;--muted:#7a92ab;--red:#e84646;--amber:#f5a623;--green:#22c98a;--teal:#0891b2;--r:16px;--rs:10px;--sh:0 2px 12px rgba(0,0,0,.06);--shm:0 6px 28px rgba(0,0,0,.09)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--pm);border-radius:4px}
+    .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;height:60px;gap:16px;position:sticky;top:0;z-index:100}
+    .brand{font-size:15px;font-weight:800;letter-spacing:-.4px;color:var(--text);text-decoration:none;margin-right:24px}
+    .tab-nav{display:flex;gap:2px}
+    .tn{padding:6px 16px;border-radius:8px;border:none;background:none;font-size:13px;font-weight:500;font-family:'Sora',sans-serif;color:var(--muted);cursor:pointer;text-decoration:none;transition:all .15s}
+    .tn:hover{background:var(--bg);color:var(--text)}.tn.active{background:var(--pl);color:var(--pd);font-weight:700}
+    .tb-spacer{flex:1}
+    .user-chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:30px;border:1px solid var(--border)}
+    .avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--sd));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+    .user-name{font-size:12px;font-weight:600}
+    .content{max-width:1340px;margin:0 auto;padding:28px 32px}
+    .ph-title{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+    .ph-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+    .pill{padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;display:inline-block}
+    .p-red{background:#ffeaea;color:var(--red)}.p-amb{background:#fff4dd;color:#9a6000}.p-blue{background:var(--pl);color:var(--pd)}.p-grn{background:#e4faf2;color:#0d8050}.p-mut{background:var(--bg);color:var(--muted)}
+    /* Scoring panel */
+    .scoring-panel{background:linear-gradient(135deg,#f7fbff,#fef5f7);border:1.5px solid var(--border);border-radius:var(--r);padding:24px 28px;box-shadow:var(--sh);margin-bottom:16px}
+    .sp-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+    .sp-title{font-size:15px;font-weight:800}.sp-sub{font-size:12px;color:var(--muted);margin-top:3px}
+    .sp-badge{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-radius:10px;padding:8px 18px;text-align:center;box-shadow:0 3px 12px rgba(57,182,251,.3)}
+    .sp-badge-num{font-size:13px;font-weight:800;font-family:'DM Mono',monospace}.sp-badge-lbl{font-size:10px;opacity:.8;margin-top:1px}
+    .weights-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 24px}
+    .wi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+    .wi-label{font-size:12px;font-weight:600}
+    .wi-value{font-size:13px;font-weight:800;color:var(--pd);font-family:'DM Mono',monospace;background:var(--pl);border:1.5px solid var(--pm);border-radius:7px;padding:2px 8px;min-width:44px;text-align:center}
+    .wi-desc{font-size:10px;color:var(--muted);margin-bottom:8px}
+    .wi-slider{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;outline:none;cursor:pointer;background:var(--border)}
+    .wi-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--p);border:2.5px solid #fff;box-shadow:0 2px 6px rgba(57,182,251,.4);cursor:pointer}
+    .wi-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--p);border:2.5px solid #fff;cursor:pointer}
+    .sp-divider{height:1px;background:var(--border);margin:18px 0}
+    .preset-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .preset-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-right:4px}
+    .pbtn,.flbtn{padding:4px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-size:11px;font-weight:500;font-family:'Sora',sans-serif;transition:all .14s}
+    .pbtn:hover,.flbtn:hover{border-color:var(--p);color:var(--p)}.pbtn.on,.flbtn.on{background:var(--p);border-color:var(--p);color:#fff;font-weight:700}
+    /* Layout */
+    .loc-layout{display:flex;gap:12px;align-items:flex-start}
+    .list-col{flex:0 0 46%;display:flex;flex-direction:column;gap:10px}
+    .detail-col{flex:1;display:flex;flex-direction:column;gap:10px;position:sticky;top:72px;max-height:calc(100vh - 88px);overflow-y:auto}
+    .filter-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+    .flabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+    .legend-row{display:flex;gap:10px;align-items:center;padding:4px 0}
+    .legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .legend-txt{font-size:10px;color:var(--muted);font-weight:600}
+    .loc-scroll{overflow-y:auto;max-height:calc(100vh - 320px);display:flex;flex-direction:column;gap:7px;padding-right:3px}
+    /* List item */
+    .li{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:12px 16px;cursor:pointer;transition:all .15s;box-shadow:var(--sh)}
+    .li:hover{border-color:var(--p);transform:translateX(3px)}.li.sel{border-color:var(--p);background:var(--pl)}
+    .li-badges{display:flex;gap:5px;align-items:center;margin-bottom:5px;flex-wrap:wrap}
+    .li-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+    .li-name{font-size:13px;font-weight:600;margin-bottom:5px;line-height:1.3}
+    .li-stats{display:flex;gap:10px;flex-wrap:wrap}
+    .ls{font-size:11px;color:var(--muted)}.ls strong{font-weight:700}
+    .sc-col{text-align:right;flex-shrink:0}
+    .sc-num{font-size:24px;font-weight:800;letter-spacing:-.5px;line-height:1}
+    .sc-lbl{font-size:9px;color:var(--muted);margin-top:1px}
+    .sc-bar-bg{width:52px;height:4px;background:var(--border);border-radius:2px;margin-top:5px;margin-left:auto}
+    .sc-bar{height:100%;border-radius:2px}
+    /* Detail panel */
+    .empty-det{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:13px;min-height:420px;padding:40px}
+    .card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:18px;box-shadow:var(--sh)}
+    .det-hero{background:linear-gradient(135deg,var(--pl),var(--sl));border:1px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+    .det-name{font-size:15px;font-weight:700;margin:8px 0 4px;line-height:1.35}
+    .det-score{font-size:42px;font-weight:800;letter-spacing:-2px;line-height:1}
+    .det-score-row{display:flex;align-items:baseline;gap:10px;margin-top:6px;flex-wrap:wrap}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .kpi-mini{background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:11px 13px}
+    .k-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px;display:block}
+    .k-val{font-size:22px;font-weight:800;line-height:1;display:block}
+    .stitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    .stitle::before{content:'';width:3px;height:13px;border-radius:2px;background:linear-gradient(180deg,var(--p),var(--sd));flex-shrink:0}
+    .contrib-row{display:flex;flex-direction:column;gap:7px}
+    .contrib-item{display:flex;align-items:center;gap:8px}
+    .contrib-label{font-size:11px;color:var(--muted);width:140px;flex-shrink:0}
+    .contrib-bar-bg{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+    .contrib-bar{height:100%;border-radius:4px}
+    .contrib-val{font-size:11px;font-weight:700;width:36px;text-align:right;font-family:'DM Mono',monospace}
+    .yr-pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+    .yr-pill{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+    .trend-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+    .trend-stat{background:var(--bg);border-radius:var(--rs);padding:10px 12px;text-align:center}
+    .trend-stat-val{font-size:20px;font-weight:800;letter-spacing:-.5px;line-height:1}
+    .trend-stat-lbl{font-size:9px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.07em}
+    .loading{text-align:center;padding:60px 20px;color:var(--muted)}.loading strong{display:block;font-size:16px;margin-bottom:6px;color:var(--text)}
+    @media(max-width:1100px){.weights-grid{grid-template-columns:repeat(2,1fr)}.loc-layout{flex-direction:column}.list-col{flex-basis:auto}.detail-col{position:static;max-height:none}.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+  </style>
 </head>
-
 <body>
-    <div class="topbar">
-        <a class="brand" href="index.html">
-            <div class="brand-icon">🚦</div>
-            <span class="brand-name">SafeRoute Edmonton</span>
-        </a>
-        <div class="tab-nav">
-            <a class="tn" href="index.html">📊 Overview</a>
-            <a class="tn active" href="location.html">📍 Priority Locations</a>
-        </div>
-        <div class="tb-spacer"></div>
-        <div class="user-chip">
-            <div class="avatar">JA</div>
-            <span class="user-name">Jordan Ames</span>
-        </div>
+<div class="topbar">
+  <a class="brand" href="index.html">CityScope</a>
+  <div class="tab-nav">
+    <a class="tn" href="index.html">Overview</a>
+    <a class="tn active" href="location.html">Priority Locations</a>
+  </div>
+  <div class="tb-spacer"></div>
+  <div class="user-chip"><div class="avatar">COE</div><span class="user-name">City of Edmonton</span></div>
+</div>
+
+<div class="content">
+  <div class="ph-title">Priority Locations</div>
+  <div class="ph-sub">Data: <span id="data-range">loading...</span></div>
+
+  <div class="scoring-panel">
+    <div class="sp-header">
+      <div>
+        <div class="sp-title">Priority Score Configuration</div>
+        <div class="sp-sub">Adjust weights — scores recalculate live across all locations.</div>
+      </div>
+      <div class="sp-badge">
+        <div class="sp-badge-num" id="weight-total">15.0</div>
+        <div class="sp-badge-lbl">total weight</div>
+      </div>
+    </div>
+    <div class="weights-grid" id="weights-grid"></div>
+    <div class="sp-divider"></div>
+    <div class="preset-row">
+      <span class="preset-lbl">Presets</span>
+      <button class="pbtn on" id="pr-balanced"  onclick="applyPreset('balanced',this)">Balanced</button>
+      <button class="pbtn"    id="pr-fatality"  onclick="applyPreset('fatality',this)">Fatality-focused</button>
+      <button class="pbtn"    id="pr-vulnerable" onclick="applyPreset('vulnerable',this)">Vulnerable Users</button>
+      <button class="pbtn"    id="pr-volume"    onclick="applyPreset('volume',this)">High Volume</button>
+      <button class="pbtn"    id="pr-injury"    onclick="applyPreset('injury',this)">Injury-focused</button>
+    </div>
+  </div>
+
+  <div class="loc-layout">
+    <div class="list-col">
+      <div class="filter-row">
+        <span class="flabel">Filter</span>
+        <button class="flbtn on" id="fl-All"          onclick="setFilter('All',this)">All</button>
+        <button class="flbtn"    id="fl-Intersection" onclick="setFilter('Intersection',this)">Intersection</button>
+        <button class="flbtn"    id="fl-Midblock"     onclick="setFilter('Midblock',this)">Midblock</button>
+        <span style="color:#b0c4d8;margin:0 4px">|</span>
+        <span class="flabel">Sort</span>
+        <button class="flbtn on" id="so-score"          onclick="setSort('score',this)">Score</button>
+        <button class="flbtn"    id="so-collision_count" onclick="setSort('collision_count',this)">Collisions</button>
+        <button class="flbtn"    id="so-fatalities"      onclick="setSort('fatalities',this)">Fatalities</button>
+      </div>
+      <div class="legend-row">
+        <div class="legend-dot" style="background:var(--red)"></div><span class="legend-txt">CRITICAL</span>
+        <div class="legend-dot" style="background:var(--amber)"></div><span class="legend-txt">HIGH</span>
+        <div class="legend-dot" style="background:var(--p)"></div><span class="legend-txt">MEDIUM</span>
+        <div class="legend-dot" style="background:var(--green)"></div><span class="legend-txt">LOW</span>
+      </div>
+      <div class="loc-scroll" id="loc-list">
+        <div class="loading"><strong>Loading...</strong>Aggregating collision records</div>
+      </div>
     </div>
 
-    <div class="content">
-        <div class="ph">
-            <div>
-                <div class="ph-title">Priority Locations</div>
-                <div class="ph-sub">Configure scoring weights below — the list updates instantly.</div>
-            </div>
-        </div>
-
-        <div class="scoring-panel">
-            <div class="sp-header">
-                <div>
-                    <div class="sp-title">⚖️ Priority Score Configuration</div>
-                    <div class="sp-sub">Set the weight for each factor. Scores are normalized and recalculated live.
-                    </div>
-                </div>
-                <div class="sp-total-badge">
-                    <div class="sp-total-num" id="weight-total">10.0</div>
-                    <div class="sp-total-lbl">total weight</div>
-                </div>
-            </div>
-            <div class="weights-grid" id="weights-grid"></div>
-            <div class="sp-divider"></div>
-            <div class="preset-row">
-                <span class="preset-lbl">Presets</span>
-                <button class="preset-btn active" onclick="applyPreset('balanced',this)">⚖️ Balanced</button>
-                <button class="preset-btn" onclick="applyPreset('fatality',this)">☠️ Fatality-focused</button>
-                <button class="preset-btn" onclick="applyPreset('vulnerable',this)">🚶 Vulnerable Users</button>
-                <button class="preset-btn" onclick="applyPreset('volume',this)">🚗 High Volume</button>
-                <button class="preset-btn" onclick="applyPreset('community',this)">🏘️ Community-led</button>
-            </div>
-        </div>
-
-        <div class="loc-layout">
-            <div class="loc-list-col">
-                <div class="filter-row">
-                    <span>Filter</span>
-                    <button class="fl-btn active" onclick="filterLoc('All',this)">All</button>
-                    <button class="fl-btn" onclick="filterLoc('Intersection',this)">Intersection</button>
-                    <button class="fl-btn" onclick="filterLoc('Midblock',this)">Midblock</button>
-                    <span style="color:var(--muted2);margin:0 4px">|</span>
-                    <span
-                        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)">Sort</span>
-                    <button class="fl-btn active" id="srt-score" onclick="sortLoc('score',this)">Score</button>
-                    <button class="fl-btn" id="srt-count" onclick="sortLoc('collision_count',this)">Collisions</button>
-                    <button class="fl-btn" id="srt-fatal" onclick="sortLoc('fatalities',this)">Fatalities</button>
-                </div>
-                <div style="display:flex;gap:10px;align-items:center;padding:4px 0;">
-                    <div style="width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0"></div><span
-                        style="font-size:10px;color:var(--muted);font-weight:600">CRITICAL</span>
-                    <div style="width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0"></div>
-                    <span style="font-size:10px;color:var(--muted);font-weight:600">HIGH</span>
-                    <div style="width:8px;height:8px;border-radius:50%;background:var(--p);flex-shrink:0"></div><span
-                        style="font-size:10px;color:var(--muted);font-weight:600">MEDIUM</span>
-                    <div style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0"></div>
-                    <span style="font-size:10px;color:var(--muted);font-weight:600">LOW</span>
-                    <span style="font-size:9px;color:var(--muted2);margin-left:auto;font-style:italic">Scores
-                        recalculate with weights above</span>
-                </div>
-                <div class="loc-scroll" id="loc-list"></div>
-            </div>
-            <div class="loc-detail-col" id="loc-detail">
-                <div class="empty-det">
-                    <div style="font-size:40px">📍</div>
-                    <div>Select a location to view details</div>
-                </div>
-            </div>
-        </div>
+    <div class="detail-col" id="loc-detail">
+      <div class="empty-det">
+        <div style="font-size:40px">&#128205;</div>
+        <div style="font-weight:600;color:var(--text)">Select a location</div>
+        <div style="font-size:12px;text-align:center;max-width:220px;line-height:1.6">Click any row on the left to see stats, year-over-year trends, and score breakdown</div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <script>
-        const RAW_LOCS = [
-            { location_type: "Intersection", location_description: "Whitemud Dr NW & 170 St NW", collision_count: 312, fatalities: 4, serious: 28, minor: 142, pedestrian_involved: 22, bicycle_involved: 8, community_complaints: 38, years: [2018, 2019, 2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Yellowhead Tr & 170 St NW", collision_count: 298, fatalities: 3, serious: 22, minor: 130, pedestrian_involved: 18, bicycle_involved: 6, community_complaints: 31, years: [2019, 2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Whitemud Dr NW & 91 St NW", collision_count: 276, fatalities: 2, serious: 19, minor: 128, pedestrian_involved: 12, bicycle_involved: 5, community_complaints: 24, years: [2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Anthony Henday Dr & 137 Ave NW", collision_count: 264, fatalities: 5, serious: 31, minor: 110, pedestrian_involved: 9, bicycle_involved: 3, community_complaints: 44, years: [2018, 2019, 2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Terwillegar Dr NW & Rabbit Hill Rd", collision_count: 248, fatalities: 1, serious: 15, minor: 120, pedestrian_involved: 14, bicycle_involved: 12, community_complaints: 29, years: [2021, 2022, 2023] },
-            { location_type: "Midblock", location_description: "Yellowhead Tr NW — 156 St to 170 St", collision_count: 235, fatalities: 6, serious: 35, minor: 98, pedestrian_involved: 28, bicycle_involved: 4, community_complaints: 52, years: [2018, 2019, 2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Groat Rd NW & 107 Ave NW", collision_count: 228, fatalities: 2, serious: 18, minor: 115, pedestrian_involved: 31, bicycle_involved: 18, community_complaints: 41, years: [2019, 2020, 2021, 2022, 2023] },
-            { location_type: "Midblock", location_description: "Stony Plain Rd NW — 156 St to 163 St", collision_count: 218, fatalities: 3, serious: 26, minor: 105, pedestrian_involved: 19, bicycle_involved: 11, community_complaints: 33, years: [2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Jasper Ave & 109 St NW", collision_count: 210, fatalities: 1, serious: 12, minor: 118, pedestrian_involved: 42, bicycle_involved: 22, community_complaints: 47, years: [2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "98 Ave NW & 76 St NW", collision_count: 204, fatalities: 2, serious: 20, minor: 100, pedestrian_involved: 11, bicycle_involved: 7, community_complaints: 18, years: [2018, 2019, 2020, 2021] },
-            { location_type: "Midblock", location_description: "Manning Dr NW — 153 Ave to 167 Ave", collision_count: 198, fatalities: 4, serious: 29, minor: 88, pedestrian_involved: 8, bicycle_involved: 2, community_complaints: 27, years: [2019, 2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Ellerslie Rd SW & 111 St SW", collision_count: 192, fatalities: 0, serious: 11, minor: 108, pedestrian_involved: 6, bicycle_involved: 9, community_complaints: 14, years: [2022, 2023] },
-            { location_type: "Intersection", location_description: "Anthony Henday Dr & 23 Ave SW", collision_count: 186, fatalities: 3, serious: 24, minor: 90, pedestrian_involved: 7, bicycle_involved: 3, community_complaints: 22, years: [2018, 2019, 2020, 2021, 2022, 2023] },
-            { location_type: "Midblock", location_description: "Fort Rd NW — 118 Ave to 127 Ave", collision_count: 178, fatalities: 5, serious: 32, minor: 75, pedestrian_involved: 24, bicycle_involved: 6, community_complaints: 48, years: [2018, 2019, 2020, 2021] },
-            { location_type: "Intersection", location_description: "Gateway Blvd NW & 51 Ave NW", collision_count: 172, fatalities: 2, serious: 17, minor: 95, pedestrian_involved: 13, bicycle_involved: 10, community_complaints: 20, years: [2020, 2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "118 Ave NW & 82 St NW", collision_count: 165, fatalities: 1, serious: 22, minor: 88, pedestrian_involved: 17, bicycle_involved: 14, community_complaints: 36, years: [2021, 2022, 2023] },
-            { location_type: "Midblock", location_description: "107 Ave NW — Groat Rd to 124 St", collision_count: 158, fatalities: 3, serious: 18, minor: 80, pedestrian_involved: 21, bicycle_involved: 15, community_complaints: 30, years: [2019, 2020, 2021, 2022] },
-            { location_type: "Intersection", location_description: "137 Ave NW & 97 St NW", collision_count: 152, fatalities: 1, serious: 14, minor: 92, pedestrian_involved: 9, bicycle_involved: 5, community_complaints: 16, years: [2021, 2022, 2023] },
-            { location_type: "Intersection", location_description: "Parsons Rd SW & Ellerslie Rd SW", collision_count: 148, fatalities: 0, serious: 9, minor: 95, pedestrian_involved: 5, bicycle_involved: 8, community_complaints: 11, years: [2022, 2023] },
-            { location_type: "Midblock", location_description: "Whyte Ave — 99 St to 109 St", collision_count: 142, fatalities: 2, serious: 20, minor: 72, pedestrian_involved: 38, bicycle_involved: 28, community_complaints: 55, years: [2018, 2019, 2020, 2021, 2022, 2023] },
-        ];
+<script src="js/csv_loader.js"></script>
+<script>
+/* ── state ── */
+var RAW_LOCS   = [];
+var ALL_YEARS  = [];
+var curFilter  = 'All';
+var curSort    = 'score';
+var curLocDesc = null;
+var detChart   = null;
 
-        const WEIGHT_DEFS = [
-            { key: 'fatalities', label: 'Fatalities', emoji: '☠️', desc: 'Fatal collisions carry the highest human cost', min: 0, max: 10, default: 5 },
-            { key: 'serious', label: 'Serious Injuries', emoji: '🏥', desc: 'Life-altering injuries to road users', min: 0, max: 10, default: 3 },
-            { key: 'minor', label: 'Minor Injuries', emoji: '🩹', desc: 'Injuries requiring medical attention', min: 0, max: 10, default: 1 },
-            { key: 'collision_count', label: 'Total Collisions', emoji: '💥', desc: 'Overall collision volume at location', min: 0, max: 10, default: 2 },
-            { key: 'pedestrian_involved', label: 'Pedestrian Exposure', emoji: '🚶', desc: 'Pedestrians involved in collisions', min: 0, max: 10, default: 2 },
-            { key: 'bicycle_involved', label: 'Cyclist Exposure', emoji: '🚲', desc: 'Cyclists involved in collisions', min: 0, max: 10, default: 1 },
-            { key: 'community_complaints', label: 'Community Complaints', emoji: '🏘️', desc: 'Reported concerns from residents', min: 0, max: 10, default: 1 },
-        ];
+var WEIGHT_DEFS = [
+  {key:'fatalities',           label:'Fatalities',          desc:'Fatal collisions',            min:0,max:10,def:5},
+  {key:'major_injuries',       label:'Major Injuries',      desc:'Serious injuries',             min:0,max:10,def:3},
+  {key:'minor_injuries',       label:'Minor Injuries',      desc:'Injuries needing attention',   min:0,max:10,def:1},
+  {key:'collision_count',      label:'Total Collisions',    desc:'Overall volume',               min:0,max:10,def:2},
+  {key:'pedestrians_involved', label:'Pedestrian Exposure', desc:'Pedestrian collisions',        min:0,max:10,def:2},
+  {key:'cyclists_involved',    label:'Cyclist Exposure',    desc:'Cyclist collisions',           min:0,max:10,def:1},
+  {key:'motorcycles_involved', label:'Motorcycle Exposure', desc:'Motorcycle collisions',        min:0,max:10,def:1}
+];
 
-        const PRESETS = {
-            balanced: { fatalities: 5, serious: 3, minor: 1, collision_count: 2, pedestrian_involved: 2, bicycle_involved: 1, community_complaints: 1 },
-            fatality: { fatalities: 10, serious: 4, minor: 1, collision_count: 1, pedestrian_involved: 1, bicycle_involved: 1, community_complaints: 0 },
-            vulnerable: { fatalities: 4, serious: 3, minor: 2, collision_count: 1, pedestrian_involved: 5, bicycle_involved: 4, community_complaints: 2 },
-            volume: { fatalities: 2, serious: 2, minor: 2, collision_count: 8, pedestrian_involved: 1, bicycle_involved: 1, community_complaints: 1 },
-            community: { fatalities: 3, serious: 2, minor: 1, collision_count: 1, pedestrian_involved: 2, bicycle_involved: 1, community_complaints: 8 },
-        };
+var PRESETS = {
+  balanced:   {fatalities:5,major_injuries:3,minor_injuries:1,collision_count:2,pedestrians_involved:2,cyclists_involved:1,motorcycles_involved:1},
+  fatality:   {fatalities:10,major_injuries:4,minor_injuries:1,collision_count:1,pedestrians_involved:1,cyclists_involved:1,motorcycles_involved:1},
+  vulnerable: {fatalities:4,major_injuries:3,minor_injuries:2,collision_count:1,pedestrians_involved:5,cyclists_involved:4,motorcycles_involved:2},
+  volume:     {fatalities:2,major_injuries:2,minor_injuries:2,collision_count:8,pedestrians_involved:1,cyclists_involved:1,motorcycles_involved:1},
+  injury:     {fatalities:4,major_injuries:6,minor_injuries:4,collision_count:2,pedestrians_involved:2,cyclists_involved:1,motorcycles_involved:1}
+};
 
-        let lFilter = 'All', lSort = 'score', curLoc = null;
-        let weights = {};
-        WEIGHT_DEFS.forEach(w => weights[w.key] = w.default);
-        let prevRanks = {};
+var CONTRIB_COLORS = {
+  fatalities:'#e84646',major_injuries:'#f5a623',minor_injuries:'#e87d95',
+  pedestrians_involved:'#0891b2',cyclists_involved:'#0891b2',
+  motorcycles_involved:'#f5a623',collision_count:'#39b6fb'
+};
 
-        const f = n => typeof n === 'number' ? n.toLocaleString() : n;
+var weights = {};
+WEIGHT_DEFS.forEach(function(w){ weights[w.key] = w.def; });
 
-        function getBadge(score, max) {
-            const r = max > 0 ? score / max : 0;
-            if (r > .75) return { label: 'CRITICAL', pill: 'p-red', color: '#e84646' };
-            if (r > .5) return { label: 'HIGH', pill: 'p-amb', color: '#f5a623' };
-            if (r > .25) return { label: 'MEDIUM', pill: 'p-blue', color: '#39b6fb' };
-            return { label: 'LOW', pill: 'p-grn', color: '#22c98a' };
-        }
+/* ── helpers ── */
+function fmtN(n){ return typeof n==='number' ? n.toLocaleString() : (n||'0'); }
 
-        function computeScores(locs) {
-            const keys = WEIGHT_DEFS.map(w => w.key);
-            const maxVals = {};
-            keys.forEach(k => { maxVals[k] = Math.max(...locs.map(l => l[k] || 0)); });
-            return locs.map(l => {
-                let score = 0;
-                const contribs = {};
-                keys.forEach(k => {
-                    const norm = maxVals[k] > 0 ? (l[k] || 0) / maxVals[k] : 0;
-                    const w = weights[k] || 0;
-                    const c = norm * w * 10;
-                    contribs[k] = c;
-                    score += c;
-                });
-                if (l.location_type === 'Midblock') score *= 1.15;
-                return { ...l, score: Math.round(score), contribs };
-            });
-        }
+/* ── aggregate raw CSV rows into per-location objects ── */
+function aggregateByLocation(rows){
+  var map = {};
+  rows.forEach(function(r){
+    var desc = (r['location_description']||'').trim();
+    if(!desc) return;
+    if(!map[desc]){
+      map[desc]={
+        location_description:desc,
+        location_type:(r['location_type']||'').trim(),
+        collision_count:0,fatalities:0,major_injuries:0,minor_injuries:0,
+        pedestrians_involved:0,cyclists_involved:0,motorcycles_involved:0,pdo_count:0,
+        years:[],by_year:{}
+      };
+    }
+    var loc   = map[desc];
+    var yr    = parseInt(r['collision_year']||r['year']||0,10);
+    var fatal = parseInt(r['fatalities']||0,10)||0;
+    var major = parseInt(r['major_injuries']||0,10)||0;
+    var minor = parseInt(r['minor_injuries']||0,10)||0;
+    var ped   = parseInt(r['pedestrians_involved']||0,10)||0;
+    var cyc   = parseInt(r['cyclists_involved']||0,10)||0;
+    var moto  = parseInt(r['motorcycles_involved']||0,10)||0;
+    var pdoRaw= String(r['property_damage_only']||'').trim().toUpperCase();
 
-        function buildWeightsGrid() {
-            const grid = document.getElementById('weights-grid');
-            grid.innerHTML = WEIGHT_DEFS.map(w => `
-        <div class="weight-item">
-          <div class="wi-header">
-            <span class="wi-label"><span class="wi-emoji">${w.emoji}</span> ${w.label}</span>
-            <span class="wi-value" id="wv-${w.key}">${weights[w.key].toFixed(1)}</span>
-          </div>
-          <div class="wi-desc">${w.desc}</div>
-          <input type="range" class="wi-slider" id="ws-${w.key}"
-            min="${w.min}" max="${w.max}" step="0.5" value="${weights[w.key]}"
-            oninput="onWeightChange('${w.key}',this.value)"/>
-        </div>`).join('');
-            updateWeightTotal();
-        }
+    loc.collision_count++;
+    loc.fatalities+=fatal; loc.major_injuries+=major; loc.minor_injuries+=minor;
+    loc.pedestrians_involved+=ped; loc.cyclists_involved+=cyc; loc.motorcycles_involved+=moto;
+    if(pdoRaw==='Y'||pdoRaw==='YES') loc.pdo_count++;
 
-        function onWeightChange(key, val) {
-            weights[key] = parseFloat(val);
-            document.getElementById('wv-' + key).textContent = parseFloat(val).toFixed(1);
-            updateWeightTotal();
-            document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-            renderList();
-            if (curLoc) {
-                const updated = computeScores(RAW_LOCS).find(l => l.location_description === curLoc.location_description);
-                if (updated) { curLoc = updated; renderDetail(); }
-            }
-        }
+    if(!isNaN(yr)&&yr>0){
+      if(loc.years.indexOf(yr)<0) loc.years.push(yr);
+      if(!loc.by_year[yr]) loc.by_year[yr]={collisions:0,fatalities:0,major:0,minor:0,ped:0,cyc:0,moto:0};
+      loc.by_year[yr].collisions++;
+      loc.by_year[yr].fatalities+=fatal; loc.by_year[yr].major+=major;
+      loc.by_year[yr].minor+=minor; loc.by_year[yr].ped+=ped;
+      loc.by_year[yr].cyc+=cyc; loc.by_year[yr].moto+=moto;
+    }
+  });
+  return Object.values(map).map(function(l){
+    l.years.sort(function(a,b){return a-b;});
+    return l;
+  });
+}
 
-        function updateWeightTotal() {
-            const total = Object.values(weights).reduce((a, b) => a + b, 0);
-            document.getElementById('weight-total').textContent = total.toFixed(1);
-        }
+/* ── scoring ── */
+function computeScores(locs){
+  var keys = WEIGHT_DEFS.map(function(w){return w.key;});
+  var maxV = {};
+  keys.forEach(function(k){
+    maxV[k] = Math.max.apply(null, locs.map(function(l){return l[k]||0;}).concat([1]));
+  });
+  return locs.map(function(l){
+    var score=0; var contribs={};
+    keys.forEach(function(k){
+      var c=((l[k]||0)/maxV[k])*(weights[k]||0)*10;
+      contribs[k]=c; score+=c;
+    });
+    if(l.location_type.toLowerCase()==='midblock') score*=1.15;
+    return Object.assign({},l,{score:Math.round(score),contribs:contribs});
+  });
+}
 
-        function applyPreset(name, el) {
-            const p = PRESETS[name];
-            Object.keys(p).forEach(k => {
-                weights[k] = p[k];
-                const slider = document.getElementById('ws-' + k);
-                const val = document.getElementById('wv-' + k);
-                if (slider) slider.value = p[k];
-                if (val) val.textContent = p[k].toFixed(1);
-            });
-            document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            updateWeightTotal();
-            renderList();
-            if (curLoc) {
-                const updated = computeScores(RAW_LOCS).find(l => l.location_description === curLoc.location_description);
-                if (updated) { curLoc = updated; renderDetail(); }
-            }
-        }
+function getBadge(score,max){
+  var r=max>0?score/max:0;
+  if(r>.75) return{label:'CRITICAL',pill:'p-red', color:'#e84646'};
+  if(r>.5)  return{label:'HIGH',    pill:'p-amb', color:'#f5a623'};
+  if(r>.25) return{label:'MEDIUM',  pill:'p-blue',color:'#39b6fb'};
+  return          {label:'LOW',     pill:'p-grn', color:'#22c98a'};
+}
 
-        function filterLoc(f, el) {
-            lFilter = f;
-            document.querySelectorAll('.fl-btn').forEach(b => { if (['All', 'Intersection', 'Midblock'].includes(b.textContent)) b.classList.remove('active'); });
-            el.classList.add('active');
-            renderList();
-        }
+function trendDir(loc){
+  var yrs=loc.years;
+  if(yrs.length<2) return{label:'Insufficient data',color:'#7a92ab'};
+  var mid=Math.max(1,Math.floor(yrs.length/2));
+  var first=0,last=0;
+  for(var i=0;i<mid;i++) first+=(loc.by_year[yrs[i]]||{collisions:0}).collisions;
+  for(var j=yrs.length-mid;j<yrs.length;j++) last+=(loc.by_year[yrs[j]]||{collisions:0}).collisions;
+  first/=mid; last/=mid;
+  var d=((last-first)/Math.max(first,1))*100;
+  if(d>10)  return{label:'Worsening (+'+d.toFixed(0)+'%)',color:'#e84646'};
+  if(d<-10) return{label:'Improving ('+d.toFixed(0)+'%)', color:'#22c98a'};
+  return          {label:'Stable',                         color:'#f5a623'};
+}
 
-        function sortLoc(s, el) {
-            lSort = s;
-            ['srt-score', 'srt-count', 'srt-fatal'].forEach(id => { const e = document.getElementById(id); if (e) e.classList.remove('active'); });
-            el.classList.add('active');
-            renderList();
-        }
+function worstYear(loc){
+  return loc.years.reduce(function(b,y){
+    return (loc.by_year[y]||{collisions:0}).collisions>(loc.by_year[b]||{collisions:0}).collisions?y:b;
+  },loc.years[0]);
+}
+function bestYear(loc){
+  return loc.years.reduce(function(b,y){
+    return (loc.by_year[y]||{collisions:0}).collisions<(loc.by_year[b]||{collisions:0}).collisions?y:b;
+  },loc.years[0]);
+}
 
-        function renderList() {
-            const scored = computeScores(RAW_LOCS);
-            const max = Math.max(...scored.map(l => l.score));
-            let list = lFilter === 'All' ? [...scored] : scored.filter(l => l.location_type === lFilter);
-            list.sort((a, b) => b[lSort] - a[lSort]);
-            const newRanks = {};
-            list.forEach((l, i) => newRanks[l.location_description] = i + 1);
-            const container = document.getElementById('loc-list');
-            container.innerHTML = list.map((loc, i) => {
-                const b = getBadge(loc.score, max);
-                const pct = max > 0 ? (loc.score / max * 100).toFixed(0) : 0;
-                const isSel = curLoc && curLoc.location_description === loc.location_description;
-                const prevR = prevRanks[loc.location_description];
-                const curR = i + 1;
-                let rankHtml = '';
-                if (prevR && prevR !== curR) {
-                    const diff = prevR - curR;
-                    rankHtml = `<span class="rank-change" style="color:${diff > 0 ? '#22c98a' : '#e84646'}">${diff > 0 ? '↑' + diff : '↓' + Math.abs(diff)}</span>`;
-                }
-                const trend = loc.years.length >= 5 ? '↑ Worsening' : loc.years.length >= 3 ? '→ Stable' : '↓ Improving';
-                const trendColor = loc.years.length >= 5 ? '#e84646' : loc.years.length >= 3 ? '#f5a623' : '#22c98a';
-                return `<div class="li${isSel ? ' sel' : ''}" onclick="selectLoc('${loc.location_description.replace(/'/g, "\\'")}')">
-          <div class="li-badges">
-            <span style="font-size:11px;font-weight:700;color:var(--muted);font-family:'DM Mono',monospace">#${String(curR).padStart(2, '0')}</span>${rankHtml}
-            <span class="pill ${b.pill}">${b.label}</span>
-            <span class="pill p-mut">${loc.location_type}</span>
-            <span style="margin-left:auto;font-size:10px;font-weight:600;color:${trendColor}">${trend}</span>
-          </div>
-          <div class="li-inner">
-            <div style="flex:1;min-width:0">
-              <div class="li-name">${loc.location_description}</div>
-              <div class="li-stats">
-                <span class="ls">💥 <strong>${f(loc.collision_count)}</strong></span>
-                <span class="ls">☠️ <strong style="color:var(--red)">${loc.fatalities}</strong></span>
-                <span class="ls">🏥 <strong style="color:var(--amber)">${loc.serious}</strong></span>
-                <span class="ls">🚶 <strong style="color:var(--pd)">${loc.pedestrian_involved}</strong></span>
-                <span class="ls">🏘️ <strong style="color:var(--teal)">${loc.community_complaints}</strong></span>
-              </div>
-            </div>
-            <div class="sc-col">
-              <div class="sc-num" style="color:${b.color}">${loc.score}</div>
-              <div class="sc-lbl">score</div>
-              <div class="sc-bar-bg"><div class="sc-bar" style="width:${pct}%;background:${b.color}"></div></div>
-            </div>
-          </div>
-        </div>`;
-            }).join('');
-            prevRanks = { ...newRanks };
-        }
+/* ── weights UI ── */
+function buildWeightsGrid(){
+  var html='';
+  WEIGHT_DEFS.forEach(function(w){
+    html+='<div>'
+      +'<div class="wi-header"><span class="wi-label">'+w.label+'</span>'
+      +'<span class="wi-value" id="wv-'+w.key+'">'+weights[w.key].toFixed(1)+'</span></div>'
+      +'<div class="wi-desc">'+w.desc+'</div>'
+      +'<input type="range" class="wi-slider" id="ws-'+w.key+'"'
+      +' min="'+w.min+'" max="'+w.max+'" step="0.5" value="'+weights[w.key]+'"'
+      +' oninput="onWeightChange(\''+w.key+'\',this.value)"/>'
+      +'</div>';
+  });
+  document.getElementById('weights-grid').innerHTML=html;
+  updateWeightTotal();
+}
 
-        function selectLoc(desc) {
-            const scored = computeScores(RAW_LOCS);
-            const max = Math.max(...scored.map(l => l.score));
-            curLoc = scored.find(l => l.location_description === desc);
-            renderList();
-            renderDetail(max);
-        }
+function onWeightChange(key,val){
+  weights[key]=parseFloat(val);
+  document.getElementById('wv-'+key).textContent=parseFloat(val).toFixed(1);
+  updateWeightTotal();
+  document.querySelectorAll('.pbtn').forEach(function(b){b.classList.remove('on');});
+  renderList();
+  if(curLocDesc) renderDetail();
+}
 
-        function renderDetail(maxIn) {
-            if (!curLoc) return;
-            const scored = computeScores(RAW_LOCS);
-            const max = maxIn || Math.max(...scored.map(l => l.score));
-            const loc = curLoc;
-            const b = getBadge(loc.score, max);
-            const trend = loc.years.length >= 5 ? '↑ Worsening' : loc.years.length >= 3 ? '→ Stable' : '↓ Improving';
-            const trendColor = loc.years.length >= 5 ? '#e84646' : loc.years.length >= 3 ? '#f5a623' : '#22c98a';
-            const contribKeys = WEIGHT_DEFS.filter(w => weights[w.key] > 0);
-            const maxContrib = Math.max(...contribKeys.map(w => loc.contribs[w.key] || 0), 1);
-            const contribHtml = contribKeys.map(w => {
-                const val = loc.contribs[w.key] || 0;
-                const pct = (val / maxContrib * 100).toFixed(0);
-                return `<div class="contrib-item">
-          <span class="contrib-label">${w.emoji} ${w.label}</span>
-          <div class="contrib-bar-bg"><div class="contrib-bar" style="width:${pct}%;background:${w.key === 'fatalities' ? '#e84646' : w.key === 'serious' ? '#f5a623' : w.key.includes('pedestrian') || w.key.includes('bicycle') ? '#0891b2' : '#39b6fb'}"></div></div>
-          <span class="contrib-val" style="color:${b.color}">${val.toFixed(1)}</span>
-        </div>`;
-            }).join('');
+function updateWeightTotal(){
+  var t=0; WEIGHT_DEFS.forEach(function(w){t+=weights[w.key];});
+  document.getElementById('weight-total').textContent=t.toFixed(1);
+}
 
-            document.getElementById('loc-detail').innerHTML = `
-        <div class="det-hero">
-          <div style="display:flex;gap:6px;margin-bottom:8px">
-            <span class="pill ${b.pill}">${b.label} PRIORITY</span>
-            <span class="pill p-mut">${loc.location_type}</span>
-          </div>
-          <div class="det-name">${loc.location_description}</div>
-          <div style="display:flex;align-items:baseline;gap:8px">
-            <span class="det-score" style="color:${b.color}">${loc.score}</span>
-            <span style="font-size:12px;color:var(--muted)">priority score</span>
-          </div>
-        </div>
+function applyPreset(name,el){
+  var p=PRESETS[name];
+  Object.keys(p).forEach(function(k){
+    weights[k]=p[k];
+    var s=document.getElementById('ws-'+k); if(s) s.value=p[k];
+    var v=document.getElementById('wv-'+k); if(v) v.textContent=p[k].toFixed(1);
+  });
+  document.querySelectorAll('.pbtn').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+  updateWeightTotal(); renderList();
+  if(curLocDesc) renderDetail();
+}
 
-        <div class="det-kpis">
-          <div class="det-mini"><span class="c-lbl">Collisions</span><span class="c-val" style="color:var(--pd)">${f(loc.collision_count)}</span></div>
-          <div class="det-mini"><span class="c-lbl">Fatalities</span><span class="c-val" style="color:var(--red)">${loc.fatalities}</span></div>
-          <div class="det-mini"><span class="c-lbl">Serious Injuries</span><span class="c-val" style="color:var(--amber)">${loc.serious}</span></div>
-          <div class="det-mini"><span class="c-lbl">Pedestrian Involved</span><span class="c-val" style="color:var(--teal)">${loc.pedestrian_involved}</span></div>
-          <div class="det-mini"><span class="c-lbl">Cyclist Involved</span><span class="c-val" style="color:var(--teal)">${loc.bicycle_involved}</span></div>
-          <div class="det-mini"><span class="c-lbl">Community Complaints</span><span class="c-val" style="color:var(--sd)">${loc.community_complaints}</span></div>
-        </div>
+/* ── filter/sort ── */
+function setFilter(val,el){
+  curFilter=val;
+  document.querySelectorAll('.flbtn').forEach(function(b){
+    if(['All','Intersection','Midblock'].indexOf(b.textContent)>=0) b.classList.remove('on');
+  });
+  el.classList.add('on'); renderList();
+}
 
-        <div class="card" style="padding:18px">
-          <div class="stitle">Score Contribution by Factor</div>
-          <div class="contrib-row">${contribHtml}</div>
-        </div>
+function setSort(val,el){
+  curSort=val;
+  ['so-score','so-collision_count','so-fatalities'].forEach(function(id){
+    var e=document.getElementById(id); if(e) e.classList.remove('on');
+  });
+  el.classList.add('on'); renderList();
+}
 
-        <div class="card" style="padding:18px">
-          <div class="stitle">Data Coverage</div>
-          <div class="yr-pills">${loc.years.map(y => `<span class="yr-pill">${y}</span>`).join('')}</div>
-          <div style="margin-top:8px;font-size:12px;color:var(--muted)">
-            Trend: <strong style="color:${trendColor}">${trend}</strong> — active ${loc.years.length} of 6 years
-            ${loc.location_type === 'Midblock' ? '<span class="pill p-amb" style="margin-left:8px">×1.15 midblock</span>' : ''}
-          </div>
-        </div>`;
-        }
+/* ── render list ── */
+function renderList(){
+  if(!RAW_LOCS.length) return;
+  var scored=computeScores(RAW_LOCS);
+  var max=Math.max.apply(null,scored.map(function(l){return l.score;}).concat([1]));
+  var list=curFilter==='All'?scored.slice():scored.filter(function(l){return l.location_type===curFilter;});
+  list.sort(function(a,b){return b[curSort]-a[curSort];});
 
-        buildWeightsGrid();
-        renderList();
-    </script>
+  var html='';
+  list.forEach(function(loc,i){
+    var b   = getBadge(loc.score,max);
+    var pct = (loc.score/max*100).toFixed(0);
+    var td  = trendDir(loc);
+    var sel = curLocDesc===loc.location_description;
+    var rankStr = String(i+1).length<2?'0'+(i+1):''+(i+1);
+    var tdCol   = td.color;
+    var enc     = encodeURIComponent(loc.location_description);
+
+    html+='<div class="li'+(sel?' sel':'')+'" onclick="selectLoc(\''+enc+'\')">'
+      +'<div class="li-badges">'
+      +'<span style="font-size:11px;font-weight:700;color:var(--muted)">#'+rankStr+'</span>'
+      +'<span class="pill '+b.pill+'">'+b.label+'</span>'
+      +'<span class="pill p-mut">'+loc.location_type+'</span>'
+      +'<span style="margin-left:auto;font-size:10px;font-weight:600;color:'+tdCol+'">'+td.label+'</span>'
+      +'</div>'
+      +'<div class="li-inner">'
+      +'<div style="flex:1;min-width:0">'
+      +'<div class="li-name">'+loc.location_description+'</div>'
+      +'<div class="li-stats">'
+      +'<span class="ls">Collisions: <strong>'+fmtN(loc.collision_count)+'</strong></span>'
+      +'<span class="ls">Fatal: <strong style="color:var(--red)">'+loc.fatalities+'</strong></span>'
+      +'<span class="ls">Major: <strong style="color:var(--amber)">'+loc.major_injuries+'</strong></span>'
+      +'<span class="ls">Ped: <strong style="color:var(--pd)">'+loc.pedestrians_involved+'</strong></span>'
+      +'</div></div>'
+      +'<div class="sc-col">'
+      +'<div class="sc-num" style="color:'+b.color+'">'+loc.score+'</div>'
+      +'<div class="sc-lbl">score</div>'
+      +'<div class="sc-bar-bg"><div class="sc-bar" style="width:'+pct+'%;background:'+b.color+'"></div></div>'
+      +'</div></div></div>';
+  });
+  document.getElementById('loc-list').innerHTML=html;
+}
+
+/* ── select a location ── */
+function selectLoc(enc){
+  curLocDesc=decodeURIComponent(enc);
+  renderList();
+  renderDetail();
+}
+
+/* ── render detail panel ── */
+function renderDetail(){
+  if(!curLocDesc) return;
+  var scored=computeScores(RAW_LOCS);
+  var max=Math.max.apply(null,scored.map(function(l){return l.score;}).concat([1]));
+  var loc=null;
+  for(var i=0;i<scored.length;i++){if(scored[i].location_description===curLocDesc){loc=scored[i];break;}}
+  if(!loc) return;
+
+  var b  = getBadge(loc.score,max);
+  var td = trendDir(loc);
+  var wy = worstYear(loc);
+  var by = loc.years.length>1?bestYear(loc):null;
+  var avg= (loc.collision_count/Math.max(loc.years.length,1)).toFixed(1);
+
+  /* contrib bars */
+  var activeW=WEIGHT_DEFS.filter(function(w){return weights[w.key]>0;});
+  var maxC=Math.max.apply(null,activeW.map(function(w){return loc.contribs[w.key]||0;}).concat([1]));
+  var contribHtml='';
+  activeW.forEach(function(w){
+    var val=loc.contribs[w.key]||0;
+    var pct=(val/maxC*100).toFixed(0);
+    var col=CONTRIB_COLORS[w.key]||'#39b6fb';
+    contribHtml+='<div class="contrib-item">'
+      +'<span class="contrib-label">'+w.label+'</span>'
+      +'<div class="contrib-bar-bg"><div class="contrib-bar" style="width:'+pct+'%;background:'+col+'"></div></div>'
+      +'<span class="contrib-val" style="color:'+b.color+'">'+val.toFixed(1)+'</span>'
+      +'</div>';
+  });
+
+  /* year pills */
+  var yrHtml='';
+  loc.years.forEach(function(y){
+    var isW=y===wy; var isB=by&&y===by;
+    var bg=isW?'#ffeaea':isB?'#e4faf2':'var(--pl)';
+    var col=isW?'var(--red)':isB?'#0d8050':'var(--pd)';
+    var lbl=isW?' (worst)':isB?' (best)':'';
+    yrHtml+='<span class="yr-pill" style="background:'+bg+';color:'+col+'">'+y+lbl+'</span>';
+  });
+
+  var mbBadge=loc.location_type.toLowerCase()==='midblock'?'<span class="pill p-amb">x1.15 midblock</span>':'';
+  var yrCount=loc.years.length;
+  var yrLabel=yrCount===1?'year':'years';
+
+  var html=''
+    +'<div class="det-hero">'
+    +'<div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap">'
+    +'<span class="pill '+b.pill+'">'+b.label+' PRIORITY</span>'
+    +'<span class="pill p-mut">'+loc.location_type+'</span>'+mbBadge
+    +'</div>'
+    +'<div class="det-name">'+loc.location_description+'</div>'
+    +'<div class="det-score-row">'
+    +'<span class="det-score" style="color:'+b.color+'">'+loc.score+'</span>'
+    +'<span style="font-size:12px;color:var(--muted)">priority score</span>'
+    +'<span style="font-size:12px;font-weight:700;color:'+td.color+'">'+td.label+'</span>'
+    +'</div></div>'
+
+    +'<div class="kpi-grid">'
+    +'<div class="kpi-mini"><span class="k-lbl">Collisions</span><span class="k-val" style="color:var(--pd)">'+fmtN(loc.collision_count)+'</span></div>'
+    +'<div class="kpi-mini"><span class="k-lbl">Fatalities</span><span class="k-val" style="color:var(--red)">'+loc.fatalities+'</span></div>'
+    +'<div class="kpi-mini"><span class="k-lbl">Major Injuries</span><span class="k-val" style="color:var(--amber)">'+loc.major_injuries+'</span></div>'
+    +'<div class="kpi-mini"><span class="k-lbl">Minor Injuries</span><span class="k-val" style="color:var(--sd)">'+loc.minor_injuries+'</span></div>'
+    +'<div class="kpi-mini"><span class="k-lbl">Pedestrians</span><span class="k-val" style="color:var(--teal)">'+loc.pedestrians_involved+'</span></div>'
+    +'<div class="kpi-mini"><span class="k-lbl">Cyclists</span><span class="k-val" style="color:var(--teal)">'+loc.cyclists_involved+'</span></div>'
+    +'<div class="kpi-mini"><span class="k-lbl">Motorcycles</span><span class="k-val" style="color:var(--amber)">'+loc.motorcycles_involved+'</span></div>'
+    +'<div class="kpi-mini"><span class="k-lbl">PDO Only</span><span class="k-val" style="color:var(--muted)">'+loc.pdo_count+'</span></div>'
+    +'</div>'
+
+    +'<div class="card">'
+    +'<div class="stitle">Year-over-Year Trends</div>'
+    +'<div class="trend-stat-row">'
+    +'<div class="trend-stat"><div class="trend-stat-val" style="color:var(--red)">'+wy+'</div><div class="trend-stat-lbl">Worst Year</div></div>'
+    +'<div class="trend-stat"><div class="trend-stat-val" style="color:var(--green)">'+(by||'--')+'</div><div class="trend-stat-lbl">Best Year</div></div>'
+    +'<div class="trend-stat"><div class="trend-stat-val" style="color:var(--pd)">'+avg+'</div><div class="trend-stat-lbl">Avg / Year</div></div>'
+    +'</div>'
+    +'<div style="height:190px"><canvas id="det-chart"></canvas></div>'
+    +'</div>'
+
+    +'<div class="card">'
+    +'<div class="stitle">Score Contribution by Factor</div>'
+    +'<div class="contrib-row">'+contribHtml+'</div>'
+    +'</div>'
+
+    +'<div class="card">'
+    +'<div class="stitle">Data Coverage — '+yrCount+' '+yrLabel+'</div>'
+    +'<div class="yr-pills">'+yrHtml+'</div>'
+    +'</div>';
+
+  document.getElementById('loc-detail').innerHTML=html;
+  renderTrendChart(loc);
+}
+
+/* ── trend chart ── */
+function renderTrendChart(loc){
+  if(detChart){detChart.destroy();detChart=null;}
+  var canvas=document.getElementById('det-chart');
+  if(!canvas||!loc.years.length) return;
+  var yrs=loc.years;
+  var tk={color:'#7a92ab',font:{family:'Sora',size:11}};
+  var gr={color:'#e2eaf3'};
+  detChart=new Chart(canvas,{
+    data:{
+      labels:yrs,
+      datasets:[
+        {type:'bar', label:'Collisions',    data:yrs.map(function(y){return(loc.by_year[y]||{collisions:0}).collisions;}),
+          backgroundColor:'rgba(57,182,251,.15)',borderColor:'#39b6fb',borderWidth:1.5,borderRadius:4,yAxisID:'y'},
+        {type:'line',label:'Major Injuries',data:yrs.map(function(y){return(loc.by_year[y]||{major:0}).major;}),
+          borderColor:'#f5a623',backgroundColor:'transparent',tension:.35,pointBackgroundColor:'#f5a623',pointRadius:4,borderWidth:2,yAxisID:'y1'},
+        {type:'line',label:'Fatalities',    data:yrs.map(function(y){return(loc.by_year[y]||{fatalities:0}).fatalities;}),
+          borderColor:'#e84646',backgroundColor:'transparent',tension:.35,pointBackgroundColor:'#e84646',pointRadius:4,borderWidth:2,yAxisID:'y1'}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{color:'#7a92ab',font:{family:'Sora',size:10},boxWidth:9,padding:10}}},
+      scales:{
+        x: {ticks:tk,grid:gr,border:{color:'#e2eaf3'}},
+        y: {ticks:tk,grid:gr,border:{color:'#e2eaf3'},title:{display:true,text:'Collisions',color:'#7a92ab',font:{size:10}}},
+        y1:{position:'right',ticks:tk,grid:{drawOnChartArea:false},border:{color:'#e2eaf3'},title:{display:true,text:'Injuries/Fatalities',color:'#7a92ab',font:{size:10}}}
+      }
+    }
+  });
+}
+
+/* ── init ── */
+async function init(){
+  try{
+    var result=await loadAndAggregate('data/data.csv');
+    var rawRows=result.rawRows;
+    RAW_LOCS=aggregateByLocation(rawRows);
+    ALL_YEARS=[...new Set(rawRows.map(function(r){return parseInt(r['collision_year']||r['year']||0,10);}).filter(function(y){return y>0;}))].sort();
+    if(ALL_YEARS.length) document.getElementById('data-range').textContent=ALL_YEARS[0]+' - '+ALL_YEARS[ALL_YEARS.length-1];
+    buildWeightsGrid();
+    renderList();
+  }catch(err){
+    console.error(err);
+    document.getElementById('loc-list').innerHTML='<div class="loading"><strong>Could not load data</strong>Make sure data/data.csv exists and you are using Live Server.</div>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
 </body>
-
 </html>
