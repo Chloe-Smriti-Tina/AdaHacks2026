@@ -116,6 +116,18 @@
       .ph{flex-direction:column;gap:12px}
       .user-chip{display:none}
     }
+
+    /* ── Print / Export styles ── */
+    @media print {
+      *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: #fff !important; height: auto !important; }
+      .topbar, .ph-actions, #yr-btns, .yr-lbl { display: none !important; }
+      .content { padding: 16px !important; max-width: 100% !important; }
+      .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e2eaf3 !important; animation: none !important; transform: none !important; }
+      .bento { break-inside: avoid; }
+      .print-header { display: block !important; }
+    }
+    .print-header { display: none; font-size: 11px; color: #7a92ab; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #e2eaf3; }
   </style>
 </head>
 <body>
@@ -149,6 +161,7 @@
         <div class="ph-sub">Monitor and analyze road safety across Edmonton, <span id="ph-sub-years">loading…</span>.</div>
       </div>
       <div class="ph-actions">
+        <button class="btn-o" id="btn-export" onclick="exportReport()">⬇ Export Report</button>
         <button class="btn-o" id="btn-import" data-state="idle">Import Data</button>
       </div>
     </div>
@@ -252,6 +265,23 @@
 
   <script src="js/csv_loader.js"></script>
   <script src="js/dashboard.js"></script>
-
+  <script>
+    function exportReport() {
+      // Inject a print-only header showing report metadata
+      var existing = document.getElementById('print-header-block');
+      if (existing) existing.remove();
+      var hdr = document.createElement('div');
+      hdr.id = 'print-header-block';
+      hdr.className = 'print-header';
+      var now = new Date().toLocaleString('en-CA', {dateStyle:'long', timeStyle:'short'});
+      var yrRange = document.getElementById('ph-sub-years') ? document.getElementById('ph-sub-years').textContent : '';
+      hdr.innerHTML = '<strong style="font-size:16px;color:#18283d;font-weight:800">CityScope — Edmonton Road Safety Overview</strong>'
+        + '<span style="float:right">Generated: ' + now + '</span><br>'
+        + '<span style="color:#7a92ab">Data coverage: ' + yrRange + ' &nbsp;·&nbsp; City of Edmonton</span>';
+      var content = document.querySelector('.content');
+      content.insertBefore(hdr, content.firstChild);
+      window.print();
+    }
+  </script>
 </body>
 </html>
