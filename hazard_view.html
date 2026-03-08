@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>CityScope · Hazard Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.15.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+  <style>
+    :root {
+      --p:#39b6fb;--pl:#e8f6ff;--pm:#a8dcfa;--pd:#0b8fd4;
+      --s:#ffc0cb;--sl:#fff4f6;--sd:#e87d95;
+      --bg:#f0f4f8;--surface:#fff;--border:#e2eaf3;
+      --text:#18283d;--muted:#7a92ab;--muted2:#b0c4d8;
+      --red:#e84646;--amber:#f5a623;--green:#22c98a;--teal:#0891b2;
+      --r:16px;--rs:10px;
+      --sh:0 2px 12px rgba(0,0,0,.055);--shm:0 6px 28px rgba(0,0,0,.09);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%;font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+    ::-webkit-scrollbar{width:5px;height:5px}
+    ::-webkit-scrollbar-thumb{background:var(--pm);border-radius:4px}
+
+    /* ── Topbar ── */
+    .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;height:60px;gap:16px;position:sticky;top:0;z-index:200;box-shadow:0 1px 0 var(--border)}
+    .brand{font-size:15px;font-weight:800;letter-spacing:-.4px;color:var(--text);text-decoration:none;margin-right:24px}
+    .tab-nav{display:flex;gap:2px}
+    .tn{padding:6px 16px;border-radius:8px;border:none;background:none;font-size:13px;font-weight:500;font-family:'Sora',sans-serif;color:var(--muted);cursor:pointer;text-decoration:none;transition:all .15s}
+    .tn:hover{background:var(--bg);color:var(--text)}
+    .tn.active{background:var(--pl);color:var(--pd);font-weight:700}
+    .tb-spacer{flex:1}
+    .back-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;border:1.5px solid var(--border);background:none;font-size:12px;font-weight:600;font-family:'Sora',sans-serif;color:var(--muted);cursor:pointer;text-decoration:none;transition:all .15s}
+    .back-btn:hover{border-color:var(--p);color:var(--p)}
+    .user-chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:30px;border:1px solid var(--border);margin-left:8px}
+    .avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--sd));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+    .user-name{font-size:12px;font-weight:600}
+
+    /* ── Content ── */
+    .content{max-width:1340px;margin:0 auto;padding:28px 32px}
+    .ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:16px}
+    .ph-left{flex:1}
+    .ph-title{font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1.1;display:flex;align-items:center;gap:10px}
+    .ph-sub{font-size:12px;color:var(--muted);margin-top:5px}
+    .badge-warn{background:#fff4dd;color:#9a6000;border-radius:6px;padding:2px 9px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+    .badge-exp{background:var(--pl);color:var(--pd);border-radius:6px;padding:2px 9px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+
+    /* ── Main layout ── */
+    .main-grid{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
+
+    /* ── Card ── */
+    .card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:20px;box-shadow:var(--sh)}
+    .stitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--text)}
+    .stitle::before{content:'';width:3px;height:13px;border-radius:2px;background:linear-gradient(180deg,var(--p),var(--sd));flex-shrink:0}
+
+    /* ── Image + canvas overlay ── */
+    .img-wrap{position:relative;width:100%;border-radius:12px;overflow:hidden;background:#0d1b2a;min-height:360px;display:flex;align-items:center;justify-content:center}
+    .img-wrap img{display:block;width:100%;height:auto;max-height:480px;object-fit:cover}
+    .img-wrap canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+
+    /* ── Placeholder state ── */
+    .img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 20px;color:var(--muted);text-align:center;min-height:360px;width:100%}
+    .img-placeholder svg{opacity:.3}
+    .img-placeholder strong{font-size:15px;font-weight:700;color:var(--text)}
+    .img-placeholder p{font-size:12px;max-width:280px;line-height:1.5}
+
+    /* ── Loading overlay ── */
+    .loading-overlay{position:absolute;inset:0;background:rgba(13,27,42,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border-radius:12px;z-index:10}
+    .loading-overlay.hidden{display:none}
+    .spinner{width:36px;height:36px;border:3px solid rgba(57,182,251,.2);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loading-label{font-size:13px;font-weight:600;color:#fff}
+    .loading-sub{font-size:11px;color:rgba(255,255,255,.5)}
+    .progress-bar{width:200px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+    .progress-fill{height:100%;background:var(--p);border-radius:2px;width:0%;transition:width .4s ease}
+
+    /* ── Controls ── */
+    .ctrl-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;align-items:center}
+    .btn-p{background:var(--p);color:#fff;border:none;border-radius:9px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;box-shadow:0 3px 10px rgba(57,182,251,.3);transition:all .15s;display:flex;align-items:center;gap:6px}
+    .btn-p:hover{background:var(--pd)}
+    .btn-p:disabled{opacity:.5;cursor:not-allowed}
+    .btn-o{background:none;border:1.5px solid var(--border);border-radius:9px;padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Sora',sans-serif;color:var(--text);transition:all .15s;display:flex;align-items:center;gap:6px}
+    .btn-o:hover{border-color:var(--p);color:var(--p)}
+    .btn-o:disabled{opacity:.4;cursor:not-allowed}
+    .file-label{display:flex;align-items:center;gap:6px;padding:8px 18px;border-radius:9px;border:1.5px solid var(--border);font-size:13px;font-weight:500;cursor:pointer;font-family:'Sora',sans-serif;color:var(--text);transition:all .15s;background:var(--surface)}
+    .file-label:hover{border-color:var(--p);color:var(--p)}
+    #file-input{display:none}
+    .coord-display{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);padding:6px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)}
+
+    /* ── Right panel ── */
+    .panel-col{display:flex;flex-direction:column;gap:12px}
+
+    /* ── Risk score ── */
+    .risk-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:20px;box-shadow:var(--sh)}
+    .risk-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .risk-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .risk-score-wrap{text-align:center;padding:16px 0}
+    .risk-score-num{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;font-family:'DM Mono',monospace;transition:color .4s}
+    .risk-score-max{font-size:18px;color:var(--muted);font-weight:400}
+    .risk-level{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+    .risk-bar-wrap{margin-top:14px}
+    .risk-bar-bg{height:8px;background:var(--bg);border-radius:4px;overflow:hidden;border:1px solid var(--border)}
+    .risk-bar-fill{height:100%;border-radius:4px;transition:width .6s cubic-bezier(.4,0,.2,1),background .4s}
+    .risk-breakdown{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+    .rb-row{display:flex;align-items:center;justify-content:space-between;font-size:11px}
+    .rb-label{color:var(--muted);display:flex;align-items:center;gap:5px}
+    .rb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .rb-val{font-weight:700;font-family:'DM Mono',monospace}
+
+    /* ── Detected objects ── */
+    .det-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:20px;box-shadow:var(--sh)}
+    .det-list{display:flex;flex-direction:column;gap:6px;max-height:260px;overflow-y:auto}
+    .det-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:var(--bg);transition:background .15s}
+    .det-item:hover{background:var(--pl)}
+    .det-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+    .det-name{font-size:12px;font-weight:600;flex:1;text-transform:capitalize}
+    .det-conf{font-size:10px;font-family:'DM Mono',monospace;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px}
+    .det-count{font-size:11px;font-weight:700;color:var(--pd)}
+
+    /* ── Warnings ── */
+    .warn-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:20px;box-shadow:var(--sh)}
+    .warn-list{display:flex;flex-direction:column;gap:8px}
+    .warn-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;border-left:3px solid}
+    .warn-high{background:#fff5f5;border-color:var(--red)}
+    .warn-med{background:#fff9ee;border-color:var(--amber)}
+    .warn-low{background:#f0fdf8;border-color:var(--green)}
+    .warn-icon{flex-shrink:0;margin-top:1px}
+    .warn-title{font-size:12px;font-weight:700}
+    .warn-desc{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+
+    /* ── Empty state ── */
+    .empty-panel{text-align:center;padding:32px 16px;color:var(--muted)}
+    .empty-panel svg{opacity:.25;margin-bottom:10px}
+    .empty-panel p{font-size:12px;line-height:1.5}
+
+    /* ── Intersection info from URL ── */
+    .loc-info-bar{background:linear-gradient(135deg,var(--pl),#fff);border:1px solid var(--pm);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+    .loc-info-bar svg{flex-shrink:0;color:var(--pd)}
+    .loc-info-name{font-size:13px;font-weight:700}
+    .loc-info-meta{font-size:11px;color:var(--muted);margin-top:2px}
+
+    /* ── History chips ── */
+    .hist-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+    .hist-chip{font-size:11px;padding:3px 10px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .14s;font-family:'Sora',sans-serif}
+    .hist-chip:hover{border-color:var(--p);color:var(--p)}
+
+    /* ── Hazard color map ── */
+    /* used via JS data attributes */
+
+    @media(max-width:1000px){.main-grid{grid-template-columns:1fr}}
+    @media(max-width:600px){.content{padding:16px}.topbar{padding:0 16px;flex-wrap:wrap;height:auto;padding:8px 16px}}
+  </style>
+</head>
+<body>
+
+<!-- ── Topbar ── -->
+<div class="topbar">
+  <a class="brand" href="index.html">CityScope</a>
+  <div class="tab-nav">
+    <a class="tn" href="index.html">Overview</a>
+    <a class="tn" href="location.html">Locations</a>
+    <a class="tn" href="predictive_map.html">Predictive Map</a>
+    <a class="tn active" href="#">Hazard View</a>
+  </div>
+  <div class="tb-spacer"></div>
+  <div class="user-chip">
+    <div class="avatar">COE</div>
+    <span class="user-name">City of Edmonton</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- Page header -->
+  <div class="ph">
+    <div class="ph-left">
+      <div class="ph-title">
+        <span>&#9888;</span>
+        Street View Hazard Detection
+      </div>
+      <div class="ph-sub">Upload or paste a street-level image: COCO-SSD detects road hazards in your browser.</div>
+    </div>
+  </div>
+
+  <!-- Location info bar (populated from URL params) -->
+  <div class="loc-info-bar" id="loc-info-bar" style="display:none">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <div>
+      <div class="loc-info-name" id="loc-info-name">—</div>
+      <div class="loc-info-meta" id="loc-info-meta">—</div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+
+    <!-- ── Left: image + canvas ── -->
+    <div>
+      <div class="card" style="padding:16px">
+        <div class="stitle">Street View Image</div>
+
+        <!-- Image area -->
+        <div class="img-wrap" id="img-wrap">
+          <!-- Placeholder -->
+          <div class="img-placeholder" id="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <strong>No image loaded</strong>
+            <p>Upload a photo of an intersection or street, or try the sample image below</p>
+          </div>
+          <!-- Actual image (hidden until loaded) -->
+          <img id="sv-img" style="display:none" crossorigin="anonymous" alt="Street view"/>
+          <!-- Canvas overlay for bounding boxes -->
+          <canvas id="bbox-canvas" style="display:none"></canvas>
+          <!-- Loading overlay -->
+          <div class="loading-overlay hidden" id="loading-overlay">
+            <div class="spinner"></div>
+            <div class="loading-label" id="loading-label">Loading model…</div>
+            <div class="loading-sub" id="loading-sub">First load may take ~10 seconds</div>
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="ctrl-row">
+          <label class="file-label" for="file-input">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload Image
+          </label>
+          <input type="file" id="file-input" accept="image/*"/>
+
+          <button class="btn-p" id="btn-analyze" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Analyze Hazards
+          </button>
+
+          <button class="btn-o" id="btn-clear" disabled>Clear</button>
+
+          <div class="coord-display" id="coord-display" style="display:none">
+            <span id="coord-text">—</span>
+          </div>
+        </div>
+
+        <!-- Sample images -->
+        <div style="margin-top:14px">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Try a sample street image</div>
+          <div class="hist-row" id="sample-row">
+            <div class="hist-chip" data-sample="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg">Loading samples…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Right panel ── -->
+    <div class="panel-col">
+
+      <!-- Risk score -->
+      <div class="risk-card">
+        <div class="risk-header">
+          <span class="risk-label">Hazard Risk Score</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="risk-score-wrap" id="risk-score-wrap">
+          <div class="empty-panel">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+            <p>Run analysis to<br/>compute risk score</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detected objects -->
+      <div class="det-card">
+        <div class="stitle">Detected Objects</div>
+        <div id="det-list-wrap">
+          <div class="empty-panel">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <p>No objects detected yet</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warnings & recommendations -->
+      <div class="warn-card">
+        <div class="stitle">Warnings &amp; Recommendations</div>
+        <div id="warn-list-wrap">
+          <div class="empty-panel">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>Recommendations appear<br/>after analysis</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* CONFIGURATION */
+
+// Hazard categories with weights (higher = more dangerous)
+const HAZARD_WEIGHTS = {
+  person:           { weight: 8,  color: '#e84646', bg: '#fff0f0', icon: '🚶', label: 'Pedestrian' },
+  bicycle:          { weight: 7,  color: '#0891b2', bg: '#e8f9fc', icon: '🚲', label: 'Cyclist' },
+  motorcycle:       { weight: 9,  color: '#f5a623', bg: '#fff8e8', icon: '🏍', label: 'Motorcycle' },
+  car:              { weight: 4,  color: '#39b6fb', bg: '#e8f6ff', icon: '🚗', label: 'Car' },
+  truck:            { weight: 6,  color: '#7a92ab', bg: '#f0f4f8', icon: '🚛', label: 'Truck' },
+  bus:              { weight: 5,  color: '#7a92ab', bg: '#f0f4f8', icon: '🚌', label: 'Bus' },
+  'traffic light':  { weight: 2,  color: '#22c98a', bg: '#e8faf4', icon: '🚦', label: 'Traffic Light' },
+  'stop sign':      { weight: 2,  color: '#22c98a', bg: '#e8faf4', icon: '🛑', label: 'Stop Sign' },
+  bench:            { weight: 1,  color: '#b0c4d8', bg: '#f5f7fa', icon: '🪑', label: 'Bench' },
+  backpack:         { weight: 3,  color: '#e87d95', bg: '#fff4f6', icon: '🎒', label: 'Pedestrian (bag)' },
+};
+
+// Recommendations engine
+const RECOMMENDATIONS = [
+  { condition: d => d.person >= 3,        level:'high',  title:'High Pedestrian Volume', desc:'Consider pedestrian refuge islands or extended crossing times.' },
+  { condition: d => d.bicycle >= 1,       level:'high',  title:'Cyclist Present',        desc:'Install protected bike lanes or sharrows approaching this zone.' },
+  { condition: d => d.motorcycle >= 1,    level:'high',  title:'Motorcycle Detected',    desc:'Motorcycles are 28× more likely to be fatally injured. Improve sight lines.' },
+  { condition: d => d.truck >= 2,         level:'med',   title:'Heavy Vehicle Traffic',  desc:'Review turning radius clearances and mirror blind-spot zones.' },
+  { condition: d => d.person >= 1 && d.car >= 3, level:'high', title:'Vulnerable User Conflict', desc:'Mixed traffic: recommend signal timing review or protected phases.' },
+  { condition: d => !d['traffic light'] && !d['stop sign'] && (d.car||0) >= 2, level:'med', title:'No Visible Traffic Control', desc:'No signal or sign detected. Verify control device is present and visible.' },
+  { condition: d => (d['traffic light']||0) >= 1, level:'low', title:'Signalized Intersection',  desc:'Signal present. Ensure pedestrian countdown timers are installed.' },
+  { condition: d => (d.car||0) >= 5,      level:'med',   title:'High Vehicle Density',   desc:'High traffic volume. Consider turn-restriction or channelization.' },
+];
+
+// Better: using a CORS-friendly image proxy for real street scenes
+const REAL_SAMPLES = [
+  { label: 'Intersection',   url: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80' },
+];
+
+/* STATE */
+let cocoModel   = null;
+let modelReady  = false;
+let currentImg  = null;
+let lastResults = [];
+let threshold   = 0.40;
+
+/* DOM REFS */
+const imgEl        = document.getElementById('sv-img');
+const canvasEl     = document.getElementById('bbox-canvas');
+const ctx          = canvasEl.getContext('2d');
+const imgWrap      = document.getElementById('img-wrap');
+const placeholder  = document.getElementById('img-placeholder');
+const loadOverlay  = document.getElementById('loading-overlay');
+const loadLabel    = document.getElementById('loading-label');
+const loadSub      = document.getElementById('loading-sub');
+const progressFill = document.getElementById('progress-fill');
+const btnAnalyze   = document.getElementById('btn-analyze');
+const btnClear     = document.getElementById('btn-clear');
+const fileInput    = document.getElementById('file-input');
+const threshSlider = document.getElementById('thresh-slider');
+const threshVal    = document.getElementById('thresh-val');
+const coordDisplay = document.getElementById('coord-display');
+const coordText    = document.getElementById('coord-text');
+
+
+/* URL PARAMS — lat/lon/name passed from map page*/
+function readURLParams() {
+  const p = new URLSearchParams(window.location.search);
+  const lat  = p.get('lat');
+  const lon  = p.get('lon');
+  const name = p.get('name');
+  const collisions = p.get('collisions');
+
+  if (lat && lon) {
+    coordDisplay.style.display = 'block';
+    coordText.textContent = `${parseFloat(lat).toFixed(5)}, ${parseFloat(lon).toFixed(5)}`;
+  }
+
+  if (name) {
+    const bar  = document.getElementById('loc-info-bar');
+    const nm   = document.getElementById('loc-info-name');
+    const meta = document.getElementById('loc-info-meta');
+    bar.style.display  = 'flex';
+    nm.textContent     = decodeURIComponent(name);
+    meta.textContent   = [
+      lat && lon ? `${parseFloat(lat).toFixed(4)}, ${parseFloat(lon).toFixed(4)}` : null,
+      collisions ? `${collisions} recorded collisions` : null,
+    ].filter(Boolean).join('  ·  ');
+  }
+}
+
+/* MODEL LOADING */
+async function loadModel() {
+  showLoading('Loading AI model…', 'COCO-SSD — first load ~10s');
+  animateProgress(0, 60, 3000);
+  try {
+    cocoModel  = await cocoSsd.load({ base: 'mobilenet_v2' });
+    modelReady = true;
+    animateProgress(60, 100, 400);
+    setTimeout(() => {
+      hideLoading();
+      if (currentImg) btnAnalyze.disabled = false;
+    }, 500);
+  } catch(e) {
+    hideLoading();
+    showError('Model failed to load: ' + e.message);
+  }
+}
+
+function animateProgress(from, to, duration) {
+  const start = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / duration, 1);
+    progressFill.style.width = (from + (to - from) * t) + '%';
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function showLoading(label, sub) {
+  loadLabel.textContent = label || 'Processing…';
+  loadSub.textContent   = sub   || '';
+  progressFill.style.width = '0%';
+  loadOverlay.classList.remove('hidden');
+}
+function hideLoading() { loadOverlay.classList.add('hidden'); }
+
+/* IMAGE LOADING */
+function loadImageURL(url) {
+  placeholder.style.display = 'none';
+  imgEl.style.display       = 'none';
+  canvasEl.style.display    = 'none';
+  showLoading('Loading image…', '');
+  animateProgress(0, 80, 800);
+
+  imgEl.onload = () => {
+    currentImg = imgEl;
+    imgEl.style.display    = 'block';
+    canvasEl.style.display = 'block';
+    // Size canvas to match rendered image
+    resizeCanvas();
+    hideLoading();
+    clearDetections();
+    if (modelReady) btnAnalyze.disabled = false;
+    btnClear.disabled = false;
+  };
+  imgEl.onerror = () => {
+    hideLoading();
+    placeholder.style.display = 'flex';
+    placeholder.querySelector('p').textContent = 'Could not load image. Try uploading a local file instead.';
+  };
+  imgEl.src = url;
+}
+
+function resizeCanvas() {
+  // Match canvas pixel size to the rendered img size
+  canvasEl.width  = imgEl.naturalWidth;
+  canvasEl.height = imgEl.naturalHeight;
+  canvasEl.style.width  = '100%';
+  canvasEl.style.height = 'auto';
+}
+
+function clearDetections() {
+  ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+  lastResults = [];
+  renderDetList([]);
+  renderRiskScore(null);
+  renderWarnings([]);
+}
+
+/* FILE INPUT*/
+fileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => loadImageURL(ev.target.result);
+  reader.readAsDataURL(file);
+  fileInput.value = '';
+});
+
+/* ANALYZE */
+btnAnalyze.addEventListener('click', runAnalysis);
+
+async function runAnalysis() {
+  if (!cocoModel || !currentImg) return;
+  btnAnalyze.disabled = true;
+  showLoading('Detecting objects…', 'Running COCO-SSD inference');
+  animateProgress(0, 90, 1200);
+
+  try {
+    const predictions = await cocoModel.detect(imgEl, 20, threshold);
+    lastResults = predictions;
+    animateProgress(90, 100, 200);
+    setTimeout(() => {
+      hideLoading();
+      drawBoundingBoxes(predictions);
+      const counts = countByClass(predictions);
+      renderDetList(predictions);
+      renderRiskScore(counts);
+      renderWarnings(counts);
+      btnAnalyze.disabled = false;
+    }, 300);
+  } catch(e) {
+    hideLoading();
+    showError('Detection failed: ' + e.message);
+    btnAnalyze.disabled = false;
+  }
+}
+
+/* BOUNDING BOXES */
+function drawBoundingBoxes(predictions) {
+  ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+
+  predictions.forEach(p => {
+    const cfg   = HAZARD_WEIGHTS[p.class] || { color: '#39b6fb', label: p.class };
+    const [x, y, w, h] = p.bbox;
+    const conf  = Math.round(p.score * 100);
+    const label = (cfg.label || p.class) + ' ' + conf + '%';
+
+    // Box
+    ctx.strokeStyle = cfg.color;
+    ctx.lineWidth   = Math.max(2, canvasEl.width / 300);
+    ctx.strokeRect(x, y, w, h);
+
+    // Fill with low opacity
+    ctx.fillStyle = cfg.color + '22';
+    ctx.fillRect(x, y, w, h);
+
+    // Label background
+    ctx.font = `bold ${Math.max(11, canvasEl.width / 60)}px Sora, sans-serif`;
+    const tw = ctx.measureText(label).width;
+    const th = Math.max(18, canvasEl.width / 40);
+    const lx = x;
+    const ly = y > th ? y - th : y + h;
+
+    ctx.fillStyle = cfg.color;
+    ctx.beginPath();
+    ctx.roundRect(lx, ly, tw + 10, th, [4]);
+    ctx.fill();
+
+    // Label text
+    ctx.fillStyle = '#fff';
+    ctx.fillText(label, lx + 5, ly + th * 0.72);
+  });
+}
+
+/* COUNT BY CLASS */
+function countByClass(predictions) {
+  const counts = {};
+  predictions.forEach(p => {
+    counts[p.class] = (counts[p.class] || 0) + 1;
+  });
+  return counts;
+}
+
+/* RISK SCORE */
+function computeRiskScore(counts) {
+  let score = 0;
+  let max   = 0;
+
+  Object.entries(counts).forEach(([cls, cnt]) => {
+    const cfg = HAZARD_WEIGHTS[cls];
+    if (!cfg) return;
+    // Diminishing returns for many of the same class
+    const contribution = cfg.weight * Math.sqrt(cnt);
+    score += contribution;
+  });
+
+  // Normalize to 0–100
+  const raw = Math.min(score, 60);
+  return Math.round((raw / 60) * 100);
+}
+
+function riskLevel(score) {
+  if (score >= 70) return { label: 'CRITICAL', color: '#e84646', barColor: '#e84646' };
+  if (score >= 50) return { label: 'HIGH',     color: '#f5a623', barColor: '#f5a623' };
+  if (score >= 30) return { label: 'MODERATE', color: '#f5a623', barColor: '#f5a623' };
+  if (score >= 10) return { label: 'LOW',      color: '#22c98a', barColor: '#22c98a' };
+  return                   { label: 'MINIMAL', color: '#7a92ab', barColor: '#7a92ab' };
+}
+
+function renderRiskScore(counts) {
+  const wrap = document.getElementById('risk-score-wrap');
+  if (!counts || Object.keys(counts).length === 0) {
+    wrap.innerHTML = `<div class="empty-panel">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+      <p>No hazards detected</p></div>`;
+    return;
+  }
+
+  const score = computeRiskScore(counts);
+  const lvl   = riskLevel(score);
+
+  // Breakdown rows
+  const breakdownItems = Object.entries(counts)
+    .sort((a, b) => {
+      const wa = (HAZARD_WEIGHTS[a[0]]||{weight:0}).weight;
+      const wb = (HAZARD_WEIGHTS[b[0]]||{weight:0}).weight;
+      return wb - wa;
+    })
+    .slice(0, 5)
+    .map(([cls, cnt]) => {
+      const cfg = HAZARD_WEIGHTS[cls] || { color: '#7a92ab', label: cls };
+      return `<div class="rb-row">
+        <span class="rb-label">
+          <span class="rb-dot" style="background:${cfg.color}"></span>
+          ${cfg.label || cls}
+        </span>
+        <span class="rb-val" style="color:${cfg.color}">×${cnt}</span>
+      </div>`;
+    }).join('');
+
+  wrap.innerHTML = `
+    <div style="text-align:center;padding:8px 0 4px">
+      <div class="risk-score-num" style="color:${lvl.color}">${score}<span class="risk-score-max">/100</span></div>
+      <div class="risk-level" style="color:${lvl.color}">${lvl.label} RISK</div>
+    </div>
+    <div class="risk-bar-wrap">
+      <div class="risk-bar-bg">
+        <div class="risk-bar-fill" style="width:${score}%;background:${lvl.barColor}"></div>
+      </div>
+    </div>
+    <div class="risk-breakdown">${breakdownItems}</div>
+  `;
+}
+
+/* DETECTION LIST */
+function renderDetList(predictions) {
+  const wrap = document.getElementById('det-list-wrap');
+  if (!predictions || predictions.length === 0) {
+    wrap.innerHTML = `<div class="empty-panel">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <p>No objects detected</p></div>`;
+    return;
+  }
+
+  // Group by class
+  const groups = {};
+  predictions.forEach(p => {
+    if (!groups[p.class]) groups[p.class] = { scores: [], cfg: HAZARD_WEIGHTS[p.class] || { color: '#7a92ab', bg: '#f0f4f8', icon: '📦', label: p.class } };
+    groups[p.class].scores.push(p.score);
+  });
+
+  const html = Object.entries(groups)
+    .sort((a,b) => {
+      const wa = (HAZARD_WEIGHTS[a[0]]||{weight:0}).weight;
+      const wb = (HAZARD_WEIGHTS[b[0]]||{weight:0}).weight;
+      return wb - wa;
+    })
+    .map(([cls, g]) => {
+      const avgConf = Math.round(g.scores.reduce((a,b) => a+b, 0) / g.scores.length * 100);
+      return `<div class="det-item">
+        <div class="det-icon" style="background:${g.cfg.bg};color:${g.cfg.color}">${g.cfg.icon}</div>
+        <span class="det-name" style="color:${g.cfg.color}">${g.cfg.label || cls}</span>
+        <span class="det-count">×${g.scores.length}</span>
+        <span class="det-conf">${avgConf}%</span>
+      </div>`;
+    }).join('');
+
+  wrap.innerHTML = `<div class="det-list">${html}</div>`;
+}
+
+/* WARNINGS */
+function renderWarnings(counts) {
+  const wrap = document.getElementById('warn-list-wrap');
+
+  if (!counts || Object.keys(counts).length === 0) {
+    wrap.innerHTML = `<div class="empty-panel">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>No warnings to show</p></div>`;
+    return;
+  }
+
+  const warnings = RECOMMENDATIONS.filter(r => r.condition(counts));
+
+  if (warnings.length === 0) {
+    wrap.innerHTML = `<div class="empty-panel"><p style="color:var(--green);font-weight:600">No major hazards detected</p></div>`;
+    return;
+  }
+
+  const icons = {
+    high: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e84646" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+    med:  `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+    low:  `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c98a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+  };
+
+  const html = warnings.map(w => `
+    <div class="warn-item warn-${w.level}">
+      <span class="warn-icon">${icons[w.level]}</span>
+      <div>
+        <div class="warn-title">${w.title}</div>
+        <div class="warn-desc">${w.desc}</div>
+      </div>
+    </div>
+  `).join('');
+
+  wrap.innerHTML = `<div class="warn-list">${html}</div>`;
+}
+
+/* CLEAR */
+btnClear.addEventListener('click', () => {
+  imgEl.src          = '';
+  imgEl.style.display    = 'none';
+  canvasEl.style.display = 'none';
+  placeholder.style.display = 'flex';
+  currentImg = null;
+  btnAnalyze.disabled = true;
+  btnClear.disabled   = true;
+  clearDetections();
+});
+
+/* SAMPLE IMAGES */
+function buildSampleRow() {
+  const row = document.getElementById('sample-row');
+  row.innerHTML = REAL_SAMPLES.map((s, i) =>
+    `<div class="hist-chip" data-url="${s.url}">${s.label}</div>`
+  ).join('');
+
+  row.querySelectorAll('.hist-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      loadImageURL(chip.dataset.url);
+    });
+  });
+}
+
+/* ERROR DISPLAY */
+function showError(msg) {
+  placeholder.style.display = 'flex';
+  placeholder.querySelector('strong').textContent = 'Error';
+  placeholder.querySelector('p').textContent = msg;
+}
+
+/* WINDOW RESIZE — refit canvas */
+window.addEventListener('resize', () => {
+  if (currentImg && lastResults.length > 0) {
+    resizeCanvas();
+    drawBoundingBoxes(lastResults.filter(p => p.score >= threshold));
+  }
+});
+
+/* INIT */
+readURLParams();
+buildSampleRow();
+loadModel();
+</script>
+</body>
+</html>
