@@ -1434,7 +1434,7 @@ Based on this data, provide a structured analysis in JSON format with exactly th
 Return ONLY valid JSON, no markdown, no preamble.`;
 
       try {
-        const response = await fetch('http://localhost:3131/gemini', {
+        const response = await fetch('https://adahacks2026.onrender.com/gemini', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
