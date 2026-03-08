@@ -103,6 +103,7 @@
   <div class="tab-nav">
     <a class="tn" href="index.html">Overview</a>
     <a class="tn active" href="location.html">Priority Locations</a>
+    <a class="tn" href="predictive_map.html">Predictive Map</a>
   </div>
   <div class="tb-spacer"></div>
   <div class="user-chip"><div class="avatar">COE</div><span class="user-name">City of Edmonton</span></div>
@@ -147,6 +148,7 @@
         <button class="flbtn on" id="so-score"          onclick="setSort('score',this)">Score</button>
         <button class="flbtn"    id="so-collision_count" onclick="setSort('collision_count',this)">Collisions</button>
         <button class="flbtn"    id="so-fatalities"      onclick="setSort('fatalities',this)">Fatalities</button>
+        <button class="flbtn"   id="so-injuries" onclick="setSort('injuries',this)">Injuries</button>
       </div>
       <div class="legend-row">
         <div class="legend-dot" style="background:var(--red)"></div><span class="legend-txt">CRITICAL</span>
@@ -161,7 +163,15 @@
 
     <div class="detail-col" id="loc-detail">
       <div class="empty-det">
-        <div style="font-size:40px">&#128205;</div>
+        <div style="font-size:40px">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                height="40px" 
+                viewBox="0 -960 960 960" 
+                width="40px" 
+                fill="#39b6fb">
+                <path d="M452-112q-14-5-25-15-65-60-115-117t-83.5-110.5q-33.5-53.5-51-103T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 45-17.5 94.5t-51 103Q698-301 648-244T533-127q-11 10-25 15t-28 5q-14 0-28-5Zm84.5-391.5Q560-527 560-560t-23.5-56.5Q513-640 480-640t-56.5 23.5Q400-593 400-560t23.5 56.5Q447-480 480-480t56.5-23.5Z"/>
+            </svg>
+            </div>
         <div style="font-weight:600;color:var(--text)">Select a location</div>
         <div style="font-size:12px;text-align:center;max-width:220px;line-height:1.6">Click any row on the left to see stats, year-over-year trends, and score breakdown</div>
       </div>
@@ -280,6 +290,13 @@ function getBadge(score,max){
   return          {label:'LOW',     pill:'p-grn', color:'#22c98a'};
 }
 
+function getInjuryBadge(totalInjuries, maxInjuries){
+  var r = maxInjuries > 0 ? totalInjuries / maxInjuries : 0;
+  if(r > 0.66) return{label:'HIGH INJ',   pill:'p-red', color:'#e84646'};
+  if(r > 0.33) return{label:'MOD INJ',    pill:'p-amb', color:'#f5a623'};
+  return              {label:'LOW INJ',   pill:'p-grn', color:'#22c98a'};
+}
+
 function trendDir(loc){
   var yrs=loc.years;
   if(yrs.length<2) return{label:'Insufficient data',color:'#7a92ab'};
@@ -360,7 +377,7 @@ function setFilter(val,el){
 
 function setSort(val,el){
   curSort=val;
-  ['so-score','so-collision_count','so-fatalities'].forEach(function(id){
+  ['so-score','so-collision_count','so-fatalities', 'so-injuries'].forEach(function(id){
     var e=document.getElementById(id); if(e) e.classList.remove('on');
   });
   el.classList.add('on'); renderList();
@@ -371,12 +388,15 @@ function renderList(){
   if(!RAW_LOCS.length) return;
   var scored=computeScores(RAW_LOCS);
   var max=Math.max.apply(null,scored.map(function(l){return l.score;}).concat([1]));
+  scored.forEach(function(l){ l.injuries = (l.major_injuries||0) + (l.minor_injuries||0); });
+  var maxInjuries = Math.max.apply(null, scored.map(function(l){return l.injuries;}).concat([1]));
   var list=curFilter==='All'?scored.slice():scored.filter(function(l){return l.location_type===curFilter;});
   list.sort(function(a,b){return b[curSort]-a[curSort];});
 
   var html='';
   list.forEach(function(loc,i){
     var b   = getBadge(loc.score,max);
+    var ib  = getInjuryBadge(loc.injuries, maxInjuries);
     var pct = (loc.score/max*100).toFixed(0);
     var td  = trendDir(loc);
     var sel = curLocDesc===loc.location_description;

@@ -76,28 +76,12 @@
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-right: 24px
-    }
-
-    .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--p), var(--pd));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      box-shadow: 0 3px 10px rgba(57, 182, 251, .35)
-    }
-
-    .brand-name {
       font-size: 15px;
       font-weight: 800;
-      letter-spacing: -.4px
+      letter-spacing: -.4px;
+      color: var(--text);
+      text-decoration: none;
+      margin-right: 24px;
     }
 
     .tab-nav {
@@ -115,7 +99,8 @@
       font-family: 'Sora', sans-serif;
       color: var(--muted);
       cursor: pointer;
-      transition: all .15s
+      transition: all .15s;
+      text-decoration: none;
     }
 
     .tn:hover {
@@ -410,7 +395,7 @@
       color: var(--sd)
     }
 
-    /* ── MAP ── */
+    /* MAP */
     .map-shell {
       border: 1px solid var(--border);
       border-radius: 18px;
@@ -458,7 +443,6 @@
       background: var(--pl)
     }
 
-    /* Map container */
     .map-wrap {
       position: relative;
       height: 580px;
@@ -483,7 +467,6 @@
       height: 100%
     }
 
-    /* Tooltip */
     .map-label {
       position: absolute;
       padding: 8px 12px;
@@ -502,7 +485,6 @@
       transform: translate(-50%, -120%)
     }
 
-    /* Legend */
     .legend {
       position: absolute;
       right: 14px;
@@ -541,7 +523,6 @@
       color: var(--muted)
     }
 
-    /* Note */
     .map-note {
       position: absolute;
       left: 14px;
@@ -567,7 +548,6 @@
       color: var(--muted)
     }
 
-    /* Leaflet layer order fix */
     .leaflet-pane {
       z-index: 1 !important
     }
@@ -595,7 +575,6 @@
       opacity: .6
     }
 
-    /* Side panel */
     .side-stack {
       display: flex;
       flex-direction: column;
@@ -812,20 +791,20 @@
 
 <body>
 
+  <!-- Topbar: CityScope style matching index.html and location.html -->
   <div class="topbar">
-    <div class="brand">
-      <div class="brand-icon">🚦</div>
-      <span class="brand-name">SafeRoute Edmonton</span>
-    </div>
+    <a class="brand" href="index.html">CityScope</a>
     <div class="tab-nav">
-      <a class="tn" href="#">📊 Overview</a>
-      <a class="tn" href="#">📍 Priority Locations</a>
-      <a class="tn active" href="#">🧠 Predictive Map</a>
+      <a class="tn" href="index.html">Overview</a>
+      <a class="tn" href="location.html">Priority Locations</a>
+      <a class="tn active" href="predictive_map.html">Predictive Map</a>
     </div>
     <div class="tb-spacer"></div>
+    <span class="chip">Model: LightGBM</span>
+    <span class="chip">Forecast: Next 30 Days</span>
     <div class="user-chip">
-      <div class="avatar">JA</div>
-      <span class="user-name">Jordan Ames</span>
+      <div class="avatar">COE</div>
+      <span class="user-name">City of Edmonton</span>
     </div>
   </div>
 
@@ -837,7 +816,8 @@
           and vulnerable-road-user signals.</div>
       </div>
       <div class="ph-actions">
-        <button class="btn-p" onclick="loadPredictions()">▶ Run Forecast</button>
+        <button class="btn-p" onclick="loadPredictions()">&#9654; Run Forecast</button>
+        <button class="btn-o">Export GeoJSON</button>
       </div>
     </div>
 
@@ -853,7 +833,7 @@
             </div>
             <div class="toolbar-right">
               <button class="tb-btn active" id="heatToggleBtn" onclick="toggleHeat(this)">● Heatmap On</button>
-              <button class="tb-btn" onclick="map.setView([53.5461,-113.4938],11,{animate:true})">⌂ Reset</button>
+              <button class="btn-o" onclick="map.setView([53.5461,-113.4938],11,{animate:true})">⌂ Reset</button>
             </div>
           </div>
           <div class="map-wrap" id="mapWrap">
@@ -976,7 +956,6 @@
       return { x: pt.x, y: pt.y };
     }
 
-    // Build colour LUT
     function buildLUT() {
       const c = document.createElement('canvas');
       c.width = 256; c.height = 1;
@@ -1017,7 +996,6 @@
         const r = h.radiusPx;
         const fa = h.intensity * alpha * 0.6;
 
-        // Main radial blob
         const g1 = oCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
         g1.addColorStop(0, `rgba(255,255,255,${0.62 * fa})`);
         g1.addColorStop(0.3, `rgba(255,255,255,${0.46 * fa})`);
@@ -1026,7 +1004,6 @@
         oCtx.fillStyle = g1;
         oCtx.beginPath(); oCtx.arc(p.x, p.y, r, 0, Math.PI * 2); oCtx.fill();
 
-        // Organic satellite blobs
         [{ dx: r * 0.22, dy: -r * 0.16, s: 0.62 }, { dx: -r * 0.24, dy: r * 0.18, s: 0.52 }, { dx: r * 0.32, dy: r * 0.25, s: 0.42 }]
           .forEach(b => {
             const g2 = oCtx.createRadialGradient(p.x + b.dx, p.y + b.dy, 0, p.x + b.dx, p.y + b.dy, r * b.s);
@@ -1037,7 +1014,6 @@
             oCtx.beginPath(); oCtx.arc(p.x + b.dx, p.y + b.dy, r * b.s, 0, Math.PI * 2); oCtx.fill();
           });
 
-        // Corridor elongation — smooth ellipse via canvas scale (no hard edges)
         if (h.corridor) {
           oCtx.save();
           oCtx.translate(p.x, p.y);
@@ -1053,7 +1029,6 @@
         }
       });
 
-      // Colourize
       const img = oCtx.getImageData(0, 0, W, H);
       const px = img.data;
       for (let i = 0; i < px.length; i += 4) {
@@ -1067,7 +1042,6 @@
       hCtx.drawImage(off, 0, 0);
     }
 
-    // Redraw on any map move
     map.on('move zoom moveend zoomend resize', () => renderHeat(heatAlpha));
 
     function animateHeat() {
@@ -1116,7 +1090,6 @@
       }
     });
 
-    // Shows exact lat/lng when you click anywhere on the map (for calibration)
     const coordBox = document.createElement('div');
     coordBox.id = 'coordPicker';
     coordBox.style.cssText = 'position:absolute;top:14px;left:50%;transform:translateX(-50%);background:rgba(10,28,54,.92);color:#fff;font-size:12px;font-family:monospace;padding:6px 14px;border-radius:8px;z-index:600;pointer-events:none;display:none;white-space:nowrap;letter-spacing:.03em';
@@ -1128,7 +1101,6 @@
       setTimeout(() => coordBox.style.display = 'none', 4000);
     });
 
-    // original click handler
     map.on('click', e => {
       let best = null, bestD = 0.03;
       Object.entries(hotspots).forEach(([id, h]) => {
