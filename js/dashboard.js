@@ -119,22 +119,44 @@ function renderCharts() {
 
   /* Trend line */
   destroyChart('trend');
+  const HOUR_LABELS = ['12am','1am','2am','3am','4am','5am','6am','7am','8am','9am','10am','11am',
+                     '12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm'];
+    const MONTH_LABELS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
   charts.trend = new Chart(document.getElementById('ch-trend'), {
     type: 'line',
     data: {
       labels: yrs,
       datasets: [
-        { label: 'Collisions',  data: YS.map(y => y.total_collisions),     borderColor: P,   backgroundColor: 'rgba(57,182,251,.07)', fill: true, tension: .4, pointBackgroundColor: P,   pointRadius: 4, yAxisID: 'y'  },
-        { label: 'Fatalities',  data: YS.map(y => y.total_fatalities),     borderColor: RED, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: RED, pointRadius: 4, yAxisID: 'y1' },
-        { label: 'Major Inj.',  data: YS.map(y => y.total_major_injuries), borderColor: AMB, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: AMB, pointRadius: 4, yAxisID: 'y1' },
+        { label: 'Collisions',  data: YS.map(y => y.total_collisions),     borderColor: P,   backgroundColor: 'rgba(57,182,251,.07)', fill: true, tension: .4, pointBackgroundColor: P,   pointRadius: 0, pointHoverRadius: 6, yAxisID: 'y'  },
+        { label: 'Fatalities',  data: YS.map(y => y.total_fatalities),     borderColor: RED, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: RED, pointRadius: 0, pointHoverRadius: 6, yAxisID: 'y1' },
+        { label: 'Major Inj.',  data: YS.map(y => y.total_major_injuries), borderColor: AMB, backgroundColor: 'transparent',           tension: .4, pointBackgroundColor: AMB, pointRadius: 0, pointHoverRadius: 6, yAxisID: 'y1' },
       ],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#7a92ab', font: { family: 'Sora', size: 11 }, boxWidth: 9, padding: 10 } } },
-      scales: { x: bs.x, y: bs.y, y1: { position: 'right', ticks: tk, grid: { drawOnChartArea: false }, border: { color: '#e2eaf3' } } },
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+      legend: { labels: { color: '#7a92ab', font: { family: 'Sora', size: 11 }, boxWidth: 9, padding: 10 } },
+      tooltip: {
+        callbacks: {
+          afterBody: function(tooltipItems) {
+            const idx = tooltipItems[0].dataIndex;
+            const y = YS[idx];
+            if (!y) return [];
+            const peakHr  = y._hourly.indexOf(Math.max(...y._hourly));
+            const peakMo  = y._monthly.indexOf(Math.max(...y._monthly));
+            return [
+              '⏰ Peak Hour: ' + HOUR_LABELS[peakHr],
+              '📅 Peak Month: ' + MONTH_LABELS[peakMo],
+            ];
+          }
+        }
+      }
     },
-  });
+    scales: { x: bs.x, y: bs.y, y1: { position: 'right', ticks: tk, grid: { drawOnChartArea: false }, border: { color: '#e2eaf3' } } },
+  },
+});
 
   /* Mode pie */
   const pedN  = YS.reduce((a, y) => a + y.pedestrian_collisions,  0);

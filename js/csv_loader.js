@@ -35,6 +35,8 @@ function aggregateByYear(rows) {
         fatalities_midblock: 0,
         injuries_intersection: 0,
         injuries_midblock: 0,
+        _hourly: new Array(24).fill(0),   // ← ADD
+        _monthly: new Array(12).fill(0),
         _ctrl: {},
       };
     }
@@ -74,6 +76,12 @@ function aggregateByYear(rows) {
 
     const ctrlKey = ctrl || 'Unknown';
     y._ctrl[ctrlKey] = (y._ctrl[ctrlKey] || 0) + 1;
+    const rawDT = (r['collision_date_time'] ?? r['collision_date___time'] ?? '').trim();
+    if (rawDT) {
+    const parts = rawDT.split(' ');
+    if (parts[0]) { const mo = parseInt(parts[0].split('-')[1], 10) - 1; if (!isNaN(mo) && mo >= 0 && mo < 12) y._monthly[mo]++; }
+    if (parts[1]) { const hr = parseInt(parts[1].split(':')[0], 10);     if (!isNaN(hr) && hr >= 0 && hr < 24) y._hourly[hr]++; }
+    }
   });
 
   return Object.values(map).sort((a, b) => a.year - b.year);
